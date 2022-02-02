@@ -17,7 +17,15 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # data = tickets.get_all_values()
 # print(data)
 
-
+def get_is_new_ticket():
+    """
+    Welcome message and question for user if 
+    intention is entering new ticket.
+    """
+    print("\nWelcome to Hotel Maintenance System!\n")
+    is_new_ticket = input("Do you wish to enter new ticket?\nAnswer Y for yes, or N for no: ")
+    is_new_ticket = is_new_ticket.lower()
+    print(is_new_ticket)
     
 
 def get_room_number():
@@ -69,7 +77,7 @@ def main():
     """
     Run all program functions
     """
-    # get_is_new_ticket()
+    get_is_new_ticket()
     get_room_number()
 
 main()
