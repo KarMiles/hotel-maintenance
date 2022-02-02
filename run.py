@@ -53,7 +53,7 @@ def validate_room_number(value):
     try:
         # [int(value)]
         # value = int(value)
-        if int(value) > 608 or (int(value) == 0) or (int(value[0]) > 6) or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8):
+        if len(value) != 3 or int(value) > 608 or (int(value) == 0) or int(value[0]) > 6 or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8):
             raise ValueError(
                 f"Room number should be 3 digits in the given format.\nTry again!"
             )
@@ -65,6 +65,11 @@ def validate_room_number(value):
     return True
 
         
+def main():
+    """
+    Run all program functions
+    """
+    # get_is_new_ticket()
+    get_room_number()
 
-welcome()
-get_room_number()
+main()
