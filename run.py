@@ -20,13 +20,10 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 def get_is_new_ticket():
     """
-    Welcome message and question for user if 
-    intention is entering new ticket.
+    Ask if user wants to enter new ticket.
     """
-    print("\nWelcome to Hotel Maintenance System!\n")
     while True:
         is_new_ticket = input("Do you wish to enter new ticket?\nAnswer Y for yes, or N for no: ")
-        # is_new_ticket = is_new_ticket.lower()
         
         if validate_is_new_ticket(is_new_ticket):
             print("Y/N answer correct.")
@@ -65,7 +62,7 @@ def get_room_number():
     """
 
     while True:
-        print("\nPlease enter room number.")
+        print("Please enter room number.")
         print("Room number should be 3 digits, e.g. 102.")
         print("First digit representing floor (1-6),")
         print("followed by 0,")
@@ -73,9 +70,9 @@ def get_room_number():
         room_number = input("\nEnter room number here: ")
 
         if validate_room_number(room_number):
-            print(f"You entered room number {room_number}.")
+            print(f"\nYou entered room number {room_number}.")
             break
-
+    
     return room_number
 
 
@@ -97,12 +94,21 @@ def validate_room_number(value):
     
     return True
 
+
+# def room_enquiry(room_number):
+
+
+def display_ticket(room_number):
+    print(f"Receiving information about room {room_number}...")
+
         
 def main():
     """
     Run all program functions
     """
+    print("\nWelcome to Hotel Maintenance System!\n")
+    room = get_room_number()
     get_is_new_ticket()
-    get_room_number()
+    display_ticket(room)
 
 main()
