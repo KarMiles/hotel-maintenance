@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 from tabulate import tabulate
+from collections import Counter
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -100,11 +101,31 @@ def validate_room_number(value):
 # def room_enquiry(room_number):
 
 
-def display_ticket(room_number):
+def display_last_ticket(room_number):
     """
-    Shows room ticket and summary of tickets for other rooms.
+    Shows most recent room ticket.
     """
     print(f"Receiving information about room {room_number}...")
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    last_ticket = tickets[-1]
+    print(last_ticket)
+    
+
+def display_summary():
+    """
+    Displays summary of maintenance tickets for all rooms in the hotel. 
+    """
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    number_of_tickets = len(tickets) - 1
+
+    tickets_summary = SHEET.worksheet("tickets")
+    urgency_column = tickets_summary.col_values(2)
+    
+    urgency = Counter(urgency_column)
+    critical = urgency["critical"]
+    urgent = urgency["urgent"]
+    normal = urgency["normal"]
+    print(f"Total number of tickets: {number_of_tickets}, of which:\nCritical: {critical}, Urgent: {urgent}, Normal: {normal}.")
 
     
 def display_all_tickets():
@@ -112,6 +133,7 @@ def display_all_tickets():
     Display tickets for all rooms 
     with maintenance tickets
     """
+    print("Dislaying all maintenance tickets:")
     tickets = SHEET.worksheet("tickets").get_all_values()
     # pprint(tickets)
     tickets_headers = tickets[0]
@@ -127,7 +149,8 @@ def main():
     print("\nWelcome to Hotel Maintenance System!\n")
     room = get_room_number()
     get_is_new_ticket()
-    display_ticket(room)
+    display_last_ticket(room)
     display_all_tickets()
 
-main()
+# main()
+display_summary()
