@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # print(data)
 
 
-def get_is_new_ticket():
+def is_new_ticket():
     """
     Ask if user wants to enter new ticket.
     """
@@ -30,14 +30,24 @@ def get_is_new_ticket():
         
         if validate_is_new_ticket(is_new_ticket):
             print("Y/N answer correct.")
+
+            if is_new_ticket.lower() == "y":
+                print("Redirecting to new ticket...")
+                result = True
+            elif is_new_ticket.lower() == "n":
+                print("Receiving current tickets...")
+                result = False
+
             break
     
-    return is_new_ticket
+    print(result)
+    
+    return result
 
 
 def validate_is_new_ticket(value):
     """
-    Checks validity of Y/N anser about new ticket.
+    Checks validity of Y/N answer about new ticket.
     Returns ValueError if entered value 
     is not Y or N.
     """
@@ -98,14 +108,12 @@ def validate_room_number(value):
     return True
 
 
-# def room_enquiry(room_number):
-
-
-def display_last_ticket(room_number):
+def display_last_ticket():
     """
     Shows most recent room ticket.
     """
-    print(f"Receiving information about room {room_number}...")
+    
+    print(f"Receiving information about the last room ticket...")
     tickets = SHEET.worksheet("tickets").get_all_values()
     last_ticket = tickets[-1]
     print(last_ticket)
@@ -147,10 +155,12 @@ def main():
     Run all program functions
     """
     print("\nWelcome to Hotel Maintenance System!\n")
-    room = get_room_number()
-    get_is_new_ticket()
-    display_last_ticket(room)
+    # room = get_room_number()
+    is_new_ticket()
+
+    if 
+
+    display_last_ticket()
     display_all_tickets()
 
-# main()
-display_summary()
+main()
