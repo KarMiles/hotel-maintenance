@@ -26,21 +26,18 @@ def is_new_ticket():
     Ask if user wants to enter new ticket.
     """
     while True:
-        is_new_ticket = input("Do you wish to enter new ticket?\nAnswer Y for yes, or N for no: ")
+        is_new_ticket = input("Do you wish to register new issue?\nAnswer Y for yes, or N for no: ")
         
         if validate_is_new_ticket(is_new_ticket):
-            print("Y/N answer correct.")
 
             if is_new_ticket.lower() == "y":
-                print("Redirecting to new ticket...")
+                print(f"\nRedirecting to new ticket...")
                 result = True
             elif is_new_ticket.lower() == "n":
-                print("Receiving current tickets...")
+                print(f"\nReceiving current tickets...")
                 result = False
 
             break
-    
-    print(result)
     
     return result
 
@@ -119,6 +116,25 @@ def display_last_ticket():
     print(last_ticket)
     
 
+def display_ticket(value):
+    """
+    Shows room ticket.
+    """
+    
+    print(f"Receiving information about room {value}...")
+    tickets = SHEET.worksheet("tickets").get_all_values()
+
+    tickets_summary = SHEET.worksheet("tickets")
+    room_number_column = tickets_summary.col_values(1)
+    
+    room = Counter(room_number_column)
+    occurencies = room[value]
+    if occurencies == 1:
+        print(f"There is currently {occurencies} ticket for this room.")
+    else:
+        print(f"There are currently {occurencies} tickets for this room.")
+    
+
 def display_summary():
     """
     Displays summary of maintenance tickets for all rooms in the hotel. 
@@ -155,12 +171,19 @@ def main():
     Run all program functions
     """
     print("\nWelcome to Hotel Maintenance System!\n")
+
+    room_number = get_room_number()
     # room = get_room_number()
-    is_new_ticket()
+    # is_new_ticket()
 
-    if 
+    if is_new_ticket():
+        print("...")
+    else:
+        display_ticket(room_number)
+        # display_summary()
+        # display_all_tickets()
 
-    display_last_ticket()
-    display_all_tickets()
+    # display_last_ticket()
+    
 
 main()
