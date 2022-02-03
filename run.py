@@ -17,15 +17,43 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # data = tickets.get_all_values()
 # print(data)
 
+
 def get_is_new_ticket():
     """
     Welcome message and question for user if 
     intention is entering new ticket.
     """
     print("\nWelcome to Hotel Maintenance System!\n")
-    is_new_ticket = input("Do you wish to enter new ticket?\nAnswer Y for yes, or N for no: ")
-    is_new_ticket = is_new_ticket.lower()
-    print(is_new_ticket)
+    while True:
+        is_new_ticket = input("Do you wish to enter new ticket?\nAnswer Y for yes, or N for no: ")
+        # is_new_ticket = is_new_ticket.lower()
+        
+        if validate_is_new_ticket(is_new_ticket):
+            print("Y/N answer correct")
+            break
+    
+    return is_new_ticket
+
+
+def validate_is_new_ticket(value):
+        """
+    Checks validity of Y/N anser about new ticket.
+    Returns ValueError if entered value 
+    is not Y or N.
+    """
+        try:
+            value = value.lower()
+            print(f'You answered {value}.')
+            if str(value) != "y" and str(value) != "n":
+                raise ValueError(
+                    "Please answer Y for yes or N for no!"
+                )
+
+        except ValueError as e:
+            print(f"Invalid data: {e}")
+            return False
+        
+        return True
     
 
 def get_room_number():
@@ -59,8 +87,6 @@ def validate_room_number(value):
     is not a correct room number.
     """
     try:
-        # [int(value)]
-        # value = int(value)
         if len(value) != 3 or int(value) > 608 or (int(value) == 0) or int(value[0]) > 6 or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8):
             raise ValueError(
                 f"Room number should be 3 digits in the given format.\nTry again!"
@@ -79,5 +105,6 @@ def main():
     """
     get_is_new_ticket()
     get_room_number()
+    print(validate_is_new_ticket(get_is_new_ticket))
 
 main()
