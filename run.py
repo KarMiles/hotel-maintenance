@@ -1,5 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -99,7 +101,18 @@ def validate_room_number(value):
 
 
 def display_ticket(room_number):
+    """
+    Shows room ticket and summary of tickets for other rooms.
+    """
     print(f"Receiving information about room {room_number}...")
+
+    
+def display_all_tickets():
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    # pprint(tickets)
+    tickets_headers = tickets[0]
+    # print(tickets_headers)
+    print (tabulate(tickets))
 
         
 def main():
