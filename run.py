@@ -29,31 +29,30 @@ def get_is_new_ticket():
         # is_new_ticket = is_new_ticket.lower()
         
         if validate_is_new_ticket(is_new_ticket):
-            print("Y/N answer correct")
+            print("Y/N answer correct.")
             break
     
     return is_new_ticket
 
 
 def validate_is_new_ticket(value):
-        """
+    """
     Checks validity of Y/N anser about new ticket.
     Returns ValueError if entered value 
     is not Y or N.
     """
-        try:
-            value = value.lower()
-            print(f'You answered {value}.')
-            if str(value) != "y" and str(value) != "n":
-                raise ValueError(
-                    "Please answer Y for yes or N for no!"
-                )
+    try:
+        value = value.lower()
+        if str(value) != "y" and str(value) != "n":
+            raise ValueError(
+                "Please answer Y for yes or N for no!"
+            )
 
-        except ValueError as e:
-            print(f"Invalid data: {e}")
-            return False
-        
-        return True
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
     
 
 def get_room_number():
@@ -105,6 +104,5 @@ def main():
     """
     get_is_new_ticket()
     get_room_number()
-    print(validate_is_new_ticket(get_is_new_ticket))
 
 main()
