@@ -108,11 +108,16 @@ def display_ticket(room_number):
 
     
 def display_all_tickets():
+    """
+    Display tickets for all rooms 
+    with maintenance tickets
+    """
     tickets = SHEET.worksheet("tickets").get_all_values()
     # pprint(tickets)
     tickets_headers = tickets[0]
+    del tickets[0]
     # print(tickets_headers)
-    print (tabulate(tickets))
+    print (tabulate(tickets, tickets_headers))
 
         
 def main():
@@ -123,5 +128,6 @@ def main():
     room = get_room_number()
     get_is_new_ticket()
     display_ticket(room)
+    display_all_tickets()
 
 main()
