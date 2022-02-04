@@ -119,6 +119,7 @@ def get_urgency():
         print("Urgency should be one letter:")
         print("c - for critical, u - for urgent, or n - for normal.")
         urgency = input("\nEnter urgency here: \n")
+        urgency = urgency.lower()
         # change short into full word
         urgency_library = {
             'c': 'critical',
@@ -228,8 +229,8 @@ def validate_issue_type(value):
     is not in correct format.
     """
     try:
-        issue_type = value.lower()
-        if str(issue_type) != "mechanical" and str(issue_type) != "electrical" and str(issue_type) != "hydraulic":
+        # issue_type = value.lower()
+        if str(value) != "mechanical" and str(value) != "electrical" and str(value) != "hydraulic":
             raise ValueError(
                 f"Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!"
             )
@@ -340,7 +341,7 @@ def main():
         print("...")
         get_urgency()
         get_description()
-        
+        get_issue_type()
 
     else:
         display_ticket(room_number)
@@ -350,5 +351,4 @@ def main():
     # display_last_ticket()
     
 
-# main()
-get_issue_type()
+main()
