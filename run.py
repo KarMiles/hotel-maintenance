@@ -190,6 +190,57 @@ def validate_description(value):
     return True
 
 
+def get_issue_type():
+    """
+    Get type of issue from user.
+    Run a while loop to collect a valid type for the new ticket from the user via the terminal, which must be a letter:
+    m - for mechanical,
+    e - for electrical,
+    h - for hydraulic.
+    Capital letters are accepted.
+    The loop will repeatedly request data, until it is valid.
+    """
+    while True:
+        print("Please enter issue type.")
+        print("Type should be one letter:")
+        print("m - for mechanical, e - for electrical, h - for hydraulic.")
+        issue_type = input("\nEnter issue type here: \n")
+        issue_type = issue_type.lower()
+        # change short into full word
+        issue_library = {
+            'm': 'mechanical',
+            'e': 'electrical',
+            'h': 'hydraulic'
+        }
+        issue_type = issue_library[issue_type]
+
+        if validate_issue_type(issue_type):
+            
+            print(f"\nYou entered type of issue: {issue_type}.")
+            break
+
+    return issue_type
+
+def validate_issue_type(value):
+    """
+    Checks validity of issue type entered by user.
+    Returns ValueError if entered value 
+    is not in correct format.
+    """
+    try:
+        issue_type = value.lower()
+        if str(issue_type) != "mechanical" and str(issue_type) != "electrical" and str(issue_type) != "hydraulic":
+            raise ValueError(
+                f"Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
+
+
 def display_last_ticket():
     """
     Shows most recent room ticket.
@@ -299,4 +350,5 @@ def main():
     # display_last_ticket()
     
 
-main()
+# main()
+get_issue_type()
