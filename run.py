@@ -26,7 +26,7 @@ def is_new_ticket():
     Ask if user wants to enter new ticket.
     """
     while True:
-        is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: ")
+        is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: \n")
         
         if validate_is_new_ticket(is_new_ticket):
 
@@ -75,7 +75,7 @@ def get_room_number():
         print("First digit representing floor (1-6),")
         print("followed by 0,")
         print("followed by digit 1-8.")
-        room_number = input("\nEnter room number here: ")
+        room_number = input("\nEnter room number here: \n")
 
         if validate_room_number(room_number):
             print(f"\nYou entered room number {room_number}.")
@@ -102,6 +102,56 @@ def validate_room_number(value):
     
     return True
 
+
+def get_urgency():
+    """
+    Get new issue urgency from user.
+    Run a while loop to collect a valid urgency for the new ticket from the user via the terminal, 
+    whic must be a letter:
+    c - for critical,
+    u - for urgent,
+    n - for normal.
+    Capital letters are accepted.
+    The loop will repeatedly request data, until it is valid.
+    """
+    while True:
+        print("Please enter issue urgency.")
+        print("Urgency should be one letter:")
+        print("c - for critical, u - for urgent, or n - for normal.")
+        urgency = input("\nEnter urgency here: \n")
+        # change short into full word
+        urgency_library = {
+            'c': 'critical',
+            'u': 'urgent',
+            'n': 'normal'
+        }
+        urgency = urgency_library[urgency]
+
+        if validate_urgency(urgency):
+            
+            print(f"\nYou entered that ticket is: {urgency}.")
+            break
+
+    return urgency
+
+def validate_urgency(value):
+    """
+    Checks validity of urgency entered by user.
+    Returns ValueError if entered value 
+    is not in correct format.
+    """
+    try:
+        urgency = value.lower()
+        if str(urgency) != "critical" and str(urgency) != "urgent" and str(urgency) != "normal":
+            raise ValueError(
+                f"Urgency must be: \nc - for critical, u - for urgent or n - for normal.\nTry again!"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
 
 def display_last_ticket():
     """
@@ -157,7 +207,6 @@ def display_ticket(value):
         pass
     
 
-
 def display_summary():
     """
     Displays summary of maintenance tickets for all rooms in the hotel. 
@@ -209,4 +258,5 @@ def main():
     # display_last_ticket()
     
 
-main()
+# main()
+get_urgency()
