@@ -26,15 +26,13 @@ def is_new_ticket():
     Ask if user wants to enter new ticket.
     """
     while True:
-        is_new_ticket = input("Do you wish to register new issue?\nAnswer Y for yes, or N for no: ")
+        is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: ")
         
         if validate_is_new_ticket(is_new_ticket):
 
             if is_new_ticket.lower() == "y":
-                # print(f"\nRedirecting to new ticket...")
                 result = True
             elif is_new_ticket.lower() == "n":
-                # print(f"\nReceiving current tickets...")
                 result = False
 
             break
@@ -110,7 +108,7 @@ def display_last_ticket():
     Shows most recent room ticket.
     """
     
-    print(f"Receiving information about the last room ticket...")
+    print(f"\nReceiving information about the last room ticket...")
     tickets = SHEET.worksheet("tickets").get_all_values()
     last_ticket = tickets[-1]
     print(last_ticket)
@@ -121,7 +119,7 @@ def display_ticket(value):
     Shows room ticket.
     """
     
-    print(f"Receiving information about room {value}...")
+    print(f"\nReceiving information about room {value}...")
     
     # receive information from Google Sheets
     tickets = SHEET.worksheet("tickets").get_all_values()
@@ -132,31 +130,28 @@ def display_ticket(value):
     room = Counter(room_number_column)
     occurencies = room[value]
     if occurencies == 1:
-        print(f"There is currently {occurencies} ticket for this room.")
+        print(f"There is currently {occurencies} ticket for this room.\n")
     else:
         if occurencies == 0: occurencies = "no"
-        print(f"There are currently {occurencies} tickets for this room.")
+        print(f"There are currently {occurencies} tickets for this room.\n")
     
     # Display tickets on enquired room if available
     index = room_number_column.index(value)
-    print(index)
 
     searched = value # searched can be a list
     room_indices = []
     for i in range(len(room_number_column)):
         if room_number_column[i] in searched:
             room_indices.append(i)
-    print(room_indices)
 
     # make list of details on rooms enquired only
     rooms_enquired_details = []
     for i in room_indices:
         rooms_enquired_details.append(tickets[i])
 
-    print(tickets)
-    print('-----------')
-    print(rooms_enquired_details)
-    
+    # Show table containing rooms with tickets
+    tickets_headers = tickets[0]
+    print (tabulate(rooms_enquired_details, tickets_headers))
 
 
 def display_summary():
