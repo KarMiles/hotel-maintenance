@@ -83,7 +83,6 @@ def get_room_number():
     
     return room_number
 
-
 def validate_room_number(value):
     """
     Checks validity of room number entered by user.
@@ -242,6 +241,47 @@ def validate_issue_type(value):
     return True
 
 
+def send_new_ticket():
+    """
+    Ask if user wants to send new ticket.
+    """
+    while True:
+        send_new_ticket = input(f"Do you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
+        send_new_ticket = send_new_ticket.lower()
+        
+        if validate_send_new_ticket(send_new_ticket):
+
+            if send_new_ticket == "y":
+                result = True
+            elif send_new_ticket == "n":
+                result = False
+
+            break
+    
+    return result
+
+
+def validate_send_new_ticket(value):
+    """
+    Checks validity of Y/N answer about sending ticket.
+    Returns ValueError if entered value 
+    is not Y or N.
+    Both lower case and capital letters are accepted.
+    """
+    try:
+        # value = value.lower()
+        if str(value) != "y" and str(value) != "n":
+            raise ValueError(
+                "Please answer Y for yes or N for no!"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
+
+
 def display_last_ticket():
     """
     Shows most recent room ticket.
@@ -334,14 +374,12 @@ def main():
     print("\nWelcome to Hotel Maintenance System!\n")
 
     room_number = get_room_number()
-    # room = get_room_number()
-    # is_new_ticket()
 
     if is_new_ticket():
-        print("...")
         get_urgency()
         get_description()
         get_issue_type()
+        send_new_ticket()
 
     else:
         display_ticket(room_number)
