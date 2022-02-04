@@ -136,22 +136,26 @@ def display_ticket(value):
         print(f"There are currently {occurencies} tickets for this room.\n")
     
     # Display tickets on enquired room if available
-    index = room_number_column.index(value)
+    try: 
+        index = room_number_column.index(value)
+        searched = value # searched can be a list
+        room_indices = []
+        for i in range(len(room_number_column)):
+            if room_number_column[i] in searched:
+                room_indices.append(i)
 
-    searched = value # searched can be a list
-    room_indices = []
-    for i in range(len(room_number_column)):
-        if room_number_column[i] in searched:
-            room_indices.append(i)
+        # make list of details on rooms enquired only
+        rooms_enquired_details = []
+        for i in room_indices:
+            rooms_enquired_details.append(tickets[i])
 
-    # make list of details on rooms enquired only
-    rooms_enquired_details = []
-    for i in room_indices:
-        rooms_enquired_details.append(tickets[i])
+        # Show table containing rooms with tickets
+        tickets_headers = tickets[0]
+        print (tabulate(rooms_enquired_details, tickets_headers))
 
-    # Show table containing rooms with tickets
-    tickets_headers = tickets[0]
-    print (tabulate(rooms_enquired_details, tickets_headers))
+    except:
+        pass
+    
 
 
 def display_summary():
