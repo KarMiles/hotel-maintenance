@@ -122,11 +122,13 @@ def display_ticket(value):
     """
     
     print(f"Receiving information about room {value}...")
-    tickets = SHEET.worksheet("tickets").get_all_values()
-
-    tickets_summary = SHEET.worksheet("tickets")
-    room_number_column = tickets_summary.col_values(1)
     
+    # receive information from Google Sheets
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets_summary = SHEET.worksheet("tickets")
+    
+    # display number of tickets related to enquired room
+    room_number_column = tickets_summary.col_values(1)
     room = Counter(room_number_column)
     occurencies = room[value]
     if occurencies == 1:
@@ -135,6 +137,27 @@ def display_ticket(value):
         if occurencies == 0: occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.")
     
+    # Display tickets on enquired room if available
+    index = room_number_column.index(value)
+    print(index)
+
+    searched = value # searched can be a list
+    room_indices = []
+    for i in range(len(room_number_column)):
+        if room_number_column[i] in searched:
+            room_indices.append(i)
+    print(room_indices)
+
+    # make list of details on rooms enquired only
+    rooms_enquired_details = []
+    for i in room_indices:
+        rooms_enquired_details.append(tickets[i])
+
+    print(tickets)
+    print('-----------')
+    print(rooms_enquired_details)
+    
+
 
 def display_summary():
     """
