@@ -153,6 +153,43 @@ def validate_urgency(value):
     
     return True
 
+
+def get_description():
+    """
+    Get room description of the issue from user.
+    Run a while loop to collect a valid description from the user
+    via the terminal, which must be a number built of at least 3 characters.
+    The loop will repeatedly request data, until it is valid.
+    """
+    while True:
+        print("Please enter brief description of issue.")
+        description = input("\nEnter description here: \n")
+
+        if validate_description(description):
+            print(f"\nDescription entered.")
+            break
+    
+    return description
+
+def validate_description(value):
+    """
+    Checks validity of issue description entered by user.
+    Returns ValueError if entered value 
+    is shorter than 3 characters.
+    """
+    try:
+        if len(value) < 3:
+            raise ValueError(
+                f"Description too short.\nTry again!"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
+
+
 def display_last_ticket():
     """
     Shows most recent room ticket.
@@ -250,6 +287,10 @@ def main():
 
     if is_new_ticket():
         print("...")
+        get_urgency()
+        get_description()
+        
+
     else:
         display_ticket(room_number)
         # display_summary()
@@ -258,5 +299,4 @@ def main():
     # display_last_ticket()
     
 
-# main()
-get_urgency()
+main()
