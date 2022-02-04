@@ -129,7 +129,7 @@ def get_urgency():
 
         if validate_urgency(urgency):
             
-            print(f"\nYou entered that ticket is: {urgency}.")
+            print(f"\nYou entered that issue urgency is: {urgency}.")
             break
 
     return urgency
@@ -241,19 +241,19 @@ def validate_issue_type(value):
     return True
 
 
-def send_new_ticket():
+def should_send_ticket():
     """
     Ask if user wants to send new ticket.
     """
     while True:
-        send_new_ticket = input(f"Do you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
-        send_new_ticket = send_new_ticket.lower()
+        should_send_ticket = input(f"Do you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
+        should_send_ticket = should_send_ticket.lower()
         
-        if validate_send_new_ticket(send_new_ticket):
+        if validate_should_send_ticket(should_send_ticket):
 
-            if send_new_ticket == "y":
+            if should_send_ticket == "y":
                 result = True
-            elif send_new_ticket == "n":
+            elif should_send_ticket == "n":
                 result = False
 
             break
@@ -261,7 +261,7 @@ def send_new_ticket():
     return result
 
 
-def validate_send_new_ticket(value):
+def validate_should_send_ticket(value):
     """
     Checks validity of Y/N answer about sending ticket.
     Returns ValueError if entered value 
@@ -379,7 +379,7 @@ def main():
         get_urgency()
         get_description()
         get_issue_type()
-        send_new_ticket()
+        should_send_ticket()
 
     else:
         display_ticket(room_number)
