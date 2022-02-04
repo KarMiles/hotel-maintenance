@@ -31,10 +31,10 @@ def is_new_ticket():
         if validate_is_new_ticket(is_new_ticket):
 
             if is_new_ticket.lower() == "y":
-                print(f"\nRedirecting to new ticket...")
+                # print(f"\nRedirecting to new ticket...")
                 result = True
             elif is_new_ticket.lower() == "n":
-                print(f"\nReceiving current tickets...")
+                # print(f"\nReceiving current tickets...")
                 result = False
 
             break
@@ -132,6 +132,7 @@ def display_ticket(value):
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.")
     else:
+        if occurencies == 0: occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.")
     
 
