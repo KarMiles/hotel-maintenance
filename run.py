@@ -384,6 +384,45 @@ def display_all_tickets():
     # print(tickets_headers)
     print(tabulate(tickets, tickets_headers))
 
+
+def want_all_tickets():
+    """
+    Ask if user wants to see tickets for all rooms in the hotel.
+    """
+    while True:
+        is_new_ticket = input(f"Do you wish to see all tickets?\nAnswer Y for yes, or N for no: \n")
+        
+        if validate_yes_no_question(is_new_ticket):
+
+            if is_new_ticket.lower() == "y":
+                result = True
+            elif is_new_ticket.lower() == "n":
+                result = False
+
+            break
+    
+    return result
+
+
+def validate_yes_no_question(value):
+    """
+    Checks validity of Y/N answer.
+    Returns ValueError if entered value 
+    is not Y or N.
+    """
+    try:
+        value = value.lower()
+        if str(value) != "y" and str(value) != "n":
+            raise ValueError(
+                "Please answer Y for yes or N for no!"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
+
         
 def main():
     """
@@ -400,13 +439,17 @@ def main():
         if should_send_ticket():
             ticket = create_ticket(room_number, urgency, issue_type, description)
             update_worksheet(ticket, "tickets")
+            display_summary()
         else:
             print("Ticket not sent.")
 
     else:
         display_ticket(room_number)
-        # display_summary()
-        # display_all_tickets()
+        display_summary()
+        if want_all_tickets():
+            display_all_tickets()
+        else:
+            print("Thank you for using Hotel Maintenance System. Good bye!")
     
 
 main()
