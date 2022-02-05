@@ -58,7 +58,7 @@ def validate_is_new_ticket(value):
         return False
     
     return True
-    
+
 
 def get_room_number():
     """
@@ -278,6 +278,17 @@ def validate_should_send_ticket(value):
         return False
     
     return True
+
+
+def update_worksheet(ticket, worksheet):
+    """
+    Receives data for new ticket.
+    Updates relevant worksheet with the new ticket.
+    """
+    print(f"Updating {worksheet} worksheet...")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(ticket)
+    print(f"Worksheet {worksheet} saved succesfully.")
 
 
 def display_last_ticket():
