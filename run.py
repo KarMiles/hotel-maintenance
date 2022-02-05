@@ -47,6 +47,7 @@ def get_room_number():
     Run a while loop to collect a valid room number from the user
     via the terminal, which must be a number built of 3 digits:
     1st between 1-6, 2nd equal 0, 3rd between 1-8.
+    User may enter a - for all, to have all tickets displayed.
     The loop will repeatedly request data, until it is valid.
     """
 
@@ -56,7 +57,11 @@ def get_room_number():
         print("First digit representing floor (1-6),")
         print("followed by 0,")
         print("followed by digit 1-8.")
+        print("For all other areas enter 000")
+
         room_number = input("\nEnter room number here: \n")
+        # normalize zero value to three character format
+        if int(room_number) == 0 : room_number = str('000')
 
         if validate_room_number(room_number):
             print(f"\nYou entered room number {room_number}.")
@@ -71,7 +76,7 @@ def validate_room_number(value):
     is not a correct room number.
     """
     try:
-        if len(value) != 3 or int(value) > 608 or (int(value) == 0) or int(value[0]) > 6 or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8):
+        if (len(value) != 3 or int(value) > 608 or (int(value) == 0) or int(value[0]) > 6 or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8) ) and int(value) != 0:
             raise ValueError(
                 f"Room number should be 3 digits in the given format.\nTry again!"
             )
@@ -275,12 +280,12 @@ def update_worksheet(ticket, worksheet):
     Receives data for new ticket.
     Updates relevant worksheet with the new ticket.
     """
-    print(f"Updating '{worksheet}' worksheet...")
+    print(f"\nUpdating '{worksheet}' worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
     print(f"Worksheet '{worksheet}' updated succesfully.")
     # information about email which is sent by Zapier
-    print("Ticket emailed to Maintenance Team member.")
+    print("Ticket emailed to Maintenance Team member.\n")
 
 def display_last_ticket():
     """
