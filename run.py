@@ -119,16 +119,15 @@ def get_urgency():
         print("c - for critical, u - for urgent, or n - for normal.")
         urgency = input("\nEnter urgency here: \n")
         urgency = urgency.lower()
-        # change short into full word
-        urgency_library = {
-            'c': 'critical',
-            'u': 'urgent',
-            'n': 'normal'
-        }
-        urgency = urgency_library[urgency]
 
         if validate_urgency(urgency):
-            
+            # change short into full word
+            urgency_library = {
+                'c': 'critical',
+                'u': 'urgent',
+                'n': 'normal'
+            }
+            urgency = urgency_library[urgency]
             print(f"\nYou entered that issue urgency is: {urgency}.")
             break
 
@@ -142,7 +141,7 @@ def validate_urgency(value):
     """
     try:
         urgency = value.lower()
-        if str(urgency) != "critical" and str(urgency) != "urgent" and str(urgency) != "normal":
+        if str(urgency) != "c" and str(urgency) != "u" and str(urgency) != "n":
             raise ValueError(
                 f"Urgency must be: \nc - for critical, u - for urgent or n - for normal.\nTry again!"
             )
@@ -206,16 +205,16 @@ def get_issue_type():
         print("m - for mechanical, e - for electrical, h - for hydraulic.")
         issue_type = input("\nEnter issue type here: \n")
         issue_type = issue_type.lower()
-        # change short into full word
-        issue_library = {
-            'm': 'mechanical',
-            'e': 'electrical',
-            'h': 'hydraulic'
-        }
-        issue_type = issue_library[issue_type]
 
+        
         if validate_issue_type(issue_type):
-            
+            # change short into full word
+            issue_library = {
+                'm': 'mechanical',
+                'e': 'electrical',
+                'h': 'hydraulic'
+            }
+            issue_type = issue_library[issue_type]
             print(f"\nYou entered type of issue: {issue_type}.")
             break
 
@@ -229,7 +228,7 @@ def validate_issue_type(value):
     """
     try:
         # issue_type = value.lower()
-        if str(value) != "mechanical" and str(value) != "electrical" and str(value) != "hydraulic":
+        if str(value) != "m" and str(value) != "e" and str(value) != "h":
             raise ValueError(
                 f"Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!"
             )
@@ -259,7 +258,6 @@ def should_send_ticket():
             break
     
     return result
-
 
 def validate_should_send_ticket(value):
     """
@@ -379,14 +377,17 @@ def main():
         get_urgency()
         get_description()
         get_issue_type()
-        should_send_ticket()
+        if should_send_ticket():
+            print("Sending ticket...")
+        else:
+            print("Ticket not sent.")
 
     else:
         display_ticket(room_number)
         # display_summary()
         # display_all_tickets()
-
-    # display_last_ticket()
     
 
 main()
+
+# get_issue_type()
