@@ -285,18 +285,20 @@ def create_ticket(room_number, urgency, issue_type, description):
     Collect data for new maintenance ticket.
     """
     ticket = [room_number, urgency, issue_type, description]
-    print(ticket)
 
+    return ticket
+    
 
 def update_worksheet(ticket, worksheet):
     """
     Receives data for new ticket.
     Updates relevant worksheet with the new ticket.
     """
-    print(f"Updating {worksheet} worksheet...")
+    print(f"Updating '{worksheet}' worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
-    print(f"Worksheet {worksheet} saved succesfully.")
+    print(f"Worksheet '{worksheet}' updated succesfully.")
+    ticket = ticket
 
 
 def display_last_ticket():
@@ -347,7 +349,7 @@ def display_ticket(value):
 
         # Show table containing rooms with tickets
         tickets_headers = tickets[0]
-        print (tabulate(rooms_enquired_details, tickets_headers))
+        print(tabulate(rooms_enquired_details, tickets_headers))
 
     except:
         pass
@@ -377,11 +379,10 @@ def display_all_tickets():
     """
     print("Dislaying all maintenance tickets:")
     tickets = SHEET.worksheet("tickets").get_all_values()
-    # pprint(tickets)
     tickets_headers = tickets[0]
     del tickets[0]
     # print(tickets_headers)
-    print (tabulate(tickets, tickets_headers))
+    print(tabulate(tickets, tickets_headers))
 
         
 def main():
@@ -397,8 +398,8 @@ def main():
         description = get_description()
         issue_type = get_issue_type()
         if should_send_ticket():
-            print("Sending ticket...")
-            create_ticket(room_number, urgency, issue_type, description)
+            ticket = create_ticket(room_number, urgency, issue_type, description)
+            update_worksheet(ticket, "tickets")
         else:
             print("Ticket not sent.")
 
@@ -410,4 +411,5 @@ def main():
 
 main()
 
-# get_issue_type()
+# ticket = ['101', 'normal', 'mechanical', 'Change drapes.']
+# update_worksheet(ticket, "tickets")
