@@ -21,6 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # data = tickets.get_all_values()
 # print(data)
 
+# Get data from user:
 
 def is_new_ticket():
     """
@@ -266,6 +267,8 @@ def validate_should_send_ticket(value):
     return True
 
 
+# Data manipulation
+
 def create_ticket(room_number, urgency, issue_type, description):
     """
     Put together data for new maintenance ticket.
@@ -287,16 +290,6 @@ def update_worksheet(ticket, worksheet):
     # information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")
 
-def display_last_ticket():
-    """
-    Shows most recent maintenance ticket.
-    """
-    
-    print(f"\nReceiving information about the last room ticket...")
-    tickets = SHEET.worksheet("tickets").get_all_values()
-    last_ticket = tickets[-1]
-    print(last_ticket)
-    
 
 def display_ticket(value):
     """
@@ -452,10 +445,12 @@ def main():
         if should_send_ticket():
             ticket = create_ticket(room_number, urgency, issue_type, description)
             update_worksheet(ticket, "tickets")
+            print("Getting summary of your ticket...")
+            display_ticket(room_number)
             ending_sequence()
         else:
-            print("\nTicket not sent.")
-            ending_sequence()
+            print("\nAction aborted. Ticket was not sent.")
+            end_message()
 
     else:
         display_ticket(room_number)
