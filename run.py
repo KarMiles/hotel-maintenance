@@ -280,6 +280,14 @@ def validate_should_send_ticket(value):
     return True
 
 
+def create_ticket(room_number, urgency, issue_type, description):
+    """
+    Collect data for new maintenance ticket.
+    """
+    ticket = [room_number, urgency, issue_type, description]
+    print(ticket)
+
+
 def update_worksheet(ticket, worksheet):
     """
     Receives data for new ticket.
@@ -293,7 +301,7 @@ def update_worksheet(ticket, worksheet):
 
 def display_last_ticket():
     """
-    Shows most recent room ticket.
+    Shows most recent maintenance ticket.
     """
     
     print(f"\nReceiving information about the last room ticket...")
@@ -304,7 +312,7 @@ def display_last_ticket():
 
 def display_ticket(value):
     """
-    Shows room ticket.
+    Shows maintenance ticket(s) for enquired room.
     """
     
     print(f"\nReceiving information about room {value}...")
@@ -385,11 +393,12 @@ def main():
     room_number = get_room_number()
 
     if is_new_ticket():
-        get_urgency()
-        get_description()
-        get_issue_type()
+        urgency = get_urgency()
+        description = get_description()
+        issue_type = get_issue_type()
         if should_send_ticket():
             print("Sending ticket...")
+            create_ticket(room_number, urgency, issue_type, description)
         else:
             print("Ticket not sent.")
 
