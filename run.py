@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 from pprint import pprint
 from tabulate import tabulate
 from collections import Counter
+from operator import itemgetter
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -356,14 +357,16 @@ def display_summary():
 def display_all_tickets():
     """
     Display tickets for all rooms 
-    with maintenance tickets
+    with maintenance tickets.
+    Tickets are sorted by room number and displayed as a table. 
     """
-    print("Displaying all maintenance tickets:\n")
+    print("Displaying tickets:\n")
     tickets = SHEET.worksheet("tickets").get_all_values()
     tickets_headers = tickets[0]
     del tickets[0]
-    # print(tickets_headers)
-    print(tabulate(tickets, tickets_headers))
+    all_tickets_sorted = sorted(tickets, key=itemgetter(0))
+    print(tabulate(all_tickets_sorted, tickets_headers))
+    # print(tabulate(tickets, tickets_headers))
     print("")
 
 
@@ -377,7 +380,7 @@ def want_all_tickets():
         if validate_yes_no_question(want_all_tickets):
 
             if want_all_tickets.lower() == "y":
-                print("Retreiving all tickets...")
+                print("Retreiving all maintenance tickets...")
                 result = True
             elif want_all_tickets.lower() == "n":
                 result = False
