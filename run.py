@@ -28,7 +28,7 @@ def is_new_ticket():
     while True:
         is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: \n")
         
-        if validate_is_new_ticket(is_new_ticket):
+        if validate_yes_no_question(is_new_ticket):
 
             if is_new_ticket.lower() == "y":
                 result = True
@@ -38,26 +38,6 @@ def is_new_ticket():
             break
     
     return result
-
-
-def validate_is_new_ticket(value):
-    """
-    Checks validity of Y/N answer about new ticket.
-    Returns ValueError if entered value 
-    is not Y or N.
-    """
-    try:
-        value = value.lower()
-        if str(value) != "y" and str(value) != "n":
-            raise ValueError(
-                "Please answer Y for yes or N for no!"
-            )
-
-    except ValueError as e:
-        print(f"Invalid data: {e}")
-        return False
-    
-    return True
 
 
 def get_room_number():
