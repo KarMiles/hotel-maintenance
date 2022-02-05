@@ -371,8 +371,6 @@ def display_all_tickets():
     del tickets[0]
     all_tickets_sorted = sorted(tickets, key=itemgetter(0))
     print(tabulate(all_tickets_sorted, tickets_headers))
-    # print(tabulate(tickets, tickets_headers))
-    print("")
 
 
 def want_all_tickets():
@@ -415,6 +413,8 @@ def validate_yes_no_question(value):
     return True
 
 
+# Messages
+
 def welcome_message():
     message = """ Welcome to Hotel Maintenance System! """
     table = [[message]]
@@ -423,8 +423,19 @@ def welcome_message():
 
 
 def end_message():
-    print("Thank you for using Hotel Maintenance System!\n")
+    print("\nThank you for using Hotel Maintenance System!\n")
 
+
+def ending_sequence():
+    display_summary()
+    if want_all_tickets():
+        display_all_tickets()
+        end_message()
+    else:
+        end_message()
+
+
+# Main function
 
 def main():
     """
@@ -441,19 +452,14 @@ def main():
         if should_send_ticket():
             ticket = create_ticket(room_number, urgency, issue_type, description)
             update_worksheet(ticket, "tickets")
-            display_summary()
+            ending_sequence()
         else:
             print("\nTicket not sent.")
-            end_message()
+            ending_sequence()
 
     else:
         display_ticket(room_number)
-        display_summary()
-        if want_all_tickets():
-            display_all_tickets()
-            end_message()
-        else:
-            end_message()
+        ending_sequence()
     
 
 main()
