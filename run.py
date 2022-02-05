@@ -282,7 +282,7 @@ def validate_should_send_ticket(value):
 
 def create_ticket(room_number, urgency, issue_type, description):
     """
-    Collect data for new maintenance ticket.
+    Put together data for new maintenance ticket.
     """
     ticket = [room_number, urgency, issue_type, description]
 
@@ -298,8 +298,8 @@ def update_worksheet(ticket, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
     print(f"Worksheet '{worksheet}' updated succesfully.")
-    ticket = ticket
-
+    # information about email which is sent by Zapier
+    print("Ticket emailed to Maintenance Team member.")
 
 def display_last_ticket():
     """
