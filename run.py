@@ -330,6 +330,7 @@ def display_ticket(value):
         # Show table containing rooms with tickets
         tickets_headers = tickets[0]
         print(tabulate(rooms_enquired_details, tickets_headers))
+        print("")
 
     except:
         pass
@@ -349,7 +350,7 @@ def display_summary():
     critical = urgency["critical"]
     urgent = urgency["urgent"]
     normal = urgency["normal"]
-    print(f"Total number of tickets: {number_of_tickets}, of which:\nCritical: {critical}, Urgent: {urgent}, Normal: {normal}.")
+    print(f"Total number of tickets: {number_of_tickets}, of which:\nCritical: {critical}, Urgent: {urgent}, Normal: {normal}.\n")
 
     
 def display_all_tickets():
@@ -357,12 +358,13 @@ def display_all_tickets():
     Display tickets for all rooms 
     with maintenance tickets
     """
-    print("Dislaying all maintenance tickets:")
+    print("Displaying all maintenance tickets:\n")
     tickets = SHEET.worksheet("tickets").get_all_values()
     tickets_headers = tickets[0]
     del tickets[0]
     # print(tickets_headers)
     print(tabulate(tickets, tickets_headers))
+    print("")
 
 
 def want_all_tickets():
@@ -370,13 +372,14 @@ def want_all_tickets():
     Ask if user wants to see tickets for all rooms in the hotel.
     """
     while True:
-        is_new_ticket = input(f"Do you wish to see all tickets?\nAnswer Y for yes, or N for no: \n")
+        want_all_tickets = input(f"Do you wish to see all tickets?\nAnswer Y for yes, or N for no: \n")
         
-        if validate_yes_no_question(is_new_ticket):
+        if validate_yes_no_question(want_all_tickets):
 
-            if is_new_ticket.lower() == "y":
+            if want_all_tickets.lower() == "y":
+                print("Retreiving all tickets...")
                 result = True
-            elif is_new_ticket.lower() == "n":
+            elif want_all_tickets.lower() == "n":
                 result = False
 
             break
