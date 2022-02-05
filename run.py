@@ -57,11 +57,11 @@ def get_room_number():
         print("First digit representing floor (1-6),")
         print("followed by 0,")
         print("followed by digit 1-8.")
-        print("For all other areas enter 000")
+        print("For all other areas enter 000.")
 
         room_number = input("\nEnter room number here: \n")
         # normalize zero value to three character format
-        if int(room_number) == 0 : room_number = str('000')
+        # if room_number == "0" : room_number = str('000')
 
         if validate_room_number(room_number):
             print(f"\nYou entered room number {room_number}.")
@@ -82,7 +82,7 @@ def validate_room_number(value):
             )
 
     except ValueError as e:
-        print(f"Invalid data: {e}")
+        print(f"\nInvalid data: {e}")
         return False
     
     return True
@@ -100,7 +100,7 @@ def get_urgency():
     The loop will repeatedly request data, until it is valid.
     """
     while True:
-        print("Please enter issue urgency.")
+        print("\nPlease enter issue urgency.")
         print("Urgency should be one letter:")
         print("c - for critical, u - for urgent, or n - for normal.")
         urgency = input("\nEnter urgency here: \n")
@@ -385,7 +385,7 @@ def want_all_tickets():
         if validate_yes_no_question(want_all_tickets):
 
             if want_all_tickets.lower() == "y":
-                print("Retreiving all maintenance tickets...")
+                print("\nRetreiving all maintenance tickets...")
                 result = True
             elif want_all_tickets.lower() == "n":
                 result = False
@@ -414,12 +414,23 @@ def validate_yes_no_question(value):
     
     return True
 
-        
+
+def welcome_message():
+    message = """ Welcome to Hotel Maintenance System! """
+    table = [[message]]
+    welcome_message = tabulate(table, tablefmt='fancy_grid')
+    print(f"\n{welcome_message}\n")
+
+
+def end_message():
+    print("Thank you for using Hotel Maintenance System!\n")
+
+
 def main():
     """
     Run all program functions
     """
-    print("\nWelcome to Hotel Maintenance System!\n")
+    welcome_message()
 
     room_number = get_room_number()
 
@@ -432,18 +443,18 @@ def main():
             update_worksheet(ticket, "tickets")
             display_summary()
         else:
-            print("Ticket not sent.")
+            print("\nTicket not sent.")
+            end_message()
 
     else:
         display_ticket(room_number)
         display_summary()
         if want_all_tickets():
             display_all_tickets()
+            end_message()
         else:
-            print("Thank you for using Hotel Maintenance System. Good bye!")
+            end_message()
     
 
 main()
 
-# ticket = ['101', 'normal', 'mechanical', 'Change drapes.']
-# update_worksheet(ticket, "tickets")
