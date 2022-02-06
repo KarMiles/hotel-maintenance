@@ -91,7 +91,7 @@ def main_menu():
                 '3': '3 - See all maintenance tickets.'
             }
             selection = choice_long[choice]
-            print(f"\nYou entered option: {selection}")
+            print(f"\nYou selected option: {selection}")
             break
 
     return choice
@@ -421,8 +421,8 @@ def display_ticket(value):
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.\n")
     else:
-        if occurencies == 0: occ = "no"
-        print(f"There are currently {occ} tickets for this room.\n")
+        if occurencies == 0: occurencies = "no"
+        print(f"There are currently {occurencies} tickets for this room.\n")
     
     # Display tickets on enquired room if available
     try: 
@@ -438,8 +438,7 @@ def display_ticket(value):
             rooms_enquired_details.append(tickets[i])
 
         # Show table containing rooms with tickets
-        print("occurencies:" + occurencies)
-        if occurencies != 0:
+        if occurencies != 'no':
             tickets_headers = tickets[0]
             print(tabulate(rooms_enquired_details, tickets_headers))
             print("")
@@ -537,6 +536,7 @@ def make_choice():
         ending_sequence()
     elif choice == '3':
         display_all_tickets()
+        display_summary()
         ending_sequence()
 
 
@@ -555,7 +555,6 @@ def new_ticket_sequence():
 
 
 def ending_sequence():
-    display_summary()
     if to_main_menu():
         make_choice()
     else:
