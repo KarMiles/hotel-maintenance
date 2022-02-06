@@ -21,6 +21,69 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # data = tickets.get_all_values()
 # print(data)
 
+# User login:
+
+def login():
+    """
+    Allow for user login by getting login credentials from user
+    and comparing them to data from worksheet.
+    """
+    # receive information from Google Sheets
+    logins = SHEET.worksheet("logins").get_all_values()
+    logins_ws = SHEET.worksheet("logins")
+
+    # get login credentials from user
+    id = input("\nEnter your username:\n")
+    pwd = input("\nEnter password:\n")
+
+
+    # # get index of user id in logins worksheet
+    # id_column = logins_ws.col_values(1)
+    # id_column.pop(0)
+    # print(id_column)
+    # id_index = id_column.index(id)
+    # print(id_index)
+
+    # # pull corresponding password in logins worksheet
+    # psw_column = logins_ws.col_values(2)
+    # psw_column.pop(0)
+    # print(psw_column)
+    # correct_pwd = psw_column[id_index]
+    # print(correct_pwd)
+
+    try:
+        # get index of user id in logins worksheet
+        id_column = logins_ws.col_values(1)
+        id_column.pop(0)
+        print(id_column)
+        id_index = id_column.index(id)
+        print(id_index)
+
+        # pull corresponding password in logins worksheet
+        psw_column = logins_ws.col_values(2)
+        psw_column.pop(0)
+        print(psw_column)
+        correct_pwd = psw_column[id_index]
+        print(correct_pwd)
+    
+    except:
+        result = False
+        print("\nLogin failed.\nPlease check and try again.\n")
+    
+    else:
+        # check login credentials
+        if pwd == correct_pwd: 
+            result = True
+            print("Login ok.")
+        else:
+            result = False
+            print("\nLogin failed.\nPlease check and try again.\n")
+
+    return result
+
+
+login()
+
 # Get data from user:
 
 def is_new_ticket():
@@ -435,7 +498,7 @@ def main():
     Run all program functions
     """
     welcome_message()
-
+    
     room_number = get_room_number()
 
     if is_new_ticket():
@@ -457,5 +520,5 @@ def main():
         ending_sequence()
     
 
-main()
+# main()
 
