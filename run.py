@@ -58,7 +58,9 @@ def login():
         # check login credentials
         if pwd == correct_pwd: 
             result = True
-            print("\nLogin correct.\n")
+            print("\nLogin correct.")
+            breaker()
+            print("You are now logged in to * Hotel Maintenance System *")
         else:
             result = False
             print("\nLogin failed.\nPlease check and try again.\n")
@@ -79,20 +81,20 @@ def main_menu():
         print("1 - Report new issue.")
         print("2 - Enquire about a room.")
         print("3 - See all maintenance tickets.\n")
-        select = input("Enter your choice here:\n")
+        choice = input("Enter your choice here:\n")
 
-        if validate_main_menu(select):
+        if validate_main_menu(choice):
             # change short into full word
             choice_long = {
                 '1': '1 - Report new issue.',
                 '2': '2 - Enquire about a room.',
                 '3': '3 - See all maintenance tickets.'
             }
-            selection = choice_long[select]
-            print(f"\nYou entered type of issue: {selection}")
+            selection = choice_long[choice]
+            print(f"\nYou entered option: {selection}")
             break
 
-    return select
+    return choice
 
 
 def validate_main_menu(value):
@@ -510,12 +512,27 @@ def end_message():
     print("\nThank you for using Hotel Maintenance System!\n")
 
 
+# Message sequences:
+
+def new_ticket_sequence():
+    room_number = get_room_number()
+    urgency = get_urgency()
+    description = get_description()
+    issue_type = get_issue_type()
+    if should_send_ticket():
+        ticket = create_ticket(room_number, urgency, issue_type, description)
+        update_worksheet(ticket, "tickets")
+        print("Getting summary for chosen room...")
+        display_ticket(room_number)
+        end_message()
+    else:
+        print("\nAction aborted. Ticket was not sent.")
+        end_message()
+
 def ending_sequence():
     display_summary()
-    is_new_ticket()
-    if want_all_tickets():
-        display_all_tickets()
-        end_message()
+    if is_new_ticket():
+        new_ticket_sequence()
     else:
         end_message()
 
@@ -537,26 +554,16 @@ def main():
 
     login()
 
-    room_number = get_room_number()
-
-    if is_new_ticket():
-        urgency = get_urgency()
-        description = get_description()
-        issue_type = get_issue_type()
-        if should_send_ticket():
-            ticket = create_ticket(room_number, urgency, issue_type, description)
-            update_worksheet(ticket, "tickets")
-            print("Getting summary of your ticket...")
-            display_ticket(room_number)
-            ending_sequence()
-        else:
-            print("\nAction aborted. Ticket was not sent.")
-            end_message()
-
-    else:
+    choice = main_menu()
+    if choice == '1':
+        new_ticket_sequence()    
+    elif choice == '2':
         display_ticket(room_number)
+        ending_sequence()
+    elif choice == '3':
+        display_all_tickets()
         ending_sequence()
     
 
-# main()
+main()
 
