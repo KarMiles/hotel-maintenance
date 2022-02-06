@@ -1,7 +1,6 @@
 import gspread
 import pwinput
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 from tabulate import tabulate
 from collections import Counter
 from operator import itemgetter
@@ -17,11 +16,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
-# check if connections are working:
-# tickets = SHEET.worksheet('tickets')
-# data = tickets.get_all_values()
-# print(data)
-
 
 # User login:
 
@@ -29,6 +23,8 @@ def login():
     """
     Allow for user login by getting login credentials from user
     and comparing them to data from worksheet.
+    Function will loop until login credentials are correct.
+    Returns True or False.
     """
     # receive information from Google Sheets
     logins = SHEET.worksheet("logins").get_all_values()
@@ -73,6 +69,7 @@ def login():
 def main_menu():
     """
     Get information on user's choice of action in the system.
+    Returns 1, 2, or 3 to indicate further functions to be called.
     """
     while True:
         breaker()
@@ -104,11 +101,9 @@ def validate_main_menu(value):
     is not in correct format.
     """
     try:
-        allowed = ['1', '2' ,'3']
+        allowed = ['1', '2', '3']
         if not (value in allowed):
-            raise ValueError(
-                f"Issue type must be one digit: 1, 2 or 3.\nTry again!\n"
-            )
+            raise ValueError(f"Issue type must be one digit: 1, 2 or 3.\nTry again!\n")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -120,6 +115,7 @@ def validate_main_menu(value):
 def is_new_ticket():
     """
     Ask if user wants to enter new ticket.
+    Returns True or False depending on user choice.
     """
     while True:
         is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: \n")
@@ -139,6 +135,7 @@ def is_new_ticket():
 def to_main_menu():
     """
     Ask if user wants to go to main menu.
+    Returns True or False.
     """
     while True:
         is_new_ticket = input(f"Do you wish to return to main menu?\nAnswer Y for yes, or N for no: \n")
@@ -163,6 +160,7 @@ def get_room_number():
     1st between 1-6, 2nd equal 0, 3rd between 1-8.
     User may enter a - for all, to have all tickets displayed.
     The loop will repeatedly request data, until it is valid.
+    Returns room number in 3 - character format.
     """
 
     while True:
@@ -183,6 +181,7 @@ def get_room_number():
     
     return room_number
 
+
 def validate_room_number(value):
     """
     Checks validity of room number entered by user.
@@ -191,9 +190,7 @@ def validate_room_number(value):
     """
     try:
         if (len(value) != 3 or int(value) > 608 or (int(value) == 0) or int(value[0]) > 6 or (value[0] == "0") or (value[1] != "0") or (value[2] == "0") or (int(value[2]) > 8) ) and int(value) != 0:
-            raise ValueError(
-                f"Room number should be 3 digits in the given format.\nTry again!"
-            )
+            raise ValueError(f"Room number should be 3 digits in the given format.\nTry again!")
 
     except ValueError as e:
         print(f"\nInvalid data: {e}")
@@ -212,6 +209,7 @@ def get_urgency():
     n - for normal.
     Capital letters are accepted.
     The loop will repeatedly request data, until it is valid.
+    Returns issue urgency (critical, urgent, or normal).
     """
     while True:
         print("\nPlease enter issue urgency.")
@@ -232,6 +230,7 @@ def get_urgency():
             break
 
     return urgency
+
 
 def validate_urgency(value):
     """
@@ -270,6 +269,7 @@ def get_description():
     
     return description
 
+
 def validate_description(value):
     """
     Checks validity of issue description entered by user.
@@ -306,7 +306,6 @@ def get_issue_type():
         issue_type = input("\nEnter issue type here: \n")
         issue_type = issue_type.lower()
 
-        
         if validate_issue_type(issue_type):
             # change short into full word
             issue_library = {
@@ -320,6 +319,7 @@ def get_issue_type():
 
     return issue_type
 
+
 def validate_issue_type(value):
     """
     Checks validity of issue type entered by user.
@@ -329,9 +329,7 @@ def validate_issue_type(value):
     try:
         # issue_type = value.lower()
         if str(value) != "m" and str(value) != "e" and str(value) != "h":
-            raise ValueError(
-                f"Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!"
-            )
+            raise ValueError(f"Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -343,6 +341,8 @@ def validate_issue_type(value):
 def should_send_ticket():
     """
     Ask if user wants to send new ticket.
+    Returns True or False depending on 
+    whether user confirms sending ticket to the system.
     """
     while True:
         should_send_ticket = input(f"\nDo you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
@@ -385,6 +385,7 @@ def validate_should_send_ticket(value):
 def create_ticket(room_number, urgency, issue_type, description):
     """
     Put together data for new maintenance ticket.
+    Returns full maintenence ticket.
     """
     ticket = [room_number, urgency, issue_type, description]
 
@@ -394,7 +395,7 @@ def create_ticket(room_number, urgency, issue_type, description):
 def update_worksheet(ticket, worksheet):
     """
     Receives data for new ticket.
-    Updates relevant worksheet with the new ticket.
+    Updates relevant Google worksheet with the new ticket.
     """
     print(f"\nUpdating '{worksheet}' worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
@@ -418,8 +419,10 @@ def display_ticket(value):
     room_number_column = tickets_summary.col_values(1)
     room = Counter(room_number_column)
     occurencies = room[value]
+
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.\n")
+
     else:
         if occurencies == 0: occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.\n")
@@ -488,9 +491,7 @@ def validate_yes_no_question(value):
     try:
         value = value.lower()
         if str(value) != "y" and str(value) != "n":
-            raise ValueError(
-                "Please answer Y for yes or N for no!"
-            )
+            raise ValueError("Please answer Y for yes or N for no!")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -502,6 +503,9 @@ def validate_yes_no_question(value):
 # Messages to show on screen:
 
 def welcome_message():
+    """
+    Welcome message incapsulated in a square for visual effect.
+    """
     message = """ Welcome to Hotel Maintenance System! """
     table = [[message]]
     welcome_message = tabulate(table, tablefmt='fancy_grid')
@@ -509,6 +513,10 @@ def welcome_message():
 
 
 def end_message():
+    """
+    Message shown at the end of interaction 
+    between user and system.
+    """
     print("\nThank you for using *** Hotel Maintenance System! ***\n")
 
 
@@ -524,7 +532,10 @@ def breaker():
 
 def make_choice():
     """
-    Redirect user according to their choice of action.
+    Redirect user to appropriate functions 
+    according to their choice of action.
+    Placed outside main function 
+    for convenient referencing back from other functions.
     """
     choice = main_menu()
     if choice == '1':
@@ -541,6 +552,10 @@ def make_choice():
 
 
 def new_ticket_sequence():
+    """
+    Sequence of functions to be started 
+    when user choses to enter a new ticket.
+    """
     room_number = get_room_number()
     urgency = get_urgency()
     description = get_description()
@@ -555,6 +570,10 @@ def new_ticket_sequence():
 
 
 def ending_sequence():
+    """
+    Asks user whether to return to Main Menu.
+    If not an ending message is shown and application ends.
+    """
     if to_main_menu():
         make_choice()
     else:
