@@ -59,15 +59,13 @@ def login():
         if pwd == correct_pwd: 
             result = True
             print("\nLogin correct.")
-            breaker()
-            print("You are now logged in to * Hotel Maintenance System *")
+
         else:
             result = False
             print("\nLogin failed.\nPlease check and try again.\n")
             login()
 
     return result
-
 
 
 # Get data from user:
@@ -77,7 +75,9 @@ def main_menu():
     Get information on user's choice of action in the system.
     """
     while True:
-        print("Please choose one of the following options:\n")
+        breaker()
+        print("This is Main Menu for *** Hotel Maintenance System ***")
+        print("\nPlease choose one of the following options:\n")
         print("1 - Report new issue.")
         print("2 - Enquire about a room.")
         print("3 - See all maintenance tickets.\n")
@@ -141,7 +141,7 @@ def to_main_menu():
     Ask if user wants to go to main menu.
     """
     while True:
-        is_new_ticket = input(f"Do you wish to main menu?\nAnswer Y for yes, or N for no: \n")
+        is_new_ticket = input(f"Do you wish to return to main menu?\nAnswer Y for yes, or N for no: \n")
         
         if validate_yes_no_question(is_new_ticket):
 
@@ -175,7 +175,7 @@ def get_room_number():
 
         room_number = input("\nEnter room number here: \n")
         # normalize zero value to three character format
-        # if room_number == "0" : room_number = str('000')
+        if room_number == "0" : room_number = str('000')
 
         if validate_room_number(room_number):
             print(f"\nYou entered room number {room_number}.")
@@ -408,7 +408,7 @@ def display_ticket(value):
     """
     Shows maintenance ticket(s) for enquired room.
     """
-    print(f"\nReceiving information about room {value}...")
+    print(f"\nRetrieving information about room {value}...")
     
     # receive information from Google Sheets
     tickets = SHEET.worksheet("tickets").get_all_values()
@@ -421,12 +421,11 @@ def display_ticket(value):
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.\n")
     else:
-        if occurencies == 0: occurencies = "no"
-        print(f"There are currently {occurencies} tickets for this room.\n")
+        if occurencies == 0: occ = "no"
+        print(f"There are currently {occ} tickets for this room.\n")
     
     # Display tickets on enquired room if available
     try: 
-        # index = room_number_column.index(value)
         searched = value # searched can be a list
         room_indices = []
         for i in range(len(room_number_column)):
@@ -439,9 +438,11 @@ def display_ticket(value):
             rooms_enquired_details.append(tickets[i])
 
         # Show table containing rooms with tickets
-        tickets_headers = tickets[0]
-        print(tabulate(rooms_enquired_details, tickets_headers))
-        print("")
+        print("occurencies:" + occurencies)
+        if occurencies != 0:
+            tickets_headers = tickets[0]
+            print(tabulate(rooms_enquired_details, tickets_headers))
+            print("")
 
     except:
         pass
@@ -476,26 +477,7 @@ def display_all_tickets():
     del tickets[0]
     all_tickets_sorted = sorted(tickets, key=itemgetter(0))
     print(tabulate(all_tickets_sorted, tickets_headers))
-
-
-def want_all_tickets():
-    """
-    Ask if user wants to see tickets for all rooms in the hotel.
-    """
-    while True:
-        want_all_tickets = input(f"Do you wish to see all tickets?\nAnswer Y for yes, or N for no: \n")
-        
-        if validate_yes_no_question(want_all_tickets):
-
-            if want_all_tickets.lower() == "y":
-                print("\nRetreiving all maintenance tickets...")
-                result = True
-            elif want_all_tickets.lower() == "n":
-                result = False
-
-            break
-    
-    return result
+    print("")
 
 
 def validate_yes_no_question(value):
@@ -528,10 +510,35 @@ def welcome_message():
 
 
 def end_message():
-    print("\nThank you for using Hotel Maintenance System!\n")
+    print("\nThank you for using *** Hotel Maintenance System! ***\n")
+
+
+def breaker():
+    """
+    Provides visual break in the page 
+    to distinguish different parts of application.
+    """
+    print("_" * 79 +"\n")
 
 
 # Function sequences:
+
+def make_choice():
+    """
+    Redirect user according to their choice of action.
+    """
+    choice = main_menu()
+    if choice == '1':
+        new_ticket_sequence()
+        ending_sequence()
+    elif choice == '2':
+        room_number = get_room_number()
+        display_ticket(room_number)
+        ending_sequence()
+    elif choice == '3':
+        display_all_tickets()
+        ending_sequence()
+
 
 def new_ticket_sequence():
     room_number = get_room_number()
@@ -543,24 +550,16 @@ def new_ticket_sequence():
         update_worksheet(ticket, "tickets")
         print("Getting summary for chosen room...")
         display_ticket(room_number)
-        end_message()
     else:
         print("\nAction aborted. Ticket was not sent.")
-        end_message()
+
 
 def ending_sequence():
     display_summary()
     if to_main_menu():
-        main_menu()
+        make_choice()
     else:
         end_message()
-
-def breaker():
-    """
-    Provides visual break in the page 
-    to distinguish different parts of application.
-    """
-    print("_" * 79 +"\n")
 
 
 # Main function
@@ -573,16 +572,7 @@ def main():
 
     login()
 
-    choice = main_menu()
-    if choice == '1':
-        new_ticket_sequence()    
-    elif choice == '2':
-        room_number = get_room_number()
-        display_ticket(room_number)
-        ending_sequence()
-    elif choice == '3':
-        display_all_tickets()
-        ending_sequence()
+    make_choice()
     
 
 main()
