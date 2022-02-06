@@ -36,8 +36,7 @@ def login():
 
     # get login credentials from user
     id = input("Enter your username:\n")
-    # pwd = input("\nEnter password:\n")
-    pwd = pwinput.pwinput(prompt='Enter your username:\n', mask='*')
+    pwd = pwinput.pwinput(prompt='Enter password:\n', mask='*')
 
     try:
         # get index of user id in logins worksheet
@@ -53,6 +52,7 @@ def login():
     except:
         result = False
         print("\nLogin failed.\nPlease check and try again.\n")
+        login()
     
     else:
         # check login credentials
@@ -62,11 +62,24 @@ def login():
         else:
             result = False
             print("\nLogin failed.\nPlease check and try again.\n")
+            login()
 
     return result
 
 
+
 # Get data from user:
+
+def main_menu():
+    """
+    Get information on user's choice of action in the system.
+    """
+    print("Please choose one of the following options:\n")
+    print("1. Report new issue.")
+    print("2. Enquire about a room.")
+    print("3. See all maintenance tickets.\n")
+
+main_menu()
 
 def is_new_ticket():
     """
@@ -465,11 +478,19 @@ def end_message():
 
 def ending_sequence():
     display_summary()
+    is_new_ticket()
     if want_all_tickets():
         display_all_tickets()
         end_message()
     else:
         end_message()
+
+def breaker():
+    """
+    Provides visual break in the page 
+    to distinguish different parts of application.
+    """
+    print("_" * 79 +"\n")
 
 
 # Main function
@@ -480,12 +501,8 @@ def main():
     """
     welcome_message()
 
-    login_attempt = login()
-    while login_attempt < 2 or login_attempt == 0:
-        if login_attempt == True:
-            break
-        login_attempt += 1
-    
+    login()
+
     room_number = get_room_number()
 
     if is_new_ticket():
@@ -507,5 +524,5 @@ def main():
         ending_sequence()
     
 
-main()
+# main()
 
