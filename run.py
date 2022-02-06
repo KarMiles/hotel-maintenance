@@ -136,6 +136,25 @@ def is_new_ticket():
     return result
 
 
+def to_main_menu():
+    """
+    Ask if user wants to go to main menu.
+    """
+    while True:
+        is_new_ticket = input(f"Do you wish to main menu?\nAnswer Y for yes, or N for no: \n")
+        
+        if validate_yes_no_question(is_new_ticket):
+
+            if is_new_ticket.lower() == "y":
+                result = True
+            elif is_new_ticket.lower() == "n":
+                result = False
+
+            break
+    
+    return result
+
+
 def get_room_number():
     """
     Get room number from user.
@@ -407,7 +426,7 @@ def display_ticket(value):
     
     # Display tickets on enquired room if available
     try: 
-        index = room_number_column.index(value)
+        # index = room_number_column.index(value)
         searched = value # searched can be a list
         room_indices = []
         for i in range(len(room_number_column)):
@@ -512,7 +531,7 @@ def end_message():
     print("\nThank you for using Hotel Maintenance System!\n")
 
 
-# Message sequences:
+# Function sequences:
 
 def new_ticket_sequence():
     room_number = get_room_number()
@@ -531,8 +550,8 @@ def new_ticket_sequence():
 
 def ending_sequence():
     display_summary()
-    if is_new_ticket():
-        new_ticket_sequence()
+    if to_main_menu():
+        main_menu()
     else:
         end_message()
 
@@ -558,6 +577,7 @@ def main():
     if choice == '1':
         new_ticket_sequence()    
     elif choice == '2':
+        room_number = get_room_number()
         display_ticket(room_number)
         ending_sequence()
     elif choice == '3':
