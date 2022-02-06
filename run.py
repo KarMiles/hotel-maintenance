@@ -21,6 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 # data = tickets.get_all_values()
 # print(data)
 
+
 # User login:
 
 def login():
@@ -36,35 +37,16 @@ def login():
     id = input("\nEnter your username:\n")
     pwd = input("\nEnter password:\n")
 
-
-    # # get index of user id in logins worksheet
-    # id_column = logins_ws.col_values(1)
-    # id_column.pop(0)
-    # print(id_column)
-    # id_index = id_column.index(id)
-    # print(id_index)
-
-    # # pull corresponding password in logins worksheet
-    # psw_column = logins_ws.col_values(2)
-    # psw_column.pop(0)
-    # print(psw_column)
-    # correct_pwd = psw_column[id_index]
-    # print(correct_pwd)
-
     try:
         # get index of user id in logins worksheet
         id_column = logins_ws.col_values(1)
         id_column.pop(0)
-        print(id_column)
         id_index = id_column.index(id)
-        print(id_index)
 
         # pull corresponding password in logins worksheet
         psw_column = logins_ws.col_values(2)
         psw_column.pop(0)
-        print(psw_column)
         correct_pwd = psw_column[id_index]
-        print(correct_pwd)
     
     except:
         result = False
@@ -74,15 +56,13 @@ def login():
         # check login credentials
         if pwd == correct_pwd: 
             result = True
-            print("Login ok.")
+            print("\nLogin correct.\n")
         else:
             result = False
             print("\nLogin failed.\nPlease check and try again.\n")
 
     return result
 
-
-login()
 
 # Get data from user:
 
@@ -339,7 +319,7 @@ def create_ticket(room_number, urgency, issue_type, description):
     ticket = [room_number, urgency, issue_type, description]
 
     return ticket
-    
+
 
 def update_worksheet(ticket, worksheet):
     """
@@ -358,7 +338,6 @@ def display_ticket(value):
     """
     Shows maintenance ticket(s) for enquired room.
     """
-    
     print(f"\nReceiving information about room {value}...")
     
     # receive information from Google Sheets
@@ -469,7 +448,7 @@ def validate_yes_no_question(value):
     return True
 
 
-# Messages
+# Messages to show on screen:
 
 def welcome_message():
     message = """ Welcome to Hotel Maintenance System! """
