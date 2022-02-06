@@ -166,7 +166,7 @@ def get_room_number():
     """
 
     while True:
-        print("Please enter room number.")
+        print("\nPlease enter room number.")
         print("Room number should be 3 digits, e.g. 102.")
         print("First digit representing floor (1-6),")
         print("followed by 0,")
@@ -261,7 +261,7 @@ def get_description():
     The loop will repeatedly request data, until it is valid.
     """
     while True:
-        print("Please enter brief description of issue.")
+        print("\nPlease enter brief description of issue.")
         description = input("\nEnter description here: \n")
 
         if validate_description(description):
@@ -300,7 +300,7 @@ def get_issue_type():
     The loop will repeatedly request data, until it is valid.
     """
     while True:
-        print("Please enter issue type.")
+        print("\nPlease enter issue type.")
         print("Type should be one letter:")
         print("m - for mechanical, e - for electrical, h - for hydraulic.")
         issue_type = input("\nEnter issue type here: \n")
@@ -345,7 +345,7 @@ def should_send_ticket():
     Ask if user wants to send new ticket.
     """
     while True:
-        should_send_ticket = input(f"Do you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
+        should_send_ticket = input(f"\nDo you wish to send the ticket?\nAnswer Y for yes, or N for no: \n")
         should_send_ticket = should_send_ticket.lower()
         
         if validate_should_send_ticket(should_send_ticket):
@@ -399,7 +399,7 @@ def update_worksheet(ticket, worksheet):
     print(f"\nUpdating '{worksheet}' worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
-    print(f"Worksheet '{worksheet}' updated succesfully.")
+    print(f"Worksheet updated succesfully.")
     # information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")
 
@@ -551,7 +551,7 @@ def new_ticket_sequence():
         print("Getting summary for chosen room...")
         display_ticket(room_number)
     else:
-        print("\nAction aborted. Ticket was not sent.")
+        print("\nAction aborted. Ticket was not sent.\n")
 
 
 def ending_sequence():
