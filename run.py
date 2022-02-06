@@ -1,4 +1,5 @@
 import gspread
+import pwinput
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 from tabulate import tabulate
@@ -34,8 +35,9 @@ def login():
     logins_ws = SHEET.worksheet("logins")
 
     # get login credentials from user
-    id = input("\nEnter your username:\n")
-    pwd = input("\nEnter password:\n")
+    id = input("Enter your username:\n")
+    # pwd = input("\nEnter password:\n")
+    pwd = pwinput.pwinput(prompt='Enter your username:\n', mask='*')
 
     try:
         # get index of user id in logins worksheet
@@ -477,6 +479,12 @@ def main():
     Run all program functions
     """
     welcome_message()
+
+    login_attempt = login()
+    while login_attempt < 2 or login_attempt == 0:
+        if login_attempt == True:
+            break
+        login_attempt += 1
     
     room_number = get_room_number()
 
@@ -499,5 +507,5 @@ def main():
         ending_sequence()
     
 
-# main()
+main()
 
