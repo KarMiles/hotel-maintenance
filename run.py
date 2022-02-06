@@ -74,12 +74,46 @@ def main_menu():
     """
     Get information on user's choice of action in the system.
     """
-    print("Please choose one of the following options:\n")
-    print("1. Report new issue.")
-    print("2. Enquire about a room.")
-    print("3. See all maintenance tickets.\n")
+    while True:
+        print("Please choose one of the following options:\n")
+        print("1 - Report new issue.")
+        print("2 - Enquire about a room.")
+        print("3 - See all maintenance tickets.\n")
+        select = input("Enter your choice here:\n")
 
-main_menu()
+        if validate_main_menu(select):
+            # change short into full word
+            choice_long = {
+                '1': '1 - Report new issue.',
+                '2': '2 - Enquire about a room.',
+                '3': '3 - See all maintenance tickets.'
+            }
+            selection = choice_long[select]
+            print(f"\nYou entered type of issue: {selection}")
+            break
+
+    return select
+
+
+def validate_main_menu(value):
+    """
+    Checks validity of action choice entered by user.
+    Returns ValueError if entered value 
+    is not in correct format.
+    """
+    try:
+        allowed = ['1', '2' ,'3']
+        if not (value in allowed):
+            raise ValueError(
+                f"Issue type must be one digit: 1, 2 or 3.\nTry again!\n"
+            )
+
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+        return False
+    
+    return True
+
 
 def is_new_ticket():
     """
