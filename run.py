@@ -27,7 +27,7 @@ def login():
     Returns True or False.
     """
     # receive information from Google Sheets
-    logins = SHEET.worksheet("logins").get_all_values()
+    # logins = SHEET.worksheet("logins").get_all_values()
     logins_ws = SHEET.worksheet("logins")
 
     # get login credentials from user
