@@ -1,4 +1,4 @@
-# Hotel Maintenance System
+# HMS - Hotel Maintenance System
 (Developer: Karol Mileszko)
 
 ![Mockup HMS](docs/mockup/mockup.png)
@@ -28,3 +28,14 @@
 11. [Credits](#credits)
 12. [Acknowledgements](#acknowledgements)
 
+## Project Goals 
+
+- Hotel Management System is created with the intention to become the real world application for hospitality businesses with special focus on hotels. 
+- HMS enables users to submit issues occured around the property, like damaged appliances or anything that might need repair, helping the Maintenance Team in keeping track of work that has to be done to keep property in appropriate state. 
+- HMS also lets users check on state of rooms or any other areas of the business. 
+
+### User Goals
+Primary users of the system are employees at the front desk, especially Receptionists, and members of the Maintenance Team. 
+- Submit issues around the property (predominantly Receptionists).
+- Check on issues related to specific rooms or other areas in the hotel (Receptionists and members of the Maintenance Team). 
+- See list of rooms with reported issues (predominantly members of the Maintenance Team). 
