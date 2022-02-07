@@ -202,7 +202,8 @@ def validate_room_number(value):
 def get_urgency():
     """
     Get new issue urgency from user.
-    Run a while loop to collect a valid urgency for the new ticket from the user via the terminal, 
+    Run a while loop to collect a valid urgency for the new ticket 
+    from the user via the terminal, 
     whic must be a letter:
     c - for critical,
     u - for urgent,
