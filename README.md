@@ -61,3 +61,35 @@
 8. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 9. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
 10. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+11. As a site owner I want only authorized staff to have access to the system.
+
+### Scope
+
+In first release the scope is to deliver mechanisms to:
+- Report new issues. 
+- Enquire about specific rooms. 
+- See all maintenance tickets with a brief summary.
+- Notify Leader of the Maintenance Team about new issues by email.
+- Store tickets in a Google Worksheet.
+- Grant access only to user with correct login credentials.
+
+In future releases further expansion of functionality would be considered:
+- Various levels of user access.
+- Expanded manipulation of tickets depending on user credentials.
+- Enhanced search mechanisms, e.g. by priority or kind of issue. 
+- Enhanced reporting mechanisms.
+
+### User Manual
+
+<details>
+    <summary>Click Here for User Manual</summary>
+</details>
+
+## Technical Design
+
+### Flow Chart
+
+Flow chart for this application, placed below, has been produced with [Lucid](https://lucid.app/) service. 
+
+<details><summary>Flowchart</summary>
+<img src="docs/flowcharts/flowchart.png"></details>
