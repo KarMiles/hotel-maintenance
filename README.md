@@ -107,3 +107,28 @@ For this project the following were used:
 
 <details><summary>Email notification</summary>
 <img src="docs/screenshots/email_screenshot.png"></details>
+
+## Technologies Used
+
+### Languages
+
+- [Python 3](https://www.python.org/)
+
+### Frameworks and Tools
+
+The following tools and frameworks were used in this project:
+
+1. [GitPod](https://www.gitpod.io/) - for code creation and version control.
+2. [GitHub](https://github.com/) - as a remote repository to store project code. 
+3. [Zapier](https://zapier.com/) - for communication automation.
+4. [Lucid](https://lucid.app/) - for drawing flowchart representing flow of processes supported by the application. 
+5. [Google Sheets](https://www.google.co.uk/sheets/about/) - to store data on tickets and logins outside of the program.
+6. [Google Cloud Platform](https://cloud.google.com/cloud-console/) - was used to manage access and permissions to the google services, google auth, worksheets.
+
+### Libraries
+3rd party libraries were used in this project:
+1. [gspread](https://docs.gspread.org/en/latest/) - for data storage.
+2. [pwinput[(https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials.
+3. [tabulate](https://pypi.org/project/tabulate/) - for enhanced readability data presentation.
+4. [Counter](https://pypi.org/project/Counter/) - for index search.
+5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets.
