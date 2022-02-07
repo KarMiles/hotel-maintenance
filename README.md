@@ -35,7 +35,29 @@
 - HMS also lets users check on state of rooms or any other areas of the business. 
 
 ### User Goals
-Primary users of the system are employees at the front desk, especially Receptionists, and members of the Maintenance Team. 
+
 - Submit issues around the property (predominantly Receptionists).
 - Check on issues related to specific rooms or other areas in the hotel (Receptionists and members of the Maintenance Team). 
 - See list of rooms with reported issues (predominantly members of the Maintenance Team). 
+
+## User Experience
+
+### Target Audience
+- Employees at a hotel front desk, especially Receptionists, 
+- Members of the Maintenance Team.
+
+### User Stories
+
+#### Regular User
+1. As a user I want to check if there are issues related to a specific room in the hotel (Receptionist, member of the Maintenance Team).
+2. As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager). 
+3. As a user I want to see a list of all reported issues (member of the Maintenance Team)
+4. As a user i want to see details of any reported issue (member of the Maintenance Team)
+5. As a user I want to be notified about new issues (Leader of the Maintenance Team)
+6. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
+7. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+
+#### Site Owner
+8. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+9. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+10. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
