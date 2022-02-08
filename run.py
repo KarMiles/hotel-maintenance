@@ -360,6 +360,7 @@ def should_send_ticket():
     
     return result
 
+
 def validate_should_send_ticket(value):
     """
     Checks validity of Y/N answer about sending ticket.
@@ -383,6 +384,25 @@ def validate_should_send_ticket(value):
 
 # Data manipulation
 
+# TRYING NEW CLASS
+
+class Ticket:
+    """
+    Creates an instance of Ticket
+    """
+    def __init__(self, room_number, urgency, issue_type, description):
+        self.room_number = room_number
+        self.urgency = urgency
+        self.issue_type = issue_type
+        self.description = description
+
+        ticket = [room_number, urgency, issue_type, description]
+        return ticket
+
+    def closeTicket(self):
+        return f"Close ticket for room {self.room_number}"
+        
+
 def create_ticket(room_number, urgency, issue_type, description):
     """
     Put together data for new maintenance ticket.
@@ -404,6 +424,18 @@ def update_worksheet(ticket, worksheet):
     print(f"Worksheet updated succesfully.")
     # information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")
+
+# def close_ticket(ticket, worksheet):
+#     """
+#     Receives data for new ticket.
+#     Updates relevant Google worksheet with the new ticket.
+#     """
+#     print(f"\nUpdating '{worksheet}' worksheet...")
+#     worksheet_to_update = SHEET.worksheet(worksheet)
+#     worksheet_to_update.append_row(ticket)
+#     print(f"Worksheet updated succesfully.")
+#     # information about email which is sent by Zapier
+#     print("Ticket emailed to Maintenance Team member.\n")
 
 
 def display_ticket(value):
@@ -563,8 +595,9 @@ def new_ticket_sequence():
     issue_type = get_issue_type()
     if should_send_ticket():
         ticket = create_ticket(room_number, urgency, issue_type, description)
+        # ticket = Ticket(room_number, urgency, issue_type, description)
         update_worksheet(ticket, "tickets")
-        print("Getting summary for chosen room...")
+        print("Getting summary for the affected room...")
         display_ticket(room_number)
     else:
         print("\nAction aborted. Ticket was not sent.\n")

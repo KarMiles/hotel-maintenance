@@ -132,3 +132,14 @@ The following tools and frameworks were used in this project:
 3. [tabulate](https://pypi.org/project/tabulate/) - for enhanced readability data presentation.
 4. [Counter](https://pypi.org/project/Counter/) - for index search.
 5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets.
+
+## Features
+
+### Welcome and Login
+Upon starting the program user is presented with the welcome screen showing the system name "Hotel Maintenance System" and login input. This is repeated until user enters login credentials corresponding with data stored in Google Sheets. 
+
+<details><summary>Welcome and Login screenshot</summary>
+<img src="docs/screenshots/start_screenshot.png"></details>
+
+### Main Menu
+After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system.  
