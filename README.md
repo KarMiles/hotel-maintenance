@@ -96,11 +96,12 @@ Flow chart for this application, placed below, has been produced with [Lucid](ht
 
 ### Data models
 
-For this project the following were used:
+For this project Object Oriented Programming approach was applied and the following were used:
 - Functions - most functions are used to manipulate data related to maintenance tickets. Within functions several techniques were used for handling data, among others:
     - Try Except statements to validate data entered by user. This proved usefull for maintaining consistency of data within tickets and for checking user login credentials.
     - Some functions are designed as sequencies of other functions. This approach helped me optimally group and manipulate order of functions in responce to choices made by user while using the system.
     - Import modules were used for additional functionality: pwinput for masking password with asterisks, tabulate for printing ticket data on screen in a form of a table for better readability compared to printing bare lists or lists of lists, Counter for indexing functionality.
+- Classes - classes were utilized to enhance effectiveness of code. 
 - List and dictionaries - lists were used for ticket data and user credentials; dictionaries were used mainly for simplification of choices made by user, e.g. "u for urgent". 
 - Google Sheets API - for secure storing data outside of the time the application is run.  
 - Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email. An example of such email can be found below.
