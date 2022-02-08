@@ -437,6 +437,29 @@ def update_worksheet(ticket, worksheet):
 #     # information about email which is sent by Zapier
 #     print("Ticket emailed to Maintenance Team member.\n")
 
+class Encapsulate:
+    """
+    Creates encapsulation of a message for visual effect.
+    Formats allowed by tabulate are: 
+    "plain", "simple", "github", "grid", "fancy_grid",
+    "pipe", "orgtbl", "jira", "presto", "pretty", "psql"
+    "rst", "mediawiki", "moinmoin", "youtrack", "html",
+    "unsafehtml", "latex", "latex_raw", "latex_booktabs",
+    "latex_longtable", "textile", "tsv".
+    """
+    def __init__(self, message, format):
+        self.message = message
+        self.format = format
+    
+        table = [[message]]
+        msg = tabulate(table, tablefmt=format)
+        print(f"\n{msg}\n")
+
+    # message = """ Welcome to Hotel Maintenance System! """
+    # table = [[message]]
+    # welcome_message = tabulate(table, tablefmt='fancy_grid')
+    # print(f"\n{welcome_message}\n")
+
 
 def display_ticket(value):
     """
@@ -537,12 +560,9 @@ def validate_yes_no_question(value):
 
 def welcome_message():
     """
-    Welcome message incapsulated in a square for visual effect.
+    Message to be shown at the start of the system.
     """
-    message = """ Welcome to Hotel Maintenance System! """
-    table = [[message]]
-    welcome_message = tabulate(table, tablefmt='fancy_grid')
-    print(f"\n{welcome_message}\n")
+    Encapsulate(" Welcome to Hotel Maintenance System! ", "fancy_grid")
 
 
 def end_message():
@@ -621,7 +641,7 @@ def main():
     Run all program functions
     """
     welcome_message()
-
+    
     login()
 
     make_choice()

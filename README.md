@@ -141,5 +141,17 @@ Upon starting the program user is presented with the welcome screen showing the 
 <details><summary>Welcome and Login screenshot</summary>
 <img src="docs/screenshots/start_screenshot.png"></details>
 
+**This functionality covers the following user stories:**
+
+11\. As a site owner I want only authorized staff to have access to the system.
+
 ### Main Menu
-After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system.  
+After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system:
+1 - Report new issue.
+2 - Enquire about a room.
+3 - See all maintenance tickets.
+
+<details><summary>Main Menu screenshot</summary>
+<img src="docs/screenshots/menu_screenshot.png"></details>
+
+
