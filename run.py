@@ -17,6 +17,27 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
+# Classes
+
+class Encapsulate:
+    """
+    Creates encapsulation of a message for visual effect.
+    Formats allowed by tabulate are: 
+    "plain", "simple", "github", "grid", "fancy_grid",
+    "pipe", "orgtbl", "jira", "presto", "pretty", "psql"
+    "rst", "mediawiki", "moinmoin", "youtrack", "html",
+    "unsafehtml", "latex", "latex_raw", "latex_booktabs",
+    "latex_longtable", "textile", "tsv".
+    Both message and format should be in "".
+    """
+    def __init__(self, message, format):
+        self.message = message
+        self.format = format
+    
+        table = [[message]]
+        msg = tabulate(table, tablefmt=format)
+        print(f"\n{msg}\n")
+
 # User login:
 
 def login():
@@ -72,9 +93,8 @@ def main_menu():
     Returns 1, 2, or 3 to indicate further functions to be called.
     """
     while True:
-        breaker()
-        print("This is Main Menu for *** Hotel Maintenance System ***")
-        print("\nPlease choose one of the following options:\n")
+        Encapsulate(" This is Main Menu for *** Hotel Maintenance System *** ", "rst")
+        print("Please choose one of the following options:\n")
         print("1 - Report new issue.")
         print("2 - Enquire about a room.")
         print("3 - See all maintenance tickets.\n")
@@ -88,7 +108,7 @@ def main_menu():
                 '3': '3 - See all maintenance tickets.'
             }
             selection = choice_long[choice]
-            print(f"\nYou selected option: {selection}")
+            Encapsulate(f"You selected option: {selection}", "simple")
             break
 
     return choice
@@ -164,7 +184,7 @@ def get_room_number():
     """
 
     while True:
-        print("\nPlease enter room number.")
+        print("Please enter room number.")
         print("Room number should be 3 digits, e.g. 102.")
         print("First digit representing floor (1-6),")
         print("followed by 0,")
@@ -193,7 +213,7 @@ def validate_room_number(value):
             raise ValueError(f"Room number should be 3 digits in the given format.\nTry again!")
 
     except ValueError as e:
-        print(f"\nInvalid data: {e}")
+        print(f"\nIncorrect format of room number.")
         return False
     
     return True
@@ -437,28 +457,6 @@ def update_worksheet(ticket, worksheet):
 #     # information about email which is sent by Zapier
 #     print("Ticket emailed to Maintenance Team member.\n")
 
-class Encapsulate:
-    """
-    Creates encapsulation of a message for visual effect.
-    Formats allowed by tabulate are: 
-    "plain", "simple", "github", "grid", "fancy_grid",
-    "pipe", "orgtbl", "jira", "presto", "pretty", "psql"
-    "rst", "mediawiki", "moinmoin", "youtrack", "html",
-    "unsafehtml", "latex", "latex_raw", "latex_booktabs",
-    "latex_longtable", "textile", "tsv".
-    """
-    def __init__(self, message, format):
-        self.message = message
-        self.format = format
-    
-        table = [[message]]
-        msg = tabulate(table, tablefmt=format)
-        print(f"\n{msg}\n")
-
-    # message = """ Welcome to Hotel Maintenance System! """
-    # table = [[message]]
-    # welcome_message = tabulate(table, tablefmt='fancy_grid')
-    # print(f"\n{welcome_message}\n")
 
 
 def display_ticket(value):
