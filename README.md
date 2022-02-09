@@ -156,7 +156,7 @@ After correct login user is presented with The Main Menu  where they may choose 
 <img src="docs/screenshots/menu_screenshot.png"></details>
 
 ### Option 1- Report new issue
-After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.  
+After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business. 
 
 <details><summary>Option 1 screenshot</summary>
 <img src="docs/screenshots/option1_screenshot.png"></details>
@@ -166,6 +166,18 @@ After chosing Option 1 - Report new issue, user answers four questions. Each que
 2\. As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
 9\. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+
+10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+
+### Email communication
+After user enters all details for the ticket and confirming the wish to send the ticket, the data is uploaded to Google Sheets and email is sent to a Maintenance Team Leader. This allows for fast communication between teams and rapid response on the Maintenance Team side. For this functionality [Zapier](https://zapier.com/app/zaps) service in conjunction with Google Sheets is used. 
+
+<details><summary>Email example screenshot</summary>
+<img src="docs/screenshots/email_screenshot.png"></details>
+
+**This functionality covers the following user stories:**
+
+10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
 ### Option 2 - Enquire about a room
 After chosing Option 2 - Enquire about a room, user can enter a room number. System verifies the room number and if there are any tickets presents details of tickets related to the room in question in the form of a table. 
@@ -200,3 +212,5 @@ When Option 3 is chosen the user is presented with the list of tickets related w
 7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
 
 8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+
+### 
