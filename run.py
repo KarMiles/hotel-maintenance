@@ -158,7 +158,7 @@ def to_main_menu():
     Returns True or False.
     """
     while True:
-        is_new_ticket = input(f"Do you wish to return to main menu?\nAnswer Y for yes, or N for no: \n")
+        is_new_ticket = input(f"Do you wish to return to the Main Menu?\nAnswer Y for yes, or N for no: \n")
         
         if validate_yes_no_question(is_new_ticket):
 

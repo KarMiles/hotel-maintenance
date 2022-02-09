@@ -101,7 +101,7 @@ For this project Object Oriented Programming approach was applied and the follow
     - Try Except statements to validate data entered by user. This proved usefull for maintaining consistency of data within tickets and for checking user login credentials.
     - Some functions are designed as sequencies of other functions. This approach helped me optimally group and manipulate order of functions in responce to choices made by user while using the system.
     - Import modules were used for additional functionality: pwinput for masking password with asterisks, tabulate for printing ticket data on screen in a form of a table for better readability compared to printing bare lists or lists of lists, Counter for indexing functionality.
-- Classes - classes were utilized to enhance effectiveness of code. 
+- Classes - classes were utilized to enhance effectiveness of code and reduce repetition.  
 - List and dictionaries - lists were used for ticket data and user credentials; dictionaries were used mainly for simplification of choices made by user, e.g. "u for urgent". 
 - Google Sheets API - for secure storing data outside of the time the application is run.  
 - Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email. An example of such email can be found below.
@@ -155,4 +155,14 @@ After correct login user is presented with The Main Menu  where they may choose 
 <details><summary>Main Menu screenshot</summary>
 <img src="docs/screenshots/menu_screenshot.png"></details>
 
+### Option 1
+After chosing 1 for option 1 - Report new issue, user answers four questions. Each question is accompanied by a short instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.  
 
+<details><summary>Welcome and Login screenshot</summary>
+<img src="docs/screenshots/option1_screenshot.png"></details>
+
+**This functionality covers the following user stories:**
+
+11\. ... .
+
+### Option 2 
