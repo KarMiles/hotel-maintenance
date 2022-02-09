@@ -202,7 +202,7 @@ After chosing Option 2 - Enquire about a room, user can enter a room number. Sys
 ### Option 3 - See all maintenance tickets
 When Option 3 is chosen the user is presented with the list of tickets related with all rooms and areas of the establishment in form of a table. The information is accompanied by a brief summary showing total number of tickets and their breakdown based on their urgency. 
 
-<details><summary>Welcome and Login screenshot</summary>
+<details><summary>Option 3 screenshot</summary>
 <img src="docs/screenshots/option3_screenshot.png"></details>
 
 **This functionality covers the following user stories:**
@@ -213,4 +213,3 @@ When Option 3 is chosen the user is presented with the list of tickets related w
 
 8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
-### 

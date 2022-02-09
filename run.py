@@ -17,12 +17,12 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
-# Classes
+# Formating
 
 class Encapsulate:
     """
     Creates encapsulation of a message for visual effect.
-    Formats allowed by tabulate are: 
+    Formats allowed for tabulate are: 
     "plain", "simple", "github", "grid", "fancy_grid",
     "pipe", "orgtbl", "jira", "presto", "pretty", "psql"
     "rst", "mediawiki", "moinmoin", "youtrack", "html",
@@ -83,7 +83,6 @@ def login():
             login()
 
     return result
-
 
 # Get data from user:
 
@@ -172,7 +171,7 @@ def to_main_menu():
     return result
 
 
-def get_room_number():
+def get_room():
     """
     Get room number from user.
     Run a while loop to collect a valid room number from the user
@@ -191,18 +190,18 @@ def get_room_number():
         print("followed by digit 1-8.")
         print("For all other areas enter 000.")
 
-        room_number = input("\nEnter room number here: \n")
+        room = input("\nEnter room number here: \n")
         # normalize zero value to three character format
-        if room_number == "0" : room_number = str('000')
+        if room == "0" : room = str('000')
 
-        if validate_room_number(room_number):
-            print(f"\nYou entered room number {room_number}.")
+        if validate_room(room):
+            print(f"\nYou entered room number {room}.")
             break
     
-    return room_number
+    return room
 
 
-def validate_room_number(value):
+def validate_room(value):
     """
     Checks validity of room number entered by user.
     Returns ValueError if entered value 
@@ -406,29 +405,28 @@ def validate_should_send_ticket(value):
 
 # TRYING NEW CLASS
 
-class Ticket:
-    """
-    Creates an instance of Ticket
-    """
-    def __init__(self, room_number, urgency, issue_type, description):
-        self.room_number = room_number
-        self.urgency = urgency
-        self.issue_type = issue_type
-        self.description = description
+# class Ticket:
+#     """
+#     Creates an instance of Ticket
+#     """
+#     def __init__(self, room, urgency, issue_type, description):
+#         self.room = room
+#         self.urgency = urgency
+#         self.issue_type = issue_type
+#         self.description = description
 
-        ticket = [room_number, urgency, issue_type, description]
-        return ticket
+#         def create_ticket()
+#         ticket = [room, urgency, issue_type, description]
+#         # return ticket
 
-    def closeTicket(self):
-        return f"Close ticket for room {self.room_number}"
-        
 
-def create_ticket(room_number, urgency, issue_type, description):
+def create_ticket(room, urgency, issue_type, description, status):
     """
     Put together data for new maintenance ticket.
     Returns full maintenence ticket.
     """
-    ticket = [room_number, urgency, issue_type, description]
+    status = "open"
+    ticket = [room, urgency, issue_type, description, status]
 
     return ticket
 
@@ -458,7 +456,6 @@ def update_worksheet(ticket, worksheet):
 #     print("Ticket emailed to Maintenance Team member.\n")
 
 
-
 def display_ticket(value):
     """
     Shows maintenance ticket(s) for enquired room.
@@ -470,8 +467,8 @@ def display_ticket(value):
     tickets_summary = SHEET.worksheet("tickets")
     
     # display number of tickets related to enquired room
-    room_number_column = tickets_summary.col_values(1)
-    room = Counter(room_number_column)
+    room_column = tickets_summary.col_values(1)
+    room = Counter(room_column)
     occurencies = room[value]
 
     if occurencies == 1:
@@ -485,8 +482,8 @@ def display_ticket(value):
     try: 
         searched = value # searched can be a list
         room_indices = []
-        for i in range(len(room_number_column)):
-            if room_number_column[i] in searched:
+        for i in range(len(room_column)):
+            if room_column[i] in searched:
                 room_indices.append(i)
 
         # make list of details on rooms enquired only
@@ -593,8 +590,8 @@ def make_choice():
         new_ticket_sequence()
         ending_sequence()
     elif choice == '2':
-        room_number = get_room_number()
-        display_ticket(room_number)
+        room = get_room()
+        display_ticket(room)
         ending_sequence()
     elif choice == '3':
         display_all_tickets()
@@ -607,16 +604,16 @@ def new_ticket_sequence():
     Sequence of functions to be started 
     when user choses to enter a new ticket.
     """
-    room_number = get_room_number()
+    room = get_room()
     urgency = get_urgency()
     description = get_description()
     issue_type = get_issue_type()
+    status = "open"
     if should_send_ticket():
-        ticket = create_ticket(room_number, urgency, issue_type, description)
-        # ticket = Ticket(room_number, urgency, issue_type, description)
+        ticket = create_ticket(room, urgency, issue_type, description, status)
         update_worksheet(ticket, "tickets")
         print("Getting summary for the affected room...")
-        display_ticket(room_number)
+        display_ticket(room)
     else:
         print("\nAction aborted. Ticket was not sent.\n")
 
