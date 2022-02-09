@@ -401,25 +401,6 @@ def validate_should_send_ticket(value):
     return True
 
 
-# Data manipulation
-
-# TRYING NEW CLASS
-
-# class Ticket:
-#     """
-#     Creates an instance of Ticket
-#     """
-#     def __init__(self, room, urgency, issue_type, description):
-#         self.room = room
-#         self.urgency = urgency
-#         self.issue_type = issue_type
-#         self.description = description
-
-#         def create_ticket()
-#         ticket = [room, urgency, issue_type, description]
-#         # return ticket
-
-
 def create_ticket(room, urgency, issue_type, description, status):
     """
     Put together data for new maintenance ticket.
@@ -443,17 +424,16 @@ def update_worksheet(ticket, worksheet):
     # information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")
 
-# def close_ticket(ticket, worksheet):
-#     """
-#     Receives data for new ticket.
-#     Updates relevant Google worksheet with the new ticket.
-#     """
-#     print(f"\nUpdating '{worksheet}' worksheet...")
-#     worksheet_to_update = SHEET.worksheet(worksheet)
-#     worksheet_to_update.append_row(ticket)
-#     print(f"Worksheet updated succesfully.")
-#     # information about email which is sent by Zapier
-#     print("Ticket emailed to Maintenance Team member.\n")
+def close_ticket(ticket, worksheet):
+    """
+    Changes status of a ticket from open to closed.
+    """
+    print(f"\nUpdating '{worksheet}' worksheet...")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(ticket)
+    print(f"Worksheet updated succesfully.")
+    # information about email which is sent by Zapier
+    print("Ticket emailed to Maintenance Team member.\n")
 
 
 def display_ticket(value):
@@ -470,6 +450,7 @@ def display_ticket(value):
     room_column = tickets_summary.col_values(1)
     room = Counter(room_column)
     occurencies = room[value]
+    
 
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.\n")
@@ -487,14 +468,14 @@ def display_ticket(value):
                 room_indices.append(i)
 
         # make list of details on rooms enquired only
-        rooms_enquired_details = []
+        room_enquired_details = []
         for i in room_indices:
-            rooms_enquired_details.append(tickets[i])
+            room_enquired_details.append(tickets[i])
 
         # Show table containing rooms with tickets
         if occurencies != 'no':
             tickets_headers = tickets[0]
-            print(tabulate(rooms_enquired_details, tickets_headers))
+            print(tabulate(room_enquired_details, tickets_headers))
             print("")
 
     except:
@@ -566,14 +547,6 @@ def end_message():
     between user and system.
     """
     print("\nThank you for using *** Hotel Maintenance System! ***\n")
-
-
-def breaker():
-    """
-    Provides visual break in the page 
-    to distinguish different parts of application.
-    """
-    print("_" * 79 +"\n")
 
 
 # Function sequences:
