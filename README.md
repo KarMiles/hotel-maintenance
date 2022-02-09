@@ -155,14 +155,48 @@ After correct login user is presented with The Main Menu  where they may choose 
 <details><summary>Main Menu screenshot</summary>
 <img src="docs/screenshots/menu_screenshot.png"></details>
 
-### Option 1
-After chosing 1 for option 1 - Report new issue, user answers four questions. Each question is accompanied by a short instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.  
+### Option 1- Report new issue
+After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.  
 
-<details><summary>Welcome and Login screenshot</summary>
+<details><summary>Option 1 screenshot</summary>
 <img src="docs/screenshots/option1_screenshot.png"></details>
 
 **This functionality covers the following user stories:**
 
-11\. ... .
+2\. As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
-### Option 2 
+9\. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+
+### Option 2 - Enquire about a room
+After chosing Option 2 - Enquire about a room, user can enter a room number. System verifies the room number and if there are any tickets presents details of tickets related to the room in question in the form of a table. 
+
+<details><summary>Option 2 screenshot</summary>
+<img src="docs/screenshots/option2_screenshot.png"></details>
+
+**This functionality covers the following user stories:**
+
+1\. As a user I want to check if there are issues related to a specific room in the hotel (Receptionist, member of the Maintenance Team).
+
+4\. As a user i want to see details of any reported issue (member of the Maintenance Team)
+
+6\. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
+
+7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+
+8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+
+10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+
+### Option 3 - See all maintenance tickets
+When Option 3 is chosen the user is presented with the list of tickets related with all rooms and areas of the establishment in form of a table. The information is accompanied by a brief summary showing total number of tickets and their breakdown based on their urgency. 
+
+<details><summary>Welcome and Login screenshot</summary>
+<img src="docs/screenshots/option3_screenshot.png"></details>
+
+**This functionality covers the following user stories:**
+
+6\. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
+
+7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+
+8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
