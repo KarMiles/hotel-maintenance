@@ -192,7 +192,8 @@ def get_room():
 
         room = input("\nEnter room number here: \n")
         # normalize zero value to three character format
-        if room == "0" : room = str('000')
+        if room == "0": 
+            room = str('000')
 
         if validate_room(room):
             print(f"\nYou entered room number {room}.")
@@ -424,21 +425,13 @@ def update_worksheet(ticket, worksheet):
     # information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")
 
-def close_ticket(ticket, worksheet):
-    """
-    Changes status of a ticket from open to closed.
-    """
-    print(f"\nUpdating '{worksheet}' worksheet...")
-    worksheet_to_update = SHEET.worksheet(worksheet)
-    worksheet_to_update.append_row(ticket)
-    print(f"Worksheet updated succesfully.")
-    # information about email which is sent by Zapier
-    print("Ticket emailed to Maintenance Team member.\n")
 
 
 def display_ticket(value):
     """
-    Shows maintenance ticket(s) for enquired room.
+    Pulls tickets for enquired room from Google sheets.
+    Shows tickets to the user in a table.
+    Parameter is room number.
     """
     print(f"\nRetrieving information about room {value}...")
     
@@ -446,11 +439,10 @@ def display_ticket(value):
     tickets = SHEET.worksheet("tickets").get_all_values()
     tickets_summary = SHEET.worksheet("tickets")
     
-    # display number of tickets related to enquired room
+    # calculate and display number of tickets related to enquired room
     room_column = tickets_summary.col_values(1)
     room = Counter(room_column)
     occurencies = room[value]
-    
 
     if occurencies == 1:
         print(f"There is currently {occurencies} ticket for this room.\n")
@@ -459,9 +451,9 @@ def display_ticket(value):
         if occurencies == 0: occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.\n")
     
-    # Display tickets on enquired room if available
+    # Display tickets for enquired room if available
     try: 
-        searched = value # searched can be a list
+        searched = value
         room_indices = []
         for i in range(len(room_column)):
             if room_column[i] in searched:
@@ -472,15 +464,34 @@ def display_ticket(value):
         for i in room_indices:
             room_enquired_details.append(tickets[i])
 
+        # print("room_enquired_details:")
+        # print(room_enquired_details)
+
         # Show table containing rooms with tickets
         if occurencies != 'no':
             tickets_headers = tickets[0]
+            # remove status column from view
+            [col.pop(4) for col in room_enquired_details]
+            # show table
             print(tabulate(room_enquired_details, tickets_headers))
             print("")
+
+            
 
     except:
         pass
     
+
+def close_ticket(row, col):
+    """
+    Changes status of a ticket from open to closed.
+    """
+    print(f"\nUpdating worksheet...")
+    worksheet_to_update = SHEET.worksheet("tickets").update_cell(row, col, "closed")
+    print(f"Status updated succesfully.")
+
+# close_ticket(2, 5) ##
+
 
 def display_summary():
     """
