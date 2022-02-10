@@ -49,7 +49,6 @@ def login():
     Returns True or False.
     """
     # receive information from Google Sheets
-    # logins = SHEET.worksheet("logins").get_all_values()
     logins_ws = SHEET.worksheet("logins")
 
     # get login credentials from user
@@ -481,11 +480,51 @@ def display_ticket(value):
             print(tabulate(room_enquired_details, tickets_headers))
             print("")
 
-
-
     except:
         pass
+
+
+def close_ticket():
+    """
+    Change status of a ticket from open to close.
+    """
+    # receive information from Google Sheets
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets_summary = SHEET.worksheet("tickets")
+
+    # get login credentials from user
+    ticket_id_entered = input("Enter ticket id:\n")
+
+    try:
+        # get index of a ticket in the tickets worksheet
+        id_column = tickets_summary.col_values(5)
+        id_column.pop(0)
+        id_index = id_column.index(id)
+
+        # pull corresponding password in logins worksheet
+        psw_column = tickets_summary.col_values(2)
+        psw_column.pop(0)
+        correct_pwd = psw_column[id_index]
     
+    except:
+        result = False
+        print("\nLogin failed.\nPlease check and try again.\n")
+        login()
+    
+    else:
+        # check login credentials
+        if pwd == correct_pwd: 
+            result = True
+            print("\nLogin correct.")
+
+        else:
+            result = False
+            print("\nLogin failed.\nPlease check and try again.\n")
+            login()
+
+    return result
+
+
 
 def close_ticket(row, col):
     """
@@ -526,7 +565,13 @@ def display_all_tickets():
     tickets_headers = tickets[0]
     del tickets[0]
     all_tickets_sorted = sorted(tickets, key=itemgetter(0))
+
+    # remove status column from view
+    [col.pop(4) for col in all_tickets_sorted]
+    tickets_headers.pop(4)
+
     print(tabulate(all_tickets_sorted, tickets_headers))
+    print("_" * 79)
     print("")
 
 
