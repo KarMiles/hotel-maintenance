@@ -1,5 +1,6 @@
 import gspread
 import pwinput
+import datetime
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 from collections import Counter
@@ -407,8 +408,11 @@ def create_ticket(room, urgency, issue_type, description, status):
     Put together data for new maintenance ticket.
     Returns full maintenence ticket.
     """
+    # make timestamp as unique ticket number
+    now = datetime.datetime.now()
+    ticket_id = now.strftime("%y%m%d-%H%M")
     status = "open"
-    ticket = [room, urgency, issue_type, description, status]
+    ticket = [room, urgency, issue_type, description, status, ticket_id]
 
     return ticket
 
@@ -472,11 +476,12 @@ def display_ticket(value):
             tickets_headers = tickets[0]
             # remove status column from view
             [col.pop(4) for col in room_enquired_details]
+            tickets_headers.pop(4)
             # show table
             print(tabulate(room_enquired_details, tickets_headers))
             print("")
 
-            
+
 
     except:
         pass
