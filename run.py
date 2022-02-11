@@ -1,10 +1,14 @@
-import gspread
-import pwinput
 import datetime
-from google.oauth2.service_account import Credentials
-from tabulate import tabulate
 from collections import Counter
 from operator import itemgetter
+
+import gspread
+import pwinput
+from google.oauth2.service_account import Credentials
+from tabulate import tabulate
+
+# internal imports
+import ticket
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -18,8 +22,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
-# Formating
-
 class Encapsulate:
     """
     Creates encapsulation of a message for visual effect.
@@ -32,6 +34,9 @@ class Encapsulate:
     Both message and format should be in "".
     """
     def __init__(self, message, format):
+        """
+        
+        """
         self.message = message
         self.format = format
     
@@ -39,7 +44,6 @@ class Encapsulate:
         msg = tabulate(table, tablefmt=format)
         print(f"\n{msg}\n")
 
-# User login:
 
 def login():
     """
@@ -122,7 +126,8 @@ def validate_main_menu(value):
     try:
         allowed = ['1', '2', '3']
         if not (value in allowed):
-            raise ValueError(f"Issue type must be one digit: 1, 2 or 3.\nTry again!\n")
+            raise ValueError(
+                f"Issue type must be one digit: 1, 2 or 3.\nTry again!\n")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -131,44 +136,10 @@ def validate_main_menu(value):
     return True
 
 
-def is_new_ticket():
-    """
-    Ask if user wants to enter new ticket.
-    Returns True or False depending on user choice.
-    """
-    while True:
-        is_new_ticket = input(f"Do you wish to register new issue?\nAnswer Y for yes, or N for no: \n")
-        
-        if validate_yes_no_question(is_new_ticket):
-
-            if is_new_ticket.lower() == "y":
-                result = True
-            elif is_new_ticket.lower() == "n":
-                result = False
-
-            break
-    
-    return result
 
 
-def to_main_menu():
-    """
-    Ask if user wants to go to main menu.
-    Returns True or False.
-    """
-    while True:
-        is_new_ticket = input(f"Do you wish to return to the Main Menu?\nAnswer Y for yes, or N for no: \n")
-        
-        if validate_yes_no_question(is_new_ticket):
 
-            if is_new_ticket.lower() == "y":
-                result = True
-            elif is_new_ticket.lower() == "n":
-                result = False
 
-            break
-    
-    return result
 
 
 def get_room():
@@ -497,42 +468,49 @@ def close_ticket():
 
     try:
         # get index of a ticket in the tickets worksheet
-        id_column = tickets_summary.col_values(5)
-        id_column.pop(0)
-        id_index = id_column.index(id)
+        column = tickets_summary.col_values(5)
+        column.pop(0)
+        ticket_id_index = column.index(ticket_id_entered)
+        print(ticket_id_index)
 
-        # pull corresponding password in logins worksheet
-        psw_column = tickets_summary.col_values(2)
-        psw_column.pop(0)
-        correct_pwd = psw_column[id_index]
+        # # pull corresponding password in logins worksheet
+        # ticket_id_col = tickets_summary.col_values(2)
+        # ticket_id_col.pop(0)
+        # correct_pwd = ticket_id_col[id_index]
+
+        # update cell
+        col = 5
+        worksheet_to_update = SHEET.worksheet("tickets").update_cell(ticket_id_index, col, "closed")
     
     except:
         result = False
-        print("\nLogin failed.\nPlease check and try again.\n")
-        login()
+        print("\nOperation failed.\nPlease check and try again.\n")
+        # login()
     
     else:
         # check login credentials
         if pwd == correct_pwd: 
             result = True
-            print("\nLogin correct.")
+            print("\nDone.")
 
         else:
             result = False
-            print("\nLogin failed.\nPlease check and try again.\n")
-            login()
+            print("\nUpdate failed.\nPlease check and try again.\n")
+            # login()
 
     return result
 
+# close_ticket()
 
 
-def close_ticket(row, col):
-    """
-    Changes status of a ticket from open to closed.
-    """
-    print(f"\nUpdating worksheet...")
-    worksheet_to_update = SHEET.worksheet("tickets").update_cell(row, col, "closed")
-    print(f"Status updated succesfully.")
+# DRAFT
+# def close_ticket(row, col):
+#     """
+#     Changes status of a ticket from open to closed.
+#     """
+#     print(f"\nUpdating worksheet...")
+#     worksheet_to_update = SHEET.worksheet("tickets").update_cell(row, col, "closed")
+#     print(f"Status updated succesfully.")
 
 # close_ticket(2, 5) ##
 
@@ -574,26 +552,6 @@ def display_all_tickets():
     print("_" * 79)
     print("")
 
-
-def validate_yes_no_question(value):
-    """
-    Checks validity of Y/N answer.
-    Returns ValueError if entered value 
-    is not Y or N.
-    """
-    try:
-        value = value.lower()
-        if str(value) != "y" and str(value) != "n":
-            raise ValueError("Please answer Y for yes or N for no!")
-
-    except ValueError as e:
-        print(f"Invalid data: {e}")
-        return False
-    
-    return True
-
-
-# Messages to show on screen:
 
 def welcome_message():
     """
@@ -657,7 +615,7 @@ def ending_sequence():
     Asks user whether to return to Main Menu.
     If not an ending message is shown and application ends.
     """
-    if to_main_menu():
+    if ticket.to_main_menu():
         make_choice()
     else:
         end_message()
