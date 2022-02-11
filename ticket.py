@@ -19,9 +19,6 @@ def validate_yes_no_question(value):
     return True
 
 
-
-
-
 def is_new_ticket():
     """
     Ask if user wants to start the process
@@ -42,12 +39,6 @@ def is_new_ticket():
             break
     
     return result
-
-
-
-
-
-
 
 
 def get_urgency():
@@ -245,7 +236,6 @@ def create_ticket(room, urgency, issue_type, description, status):
     ticket = [room, urgency, issue_type, description, status, ticket_id]
 
     return ticket
-
 
 
 def to_main_menu():

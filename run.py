@@ -238,8 +238,6 @@ def display_ticket(value):
         pass
 
 
-
-
 def close_ticket():
     """
     Change status of a ticket from open to close.
@@ -366,7 +364,6 @@ def end_message():
     print("\nThank you for using *** Hotel Maintenance System! ***\n")
 
 
-
 def new_ticket_sequence():
     """
     Sequence of functions to be started 
@@ -384,7 +381,6 @@ def new_ticket_sequence():
         display_ticket(room)
     else:
         print("\nAction aborted. Ticket was not sent.\n")
-
 
 
 def make_choice():
@@ -408,9 +404,6 @@ def make_choice():
         ending_sequence()
 
 
-
-
-
 def ending_sequence():
     """
     Asks user whether to return to Main Menu.
@@ -421,8 +414,6 @@ def ending_sequence():
     else:
         end_message()
 
-
-# Main function
 
 def main():
     """
@@ -436,4 +427,3 @@ def main():
     
 
 main()
-
