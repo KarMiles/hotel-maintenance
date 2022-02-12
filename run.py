@@ -24,50 +24,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
-# def login() -> bool:
-#     """
-#     Allow for user login by getting login credentials from user
-#     and comparing them to data from worksheet.
-#     Function will loop until login credentials are correct.
-#     Returns True or False.
-#     """
-#     # receive information from Google Sheets
-#     logins_ws = SHEET.worksheet("logins")
-
-#     # get login credentials from user
-#     id = input("Enter your username:\n")
-#     pwd = pwinput.pwinput(prompt='Enter password:\n', mask='*')
-
-#     try:
-#         # get index of user id in logins worksheet
-#         id_column = logins_ws.col_values(1)
-#         id_column.pop(0)
-#         id_index = id_column.index(id)
-
-#         # pull corresponding password in logins worksheet
-#         psw_column = logins_ws.col_values(2)
-#         psw_column.pop(0)
-#         correct_pwd = psw_column[id_index]
-
-#     except:
-#         result = False
-#         print("\nLogin failed.\nPlease check and try again.\n")
-#         login()
-    
-#     else:
-#         # check login credentials
-#         if pwd == correct_pwd: 
-#             result = True
-#             print("\nLogin correct.")
-
-#         else:
-#             result = False
-#             print("\nLogin failed.\nPlease check and try again.\n")
-#             login()
-
-#     return result
-
-
 def main_menu() -> int:
     """
     Get information on user's choice of action in the system.
@@ -120,7 +76,7 @@ def get_room() -> int:
     """
     Get room number from user.
     Run a while loop to collect a valid room number from the user
-    via the terminal. 
+    via the terminal.
     Room number must be built of 3 digits:
     1st between 1-6, 2nd equal 0, 3rd between 1-8.
     Number 000 means all other areas of the hotel.
@@ -138,7 +94,7 @@ def get_room() -> int:
 
         room = input("\nEnter room number here: \n")
         # normalize zero value to three character format
-        if room == "0": 
+        if room == "0":
             room = str('000')
 
         if validate_room(room):
@@ -151,17 +107,27 @@ def get_room() -> int:
 def validate_room(room: int) -> bool:
     """
     Checks validity of room number entered by user.
-    Returns ValueError if entered room 
+    Returns ValueError if entered room
     is not a correct room number.
     @param room(int): Room number entered by user.
     """
     try:
-        if (len(room) != 3 or int(room) > 608 or (int(room) == 0) or int(room[0]) > 6 or (room[0] == "0") or (room[1] != "0") or (room[2] == "0") or (int(room[2]) > 8)) and int(room) != 0:
+        if ((
+            len(room) != 3 or
+            int(room) > 608 or
+            (int(room) == 0) or
+            int(room[0]) > 6 or
+            (room[0] == "0") or
+            (room[1] != "0") or
+            (room[2] == "0") or
+            (int(room[2]) > 8)) and
+            (int(room) != 0)):
             raise ValueError(
-                "Room number should be 3 digits in given format.\nTry again!")
+                "\nRoom number is 3 digits in given format.\nTry again!\n")
 
-    except ValueError as e:
-        print(f"\nInvalid data: {e}.")
+    except ValueError:
+        print(
+            "Room number is 3 digits in given format.\nTry again!\n")
         return False
 
     return True
@@ -188,7 +154,8 @@ def display_ticket(room: int):
         print(f"There is currently {occurencies} ticket for this room.\n")
 
     else:
-        if occurencies == 0: occurencies = "no"
+        if occurencies == 0:
+            occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.\n")
 
     # Display tickets for enquired room if existent
@@ -218,60 +185,6 @@ def display_ticket(room: int):
         pass
 
 
-# DRAFT
-def close_ticket():
-    """
-    Change status of a ticket from open to close.
-    """
-    # receive information from Google Sheets
-    tickets = SHEET.worksheet("tickets").get_all_values()
-    tickets_summary = SHEET.worksheet("tickets")
-
-    # get login credentials from user
-    ticket_id_entered = input("Enter ticket id:\n")
-
-    try:
-        # get index of a ticket in the tickets worksheet
-        column = tickets_summary.col_values(5)
-        column.pop(0)
-        ticket_id_index = column.index(ticket_id_entered)
-        print(ticket_id_index)
-
-        # update cell
-        col = 5
-        worksheet_to_update = SHEET.worksheet("tickets").update_cell(ticket_id_index, col, "closed")
-    
-    except:
-        result = False
-        print("\nOperation failed.\nPlease check and try again.\n")
-    
-    else:
-        # check login credentials
-        if pwd == correct_pwd: 
-            result = True
-            print("\nDone.")
-
-        else:
-            result = False
-            print("\nUpdate failed.\nPlease check and try again.\n")
-
-    return result
-
-# close_ticket()
-
-
-# DRAFT
-# def close_ticket(row, col):
-#     """
-#     Changes status of a ticket from open to closed.
-#     """
-#     print(f"\nUpdating worksheet...")
-#     worksheet_to_update = SHEET.worksheet("tickets").update_cell(row, col, "closed")
-#     print(f"Status updated succesfully.")
-
-# close_ticket(2, 5) ##
-
-
 def display_summary():
     """
     Displays summary of maintenance tickets for all rooms in the hotel.
@@ -286,7 +199,8 @@ def display_summary():
     critical = urgency["critical"]
     urgent = urgency["urgent"]
     normal = urgency["normal"]
-    print(f"Total number of tickets: {number_of_tickets}, of which:\nCritical: {critical}, Urgent: {urgent}, Normal: {normal}.\n")
+    print(f"Total number of tickets: {number_of_tickets}, of which:")
+    print(f"Critical: {critical}, Urgent: {urgent}, Normal: {normal}.\n")
 
 
 def display_all_tickets():
@@ -299,7 +213,7 @@ def display_all_tickets():
 
     # get data from worksheet
     tickets = SHEET.worksheet("tickets").get_all_values()
-    
+
     # prepare headers
     tickets_headers = tickets[0]
 
@@ -307,8 +221,10 @@ def display_all_tickets():
     del tickets[0]
     all_tickets_sorted = sorted(tickets, key=itemgetter(0))
 
-    # remove status column from view
+    # remove status column from view - data
     [col.pop(4) for col in all_tickets_sorted]
+
+    # remove status column from view - headers
     tickets_headers.pop(4)
 
     # show table with all tickets
@@ -328,11 +244,13 @@ def update_worksheet(ticket: list, worksheet: str):
 
     """
     print(f"\nUpdating '{worksheet}' worksheet...")
+
+    # update ticket worksheet with new ticket
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
 
     # show information that worksheet is updated
-    print(f"Worksheet updated succesfully.")
+    print("Worksheet updated succesfully.")
 
     # show information about email which is sent by Zapier
     print("Ticket emailed to Maintenance Team member.\n")

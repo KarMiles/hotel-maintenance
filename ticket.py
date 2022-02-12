@@ -1,6 +1,21 @@
 # Python imports
 import datetime
 
+# external libraries imports
+import gspread
+from google.oauth2.service_account import Credentials
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+    ]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
+
 
 def validate_yes_no_question(answer: str) -> bool:
     """
@@ -18,28 +33,6 @@ def validate_yes_no_question(answer: str) -> bool:
         return False
 
     return True
-
-
-# def is_new_ticket() -> bool:
-#     """
-#     Ask if user wants to start the process
-#     of entering new ticket.
-#     Returns True or False depending on user choice.
-#     """
-#     while True:
-#         start_new_ticket = input(
-#             "Register new issue?\nAnswer Y for yes, or N for no:\n")
-
-#         if validate_yes_no_question(start_new_ticket):
-
-#             if start_new_ticket.lower() == "y":
-#                 result = True
-#             elif start_new_ticket.lower() == "n":
-#                 result = False
-
-#             break
-
-#     return result
 
 
 def get_urgency() -> str:
@@ -227,6 +220,49 @@ def create_ticket(
     ticket = [room, urgency, issue_type, description, status, ticket_id]
 
     return ticket
+
+
+# DRAFT
+def close_ticket():
+    """
+    Change status of a ticket from open to close.
+    """
+    # receive information from Google Sheets
+    worksheet_to_update = SHEET.worksheet("tickets")
+
+    # get login credentials from user
+    ticket_id_entered = input("Enter ticket id:\n")
+
+    try:
+        # get index of ticket entered in the tickets worksheet
+        column = worksheet_to_update.col_values(6)
+        ticket_id_index = column.index(ticket_id_entered)
+        print("-" * 79)
+        print(ticket_id_index)
+
+        # update cell
+        col = 5
+        worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
+        print("Updating ticket status...")
+    
+    except:
+        result = False
+        print("\nOperation failed.\nPlease check and try again.\n")
+    
+    else:
+        # check login credentials
+        if True: 
+            result = True
+            print(f"\nTicket {ticket_id_entered} closed successfully.")
+
+        else:
+            result = False
+            print("\nUpdate failed.\nPlease check and try again.\n")
+
+    return result
+
+
+# close_ticket()
 
 
 def to_main_menu() -> bool:

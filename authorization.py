@@ -45,7 +45,7 @@ def login() -> bool:
         result = False
         print("\nLogin failed.\nPlease check and try again.\n")
         login()
-    
+
     else:
         # check login credentials
         if pwd == correct_pwd: 
