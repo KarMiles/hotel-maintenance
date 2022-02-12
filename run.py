@@ -388,10 +388,12 @@ def new_ticket_sequence():
     urgency = ticket.get_urgency()
     description = ticket.get_description()
     issue_type = ticket.get_issue_type()
-    status = "open"
     if ticket.should_send_ticket():
         new_ticket = ticket.create_ticket(
-            room, urgency, issue_type, description, status)
+            room,
+            urgency,
+            issue_type,
+            description)
         update_worksheet(new_ticket, "tickets")
         print("Getting summary for the affected room...")
         display_ticket(room)
