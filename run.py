@@ -4,11 +4,11 @@ from operator import itemgetter
 
 # external libraries imports
 import gspread
-import pwinput
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 
 # internal imports
+import authorization
 import ticket
 import messages
 
@@ -24,48 +24,48 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
-def login() -> bool:
-    """
-    Allow for user login by getting login credentials from user
-    and comparing them to data from worksheet.
-    Function will loop until login credentials are correct.
-    Returns True or False.
-    """
-    # receive information from Google Sheets
-    logins_ws = SHEET.worksheet("logins")
+# def login() -> bool:
+#     """
+#     Allow for user login by getting login credentials from user
+#     and comparing them to data from worksheet.
+#     Function will loop until login credentials are correct.
+#     Returns True or False.
+#     """
+#     # receive information from Google Sheets
+#     logins_ws = SHEET.worksheet("logins")
 
-    # get login credentials from user
-    id = input("Enter your username:\n")
-    pwd = pwinput.pwinput(prompt='Enter password:\n', mask='*')
+#     # get login credentials from user
+#     id = input("Enter your username:\n")
+#     pwd = pwinput.pwinput(prompt='Enter password:\n', mask='*')
 
-    try:
-        # get index of user id in logins worksheet
-        id_column = logins_ws.col_values(1)
-        id_column.pop(0)
-        id_index = id_column.index(id)
+#     try:
+#         # get index of user id in logins worksheet
+#         id_column = logins_ws.col_values(1)
+#         id_column.pop(0)
+#         id_index = id_column.index(id)
 
-        # pull corresponding password in logins worksheet
-        psw_column = logins_ws.col_values(2)
-        psw_column.pop(0)
-        correct_pwd = psw_column[id_index]
+#         # pull corresponding password in logins worksheet
+#         psw_column = logins_ws.col_values(2)
+#         psw_column.pop(0)
+#         correct_pwd = psw_column[id_index]
+
+#     except:
+#         result = False
+#         print("\nLogin failed.\nPlease check and try again.\n")
+#         login()
     
-    except:
-        result = False
-        print("\nLogin failed.\nPlease check and try again.\n")
-        login()
-    
-    else:
-        # check login credentials
-        if pwd == correct_pwd: 
-            result = True
-            print("\nLogin correct.")
+#     else:
+#         # check login credentials
+#         if pwd == correct_pwd: 
+#             result = True
+#             print("\nLogin correct.")
 
-        else:
-            result = False
-            print("\nLogin failed.\nPlease check and try again.\n")
-            login()
+#         else:
+#             result = False
+#             print("\nLogin failed.\nPlease check and try again.\n")
+#             login()
 
-    return result
+#     return result
 
 
 def main_menu() -> int:
@@ -112,7 +112,7 @@ def validate_main_menu(choice: int) -> bool:
     except ValueError as e:
         print(f"Invalid data: {e}")
         return False
-    
+
     return True
 
 
@@ -144,7 +144,7 @@ def get_room() -> int:
         if validate_room(room):
             print(f"\nYou entered room number {room}.")
             break
-    
+
     return room
 
 
@@ -338,21 +338,6 @@ def update_worksheet(ticket: list, worksheet: str):
     print("Ticket emailed to Maintenance Team member.\n")
 
 
-# def welcome_message():
-#     """
-#     Message to be shown at the start of the system.
-#     """
-#     Encapsulate(" Welcome to Hotel Maintenance System! ", "fancy_grid")
-
-
-# def end_message():
-#     """
-#     Message shown at the end of interaction 
-#     between user and system.
-#     """
-#     print("\nThank you for using *** Hotel Maintenance System! ***\n")
-
-
 def new_ticket_sequence():
     """
     Sequence of functions to be started
@@ -413,7 +398,7 @@ def main():
     """
     messages.welcome_message()
 
-    login()
+    authorization.login()
 
     make_choice()
 
