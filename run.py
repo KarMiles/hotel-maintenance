@@ -10,6 +10,7 @@ from tabulate import tabulate
 
 # internal imports
 import ticket
+import messages
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -21,29 +22,6 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
-
-
-class Encapsulate:
-    """
-    Creates encapsulation of a message for visual effect.
-    Formats allowed for tabulate are: 
-    "plain", "simple", "github", "grid", "fancy_grid",
-    "pipe", "orgtbl", "jira", "presto", "pretty", "psql"
-    "rst", "mediawiki", "moinmoin", "youtrack", "html",
-    "unsafehtml", "latex", "latex_raw", "latex_booktabs",
-    "latex_longtable", "textile", "tsv".
-    Both message and format should be in "".
-    """
-    def __init__(self, message, format):
-        """
-        
-        """
-        self.message = message
-        self.format = format
-    
-        table = [[message]]
-        msg = tabulate(table, tablefmt=format)
-        print(f"\n{msg}\n")
 
 
 def login() -> bool:
@@ -96,7 +74,7 @@ def main_menu() -> int:
     Returns 1, 2, or 3 for further functions to be called.
     """
     while True:
-        Encapsulate(
+        messages.Encapsulate(
             " This is Main Menu for *** Hotel Maintenance System *** ", "rst")
         print("Please choose one of the following options:\n")
         print("1 - Report new issue.")
@@ -112,7 +90,7 @@ def main_menu() -> int:
                 '3': '3 - See all maintenance tickets.'
             }
             selection = choice_long[choice]
-            Encapsulate(f"You selected option: {selection}", "simple")
+            messages.Encapsulate(f"You selected option: {selection}", "simple")
             break
 
     return choice
@@ -178,13 +156,14 @@ def validate_room(room: int) -> bool:
     @param room(int): Room number entered by user.
     """
     try:
-        if (len(room) != 3 or int(room) > 608 or (int(room) == 0) or int(room[0]) > 6 or (room[0] == "0") or (room[1] != "0") or (room[2] == "0") or (int(room[2]) > 8) ) and int(room) != 0:
-            raise ValueError(f"Room number should be 3 digits in the given format.\nTry again!")
+        if (len(room) != 3 or int(room) > 608 or (int(room) == 0) or int(room[0]) > 6 or (room[0] == "0") or (room[1] != "0") or (room[2] == "0") or (int(room[2]) > 8)) and int(room) != 0:
+            raise ValueError(
+                "Room number should be 3 digits in given format.\nTry again!")
 
     except ValueError as e:
-        print(f"\nIncorrect format of room number.")
+        print(f"\nInvalid data: {e}.")
         return False
-    
+
     return True
 
 
@@ -211,9 +190,9 @@ def display_ticket(room: int):
     else:
         if occurencies == 0: occurencies = "no"
         print(f"There are currently {occurencies} tickets for this room.\n")
-    
+
     # Display tickets for enquired room if existent
-    try: 
+    try:
         searched = room
         room_indices = []
         for i in range(len(room_column)):
@@ -257,11 +236,6 @@ def close_ticket():
         column.pop(0)
         ticket_id_index = column.index(ticket_id_entered)
         print(ticket_id_index)
-
-        # # pull corresponding password in logins worksheet
-        # ticket_id_col = tickets_summary.col_values(2)
-        # ticket_id_col.pop(0)
-        # correct_pwd = ticket_id_col[id_index]
 
         # update cell
         col = 5
@@ -364,19 +338,19 @@ def update_worksheet(ticket: list, worksheet: str):
     print("Ticket emailed to Maintenance Team member.\n")
 
 
-def welcome_message():
-    """
-    Message to be shown at the start of the system.
-    """
-    Encapsulate(" Welcome to Hotel Maintenance System! ", "fancy_grid")
+# def welcome_message():
+#     """
+#     Message to be shown at the start of the system.
+#     """
+#     Encapsulate(" Welcome to Hotel Maintenance System! ", "fancy_grid")
 
 
-def end_message():
-    """
-    Message shown at the end of interaction 
-    between user and system.
-    """
-    print("\nThank you for using *** Hotel Maintenance System! ***\n")
+# def end_message():
+#     """
+#     Message shown at the end of interaction 
+#     between user and system.
+#     """
+#     print("\nThank you for using *** Hotel Maintenance System! ***\n")
 
 
 def new_ticket_sequence():
@@ -430,14 +404,14 @@ def ending_sequence():
     if ticket.to_main_menu():
         make_choice()
     else:
-        end_message()
+        messages.end_message()
 
 
 def main():
     """
     Run all program functions
     """
-    welcome_message()
+    messages.welcome_message()
 
     login()
 
