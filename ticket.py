@@ -301,16 +301,18 @@ def close_ticket() -> bool:
             ticket_id_index = column.index(ticket_id_entered)
 
             # update cell
+            print("\nUpdating ticket status...")
             col = 5
             worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
-            print("\nUpdating ticket status...")
+            
 
         except ValueError as e:
             result = False
             print(f"\nUpdate failed. {e}.\nPlease check ticket id and try again.\n")
 
         else:
-            print(f"\nTicket {ticket_id_entered} closed successfully.\n")
+            show_ticket_by_id(ticket_id_entered)
+            print(f"Ticket {ticket_id_entered} closed successfully.\n")
             result = True
             break
 
@@ -348,7 +350,7 @@ def show_ticket_by_id(ticket_id_entered: str):
     print("")
 
 
-show_ticket_by_id("220211-1517")
+# show_ticket_by_id("220211-1517")
 
 
 def to_main_menu() -> bool:
