@@ -304,7 +304,6 @@ def close_ticket() -> bool:
             print("\nUpdating ticket status...")
             col = 5
             worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
-            
 
         except ValueError as e:
             result = False

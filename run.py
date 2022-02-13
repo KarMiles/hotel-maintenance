@@ -171,11 +171,11 @@ def display_all_tickets():
     del tickets[0]
     all_tickets_sorted = sorted(tickets, key=itemgetter(0))
 
-    # remove status column from view - data
-    [col.pop(4) for col in all_tickets_sorted]
+    # remove id column from view - data
+    [col.pop(5) for col in all_tickets_sorted]
 
     # remove status column from view - headers
-    tickets_headers.pop(4)
+    tickets_headers.pop(5)
 
     # show table with all tickets
     print(tabulate(all_tickets_sorted, tickets_headers))
