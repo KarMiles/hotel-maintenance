@@ -271,8 +271,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Validate answers to questions about issue. | User reads brief instructions on format of data requested. Answers are validated for consistency of data.                                                                        | Data is consistent in format for optimal usability. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/option1b_screenshot.png">
-<img src="docs/screenshots/option1c_screenshot.png">
+<img src="docs/screenshots/us_option1b_screenshot.jpg">
+<img src="docs/screenshots/us_option1c_screenshot.jpg">
 </details>
 
 3.	As a user I want to see a list of all reported issues (member of the Maintenance Team)
@@ -281,6 +281,10 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | --------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------ | ------------- |
 | System shows list of all tickets. | User choses Option 4 in Main Menu. | System shows a table containing all tickets in the system and a brief summary. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option4_screenshot.jpg">
+</details>
+
 4.	As a user i want to see details of any reported issue (member of the Maintenance Team)
 
 | Feature                                                    | Action                                                    | Expected result                                                                                                         | Actual result |
@@ -288,17 +292,35 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows a list of all tickets.                        | User choses Option 4 in Main Menu.                        | System shows a table containing all tickets in the system and a brief summary.                                          | As expected.  |
 | System shows a list of tickets related to a specific room. | User choses Option 2 in Main Menu and enters room number. | System informs user if there are any tickets for the enquired room. If there are tickets, details are shown in a table. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option4_screenshot.jpg">
+<img src="docs/screenshots/us_option2_screenshot.jpg">
+</details>
+
 5.	As a user I want to be notified about new issues (Leader of the Maintenance Team)
 
 | Feature                                                                      | Action                                                                                                                | Expected result                                                                            | Actual result |
 | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------- |
 | System sends email notification about new ticket to Maintenance Team member. | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/email_screenshot.png">
+</details>
+
 6.	As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
 
-| System includes a question about urgency of new issue.                                                                                  | User enters information about urgency of the reported issue when starting new ticket. | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected. |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Limit answers to 3 simple options and validate for optimal clarity of information: c - for critical, u - for urgent, or n - for normal. | User choses one of 3 options when describing urgency of issue.                        | Data on urgency of issues is clear and consistent.                                                                                              | As expected. |
+| Feature                                                                                                                                 | Action                                                                                                                           | Expected result                                                                                                                                 | Actual result |
+| --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System includes a question about urgency of new issue.                                                                                  | User enters information about urgency of the reported issue when starting new ticket.                                            | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected.  |
+| Limit answers to 3 simple options and validate for optimal clarity of information: c - for critical, u - for urgent, or n - for normal. | User choses one of 3 options when describing urgency of issue.                                                                   | Data on urgency of issues is clear and consistent.                                                                                              | As expected.  |
+| Display information on ticket urgency in response to user queries.                                                                      | User chooses Option 2 - Enquire about a room or Option 4 - See all maintenance tickets to see ticket details, including urgency. | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
+| Display information on ticket urgency in email notification.                                                                            | User has access to email system to receive emails with information about new issues, including their urgency.                    | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
+
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option1b_scr_urgency.jpg">
+<img src="docs/screenshots/us_option1c_scr_urgency.jpg">
+<img src="docs/screenshots/us_email_screenshot.jpg">
+</details>
 
 7.	As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other suppliers (Leader of the Maintenance Team).
 
