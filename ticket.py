@@ -227,7 +227,7 @@ def create_ticket(
 def display_ticket(room: int):
     """
     Pulls tickets for enquired room from Google sheets.
-    Shows tickets to the user in a table.
+    Shows open tickets to the user in a table.
     @param room(int): Room number.
     """
     print(f"\nRetrieving information about room {room}...")
@@ -279,44 +279,76 @@ def display_ticket(room: int):
     except ValueError as e:
         print(f"Invalid data: {e}")
 
-def close_ticket():
+
+def close_ticket() -> bool:
     """
-    Change status of a ticket from open to close.
+    Get ticket number from user and
+    change status of the ticket from open to close.
     """
     # receive information from Google Sheets
     worksheet_to_update = SHEET.worksheet("tickets")
 
     # get login credentials from user
-    ticket_id_entered = input("Enter ticket id:\n")
+    while True:
+        print("Please enter ticket id.")
+        print("Ticket id can be found through room enquiry")
+        print("by choosing Option 2 in the Main Menu.\n")
+        ticket_id_entered = input("Enter ticket id:\n")
 
-    try:
-        # get index of ticket entered in the tickets worksheet
-        column = worksheet_to_update.col_values(6)
-        ticket_id_index = column.index(ticket_id_entered)
+        try:
+            # get index of ticket entered in the tickets worksheet
+            column = worksheet_to_update.col_values(6)
+            ticket_id_index = column.index(ticket_id_entered)
 
-        # update cell
-        col = 5
-        worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
-        print("\nUpdating ticket status...")
+            # update cell
+            col = 5
+            worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
+            print("\nUpdating ticket status...")
 
-    except:
-        result = False
-        print("\nOperation failed.\nPlease check and try again.\n")
-
-    else:
-        # check login credentials
-        if True:
-            result = True
-            print(f"\nTicket {ticket_id_entered} closed successfully.\n")
+        except ValueError as e:
+            result = False
+            print(f"\nUpdate failed. {e}.\nPlease check ticket id and try again.\n")
 
         else:
-            result = False
-            print("\nUpdate failed.\nPlease check and try again.\n")
+            print(f"\nTicket {ticket_id_entered} closed successfully.\n")
+            result = True
+            break
 
     return result
 
 
-# close_ticket()
+def show_ticket_by_id(ticket_id_entered: str):
+    """
+    Pulls ticket from Google sheets.
+    Shows open ticket to the user in a table.
+    @param ticket_id_entered(str): Unique ticket id.
+    """
+    print(f"\nRetrieving ticket {ticket_id_entered}...")
+
+    # receive information from Google Sheets
+    tickets = SHEET.worksheet("tickets").get_all_values()
+
+    # get data for ticket to be closed
+    ticket_closed = []
+    for i in range(len(tickets)):
+        if tickets[i][5] == ticket_id_entered:
+            # ticket_closed.append(tickets[i])
+            ticket_closed = tickets[i]
+
+    # get header for ticket to be closed
+    tickets_headers = tickets[0]
+
+    # remove status column from view
+    ticket_closed.pop(4)
+    tickets_headers.pop(4)
+    
+    # build and show table
+    print("")
+    print(tabulate([ticket_closed], tickets_headers))
+    print("")
+
+
+show_ticket_by_id("220211-1517")
 
 
 def to_main_menu() -> bool:
