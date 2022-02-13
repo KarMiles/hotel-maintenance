@@ -48,7 +48,7 @@ def login() -> bool:
 
     else:
         # check login credentials
-        if pwd == correct_pwd: 
+        if pwd == correct_pwd:
             result = True
             print("\nLogin correct.")
 

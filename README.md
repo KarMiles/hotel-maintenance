@@ -233,3 +233,19 @@ When Option 4 is chosen the user is presented with the list of tickets related w
 
 9\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
+## Validation
+
+### Python Validation
+The Python code for this project was validated in [PEP8 Validation Service](http://pep8online.com/) service. All files returned a pass with no errors and no warnings.
+
+<details><summary>run.py</summary>
+<img src="docs/validation/validation-runpy.png">
+</details>
+
+<details><summary>ticket.py</summary>
+<img src="docs/validation/validation-ticketpy.png">
+</details>
+
+<details><summary>authorization.py</summary>
+<img src="docs/validation/validation-authorizationpy.png">
+</details>
