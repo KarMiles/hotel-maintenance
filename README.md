@@ -260,23 +260,73 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 2.	As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
+| Feature                                    | Action                                                                                                                                                                           | Expected result                                     | Actual result |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------- |
+| System gets information for a new ticket.  | User choses Option 1 - Report new issue in Main Menu and answers questions about the new issue. Systems shows feedback on every step for satisfactory user – system interaction. | Data is entered and uploaded to Google Worksheet.   | As expected.  |
+| Validate answers to questions about issue. | User reads brief instructions on format of data requested. Answers are validated for consistency of data.                                                                        | Data is consistent in format for optimal usability. | As expected.  |
+
 3.	As a user I want to see a list of all reported issues (member of the Maintenance Team)
+
+| Feature                           | Action                             | Expected result                                                                | Actual result |
+| --------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------ | ------------- |
+| System shows list of all tickets. | User choses Option 4 in Main Menu. | System shows a table containing all tickets in the system and a brief summary. | As expected.  |
 
 4.	As a user i want to see details of any reported issue (member of the Maintenance Team)
 
+| Feature                                                    | Action                                                    | Expected result                                                                                                         | Actual result |
+| ---------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System shows a list of all tickets.                        | User choses Option 4 in Main Menu.                        | System shows a table containing all tickets in the system and a brief summary.                                          | As expected.  |
+| System shows a list of tickets related to a specific room. | User choses Option 2 in Main Menu and enters room number. | System informs user if there are any tickets for the enquired room. If there are tickets, details are shown in a table. | As expected.  |
+
 5.	As a user I want to be notified about new issues (Leader of the Maintenance Team)
+
+| Feature                                                                      | Action                                                                                                                | Expected result                                                                            | Actual result |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------- |
+| System sends email notification about new ticket to Maintenance Team member. | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added. | As expected.  |
 
 6.	As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
 
+| System includes a question about urgency of new issue.                                                                                  | User enters information about urgency of the reported issue when starting new ticket. | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected. |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Limit answers to 3 simple options and validate for optimal clarity of information: c - for critical, u - for urgent, or n - for normal. | User choses one of 3 options when describing urgency of issue.                        | Data on urgency of issues is clear and consistent.                                                                                              | As expected. |
+
 7.	As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other suppliers (Leader of the Maintenance Team).
+
+| Feature                                                                                                                                       | Action                                                                               | Expected result                                                                                                                                | Actual result |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System includes question about nature of new issue.                                                                                           | User enters information about nature of the reported issue when starting new ticket. | Information about nature of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected.  |
+| Limit answers to 3 simple options and validate for optimal clarity of information: m - for mechanical, e - for electrical, h - for hydraulic. | User choses one of 3 options when describing nature of issue.                        | Data on issue type is clear and consistent.                                                                                                    | As expected.  |
 
 8.	As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
 
+| Feature                                                      | Action                                                                                                                                                                                                                                             | Expected result                                                                                                                                                         | Actual result |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related with a room. | As expected.  |
+
 9.	As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
+
+| Feature                                                                                                                                             | Action                                                                                                                | Expected result                                                                                                                                                                                             | Actual result |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System sends email notification about new ticket to Maintenance Team member enabling instant information circulation.                               | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added.                                                                                                                  | As expected.  |
+| System includes a question about urgency of new issue. That information enables Maintenance Team to effectively prioritize repair and upgrade work. | User enters information about urgency of the reported issue when starting new ticket.                                 | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. Information is also included in instant email notification. | As expected.  |
 
 10.	As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area.
 
+| Feature                                                    | Action                                                                                                    | Expected result                                                                                                                                | Actual result |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System shows a list of tickets related to a specific room. | User choses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
+
 11.	As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
+| Feature                                                    | Action                                                                                                     | Expected result                                                                                                                                    | Actual result |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System shows a list of all tickets for all areas.          | User chooses Option 4 - See all maintenance tickets in Main Menu.                                          | System shows a table containing all tickets in the system and a brief summary with a breakdown according to ticket urgency.                        | As expected.  |
+| System shows a list of tickets related to a specific room. | User chooses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs the user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
+
 12.	As a site owner I want only authorized staff to have access to the system.
+
+| Feature                             | Action                               | Expected result                                  | Actual result |
+| ----------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------- |
+| Login validation on start of system | Enter correct username and password. | Only authorized staff have access to the system. | As expected.  |
+
 
