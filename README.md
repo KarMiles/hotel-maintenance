@@ -55,12 +55,12 @@
 4. As a user i want to see details of any reported issue (member of the Maintenance Team)
 5. As a user I want to be notified about new issues (Leader of the Maintenance Team)
 6. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
-7. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+7. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other suppliers  (Leader of the Maintenance Team).
 8. As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
 
 #### Site Owner
 9. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
-10. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+10. As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area. 
 11. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 12. As a site owner I want only authorized staff to have access to the system.
 
@@ -174,7 +174,7 @@ Upon submitting the new ticket system shows confirmation about successful operat
 
 2\. As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
-10\. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+10\. As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area. 
 
 11\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
@@ -202,7 +202,7 @@ After chosing Option 2 - Enquire about a room, user can enter a room number. Sys
 
 6\. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
 
-7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other supliers (Leader of the Maintenance Team).
 
 9\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
@@ -229,7 +229,7 @@ When Option 4 is chosen the user is presented with the list of tickets related w
 
 6\. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
 
-7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other supliers (Leader of the Maintenance Team).
 
 9\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
@@ -249,3 +249,34 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 <details><summary>authorization.py</summary>
 <img src="docs/validation/validation-authorizationpy.png">
 </details>
+
+### Testing user stories
+
+1.	As a user I want to check if there are issues related to a specific room in the hotel (Receptionist, member of the Maintenance Team).
+
+| Feature                                                                           | Action                                                                           | Expected result                                                                                                        | Actual result |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System retrieves and displays open tickets related with the room entered by user. | User choses Option 2 - Enquire about a room in Main Menu and enters room number. | Information about number of tickets open for room in question and a table with details for tickets is shown on screen. | As expected.  |
+
+2.	As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
+
+3.	As a user I want to see a list of all reported issues (member of the Maintenance Team)
+
+4.	As a user i want to see details of any reported issue (member of the Maintenance Team)
+
+5.	As a user I want to be notified about new issues (Leader of the Maintenance Team)
+
+6.	As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
+
+7.	As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other suppliers (Leader of the Maintenance Team).
+
+8.	As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
+
+9.	As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
+
+10.	As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area.
+
+11.	As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+
+12.	As a site owner I want only authorized staff to have access to the system.
+
