@@ -258,12 +258,22 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- |
 | System retrieves and displays open tickets related with the room entered by user. | User choses Option 2 - Enquire about a room in Main Menu and enters room number. | Information about number of tickets open for room in question and a table with details for tickets is shown on screen. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_menu_screenshot.jpg">
+<img src="docs/screenshots/us_option2_screenshot.jpg">
+</details>
+
 2.	As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
 | Feature                                    | Action                                                                                                                                                                           | Expected result                                     | Actual result |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------- |
 | System gets information for a new ticket.  | User choses Option 1 - Report new issue in Main Menu and answers questions about the new issue. Systems shows feedback on every step for satisfactory user – system interaction. | Data is entered and uploaded to Google Worksheet.   | As expected.  |
 | Validate answers to questions about issue. | User reads brief instructions on format of data requested. Answers are validated for consistency of data.                                                                        | Data is consistent in format for optimal usability. | As expected.  |
+
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/option1b_screenshot.png">
+<img src="docs/screenshots/option1c_screenshot.png">
+</details>
 
 3.	As a user I want to see a list of all reported issues (member of the Maintenance Team)
 
@@ -301,7 +311,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 | Feature                                                      | Action                                                                                                                                                                                                                                             | Expected result                                                                                                                                                         | Actual result |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related with a room. | As expected.  |
+| Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related to a room. | As expected.  |
 
 9.	As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
 
