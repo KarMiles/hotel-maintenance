@@ -68,7 +68,8 @@
 
 In first release the scope is to deliver mechanisms to:
 - Report new issues. 
-- Enquire about specific rooms. 
+- Enquire about specific rooms.
+- Change status of a ticket from open to closed.
 - See all maintenance tickets with a brief summary.
 - Notify Leader of the Maintenance Team about new issues by email.
 - Store tickets in a Google Worksheet.
@@ -151,16 +152,23 @@ Upon starting the program user is presented with the welcome screen showing the 
 After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system:
 1 - Report new issue.
 2 - Enquire about a room.
-3 - See all maintenance tickets.
+3 - Close ticket.
+4 - See all maintenance tickets.
 
 <details><summary>Main Menu screenshot</summary>
 <img src="docs/screenshots/menu_screenshot.png"></details>
 
 ### Option 1- Report new issue
-After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business. 
+After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.
 
-<details><summary>Option 1 screenshot</summary>
-<img src="docs/screenshots/option1_screenshot.png"></details>
+After answering four questions about the issue user has a chance to resign or submit the new ticket. 
+
+Upon submitting the new ticket system shows confirmation about successful operation. Additionally a brief summary is shown for the affected room, showing a table with open tickets related to the room in question. 
+
+<details><summary>Option 1 screenshots</summary>
+<img src="docs/screenshots/option1_screenshot.png">
+
+<img src="docs/screenshots/option1a_screenshot.png"></details>
 
 **This functionality covers the following user stories:**
 
@@ -171,7 +179,7 @@ After chosing Option 1 - Report new issue, user answers four questions. Each que
 11\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
 ### Email communication
-After user enters all details for the ticket and confirming the wish to send the ticket, the data is uploaded to Google Sheets and email is sent to a Maintenance Team Leader. This allows for fast communication between teams and rapid response on the Maintenance Team side. For this functionality [Zapier](https://zapier.com/app/zaps) service in conjunction with Google Sheets is used. 
+After user entered all details for the ticket and confirmed the wish to send the ticket, the data is uploaded to Google Sheets and email is sent to a Maintenance Team Leader. This allows for fast communication between teams and rapid response on the Maintenance Team side. For this functionality [Zapier](https://zapier.com/app/zaps) service in conjunction with Google Sheets is used. Email is sent after a new row is added in the tickets worksheet.
 
 <details><summary>Email example screenshot</summary>
 <img src="docs/screenshots/email_screenshot.png"></details>
@@ -215,7 +223,7 @@ When this option is chosen the user enters specific ticket id. If this is unknow
 When Option 4 is chosen the user is presented with the list of tickets related with all rooms and areas of the establishment in form of a table. The information is accompanied by a brief summary showing total number of tickets and their breakdown based on their urgency. 
 
 <details><summary>Option 4 screenshot</summary>
-<img src="docs/screenshots/option3_screenshot.png"></details>
+<img src="docs/screenshots/option4_screenshot.png"></details>
 
 **This functionality covers the following user stories:**
 

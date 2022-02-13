@@ -1,5 +1,4 @@
 # Python imports
-from collections import Counter
 import datetime
 
 # external libraries imports
@@ -40,8 +39,8 @@ def validate_yes_no_question(answer: str) -> bool:
 def get_urgency() -> str:
     """
     Get new issue urgency from user.
-    Run a while loop to collect a valid urgency for the new ticket 
-    from the user via the terminal, 
+    Run a while loop to collect a valid urgency for the new ticket
+    from the user via the terminal,
     which must be a letter:
     c - for critical,
     u - for urgent,
@@ -74,7 +73,7 @@ def get_urgency() -> str:
 def validate_urgency(urgency: str) -> bool:
     """
     Checks validity of urgency entered by user.
-    Returns ValueError if entered value 
+    Returns ValueError if entered value
     is not in correct format.
     @param urgency(str): Ticket urgency in form of one letter
     c - for critical, u - for urgent, or n - for normal.
@@ -183,7 +182,7 @@ def validate_issue_type(type: str) -> bool:
 def should_send_ticket() -> bool:
     """
     Ask if user wants to submit new ticket.
-    Returns True or False depending on 
+    Returns True or False depending on
     whether user confirms sending ticket to the system.
     """
     while True:
@@ -214,7 +213,7 @@ def create_ticket(
     """
     # set default status as open
     status = "open"
-   
+
     # use timestamp as unique ticket id
     now = datetime.datetime.now()
     ticket_id = now.strftime("%y%m%d-%H%M")
@@ -344,14 +343,11 @@ def show_ticket_by_id(ticket_id_entered: str):
     # remove status column from view
     ticket_closed.pop(4)
     tickets_headers.pop(4)
-    
+
     # build and show table
     print("")
     print(tabulate([ticket_closed], tickets_headers))
     print("")
-
-
-# show_ticket_by_id("220211-1517")
 
 
 def to_main_menu() -> bool:
