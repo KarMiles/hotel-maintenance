@@ -82,7 +82,9 @@ def validate_urgency(urgency: str) -> bool:
         ur = urgency.lower()
         if str(ur) != "c" and str(ur) != "u" and str(ur) != "n":
             raise ValueError(
-                "Urgency must be: \nc - for critical, u - for urgent or n - for normal.\nTry again!")
+                "Urgency must be: \n")
+            print("c - for critical, u - for urgent or n - for normal.")
+            print("Try again!")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -170,7 +172,9 @@ def validate_issue_type(type: str) -> bool:
         type = type.lower()
         if str(type) != "m" and str(type) != "e" and str(type) != "h":
             raise ValueError(
-                "Issue type must be: \nm - for mechanical, e - for electrical, h - for hydraulic.\nTry again!")
+                "Issue type must be:")
+            print("m - for mechanical, e - for electrical, h - for hydraulic.")
+            print("Try again!")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -308,7 +312,8 @@ def close_ticket() -> bool:
 
         except ValueError as e:
             result = False
-            print(f"\nUpdate failed. {e}.\nPlease check ticket id and try again.\n")
+            print(f"\nUpdate failed. {e}.")
+            print("Please check ticket id and try again.")
 
         else:
             show_ticket_by_id(ticket_id_entered)

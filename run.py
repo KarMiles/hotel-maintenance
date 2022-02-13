@@ -123,9 +123,9 @@ def validate_room(room: int) -> bool:
             (room[1] != "0") or
             (room[2] == "0") or
             (int(room[2]) > 8)) and
-            (int(room) != 0)):
-            raise ValueError(
-                "\nRoom number is 3 digits in given format.\nTry again!\n")
+                (int(room) != 0)):
+                raise ValueError(
+                    "\nRoom number is 3 digits in given format.\nTry again!\n")
 
     except ValueError:
         print(
