@@ -258,11 +258,11 @@ def display_ticket(room: int):
         # show summary on open tickets for the room
         open_num = len(open_tickets)
         if open_num == 1:
-            print(f"There is currently {open_num} open ticket for this room.\n")
+            print(f"There is now {open_num} open ticket for this room.\n")
         else:
             if open_num == 0:
                 open_num = "no"
-            print(f"There are currently {open_num} open tickets for this room.\n")
+            print(f"There are now {open_num} open tickets for this room.\n")
 
         # Show table containing rooms with tickets
         if open_num != 'no':
@@ -291,7 +291,9 @@ def close_ticket() -> bool:
     # get login credentials from user
     while True:
         print("Please enter ticket id.")
-        print("Ticket id can be found through room enquiry")
+        print(
+            "Correct ticket id format is: 6 digits, hyphen (-) and 4 digits.")
+        print("Ticket id can be found in room enquiry")
         print("by choosing Option 2 in the Main Menu.\n")
         ticket_id_entered = input("Enter ticket id:\n")
 

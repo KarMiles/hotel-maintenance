@@ -35,8 +35,8 @@ def main_menu() -> int:
         print("Please choose one of the following options:\n")
         print("1 - Report new issue.")
         print("2 - Enquire about a room.")
-        print("3 - See all maintenance tickets.")
-        print("4 - Close ticket.\n")
+        print("3 - Close ticket.")
+        print("4 - See all maintenance tickets.\n")
         choice = input("Enter your choice here:\n")
 
         if validate_main_menu(choice):
@@ -44,8 +44,8 @@ def main_menu() -> int:
             choice_long = {
                 '1': '1 - Report new issue.',
                 '2': '2 - Enquire about a room.',
-                '3': '3 - See all maintenance tickets.',
-                '4': '4 - Close ticket.'
+                '3': '3 - Close ticket.',
+                '4': '4 - See all maintenance tickets.'
             }
             selection = choice_long[choice]
             messages.Encapsulate(f"You selected option: {selection}", "simple")
@@ -244,11 +244,11 @@ def make_choice():
         ticket.display_ticket(room)
         ending_sequence()
     elif choice == '3':
-        display_all_tickets()
-        display_summary()
+        ticket.close_ticket()
         ending_sequence()
     elif choice == '4':
-        ticket.close_ticket()
+        display_all_tickets()
+        display_summary()
         ending_sequence()
 
 
@@ -269,7 +269,7 @@ def main():
     """
     messages.welcome_message()
 
-    # authorization.login()
+    authorization.login()
 
     make_choice()
 
