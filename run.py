@@ -35,7 +35,8 @@ def main_menu() -> int:
         print("Please choose one of the following options:\n")
         print("1 - Report new issue.")
         print("2 - Enquire about a room.")
-        print("3 - See all maintenance tickets.\n")
+        print("3 - See all maintenance tickets.")
+        print("4 - Close ticket.\n")
         choice = input("Enter your choice here:\n")
 
         if validate_main_menu(choice):
@@ -43,7 +44,8 @@ def main_menu() -> int:
             choice_long = {
                 '1': '1 - Report new issue.',
                 '2': '2 - Enquire about a room.',
-                '3': '3 - See all maintenance tickets.'
+                '3': '3 - See all maintenance tickets.',
+                '4': '4 - Close ticket.'
             }
             selection = choice_long[choice]
             messages.Encapsulate(f"You selected option: {selection}", "simple")
@@ -60,10 +62,10 @@ def validate_main_menu(choice: int) -> bool:
     @param option(int): Choice of menu item entered by user.
     """
     try:
-        allowed = ['1', '2', '3']
+        allowed = ['1', '2', '3', '4']
         if not (choice in allowed):
             raise ValueError(
-                "Issue type must be one digit: 1, 2 or 3.\nTry again!\n")
+                "Issue type must be one digit: 1, 2, 3, or 4.\nTry again!\n")
 
     except ValueError as e:
         print(f"Invalid data: {e}")
@@ -131,58 +133,6 @@ def validate_room(room: int) -> bool:
         return False
 
     return True
-
-
-def display_ticket(room: int):
-    """
-    Pulls tickets for enquired room from Google sheets.
-    Shows tickets to the user in a table.
-    @param room(int): Room number.
-    """
-    print(f"\nRetrieving information about room {room}...")
-
-    # receive information from Google Sheets
-    tickets = SHEET.worksheet("tickets").get_all_values()
-    tickets_summary = SHEET.worksheet("tickets")
-
-    # calculate and display number of tickets related to enquired room
-    room_column = tickets_summary.col_values(1)
-    tickets_per_rm = Counter(room_column)
-    occurencies = tickets_per_rm[room]
-
-    if occurencies == 1:
-        print(f"There is currently {occurencies} ticket for this room.\n")
-
-    else:
-        if occurencies == 0:
-            occurencies = "no"
-        print(f"There are currently {occurencies} tickets for this room.\n")
-
-    # Display tickets for enquired room if existent
-    try:
-        searched = room
-        room_indices = []
-        for i in range(len(room_column)):
-            if room_column[i] in searched:
-                room_indices.append(i)
-
-        # make list of details on rooms enquired only
-        room_enquired_details = []
-        for i in room_indices:
-            room_enquired_details.append(tickets[i])
-
-        # Show table containing rooms with tickets
-        if occurencies != 'no':
-            tickets_headers = tickets[0]
-            # remove status column from view
-            [col.pop(4) for col in room_enquired_details]
-            tickets_headers.pop(4)
-            # show table
-            print(tabulate(room_enquired_details, tickets_headers))
-            print("")
-
-    except:
-        pass
 
 
 def display_summary():
@@ -273,7 +223,7 @@ def new_ticket_sequence():
             description)
         update_worksheet(new_ticket, "tickets")
         print("Getting summary for the affected room...")
-        display_ticket(room)
+        ticket.display_ticket(room)
     else:
         print("\nAction aborted. Ticket was not sent.\n")
 
@@ -291,11 +241,14 @@ def make_choice():
         ending_sequence()
     elif choice == '2':
         room = get_room()
-        display_ticket(room)
+        ticket.display_ticket(room)
         ending_sequence()
     elif choice == '3':
         display_all_tickets()
         display_summary()
+        ending_sequence()
+    elif choice == '4':
+        ticket.close_ticket()
         ending_sequence()
 
 
@@ -316,7 +269,7 @@ def main():
     """
     messages.welcome_message()
 
-    authorization.login()
+    # authorization.login()
 
     make_choice()
 

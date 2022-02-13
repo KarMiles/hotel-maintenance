@@ -1,9 +1,11 @@
 # Python imports
+from collections import Counter
 import datetime
 
 # external libraries imports
 import gspread
 from google.oauth2.service_account import Credentials
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -40,7 +42,7 @@ def get_urgency() -> str:
     Get new issue urgency from user.
     Run a while loop to collect a valid urgency for the new ticket 
     from the user via the terminal, 
-    whic must be a letter:
+    which must be a letter:
     c - for critical,
     u - for urgent,
     n - for normal.
@@ -222,7 +224,61 @@ def create_ticket(
     return ticket
 
 
-# DRAFT
+def display_ticket(room: int):
+    """
+    Pulls tickets for enquired room from Google sheets.
+    Shows tickets to the user in a table.
+    @param room(int): Room number.
+    """
+    print(f"\nRetrieving information about room {room}...")
+
+    # receive information from Google Sheets
+    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets_all = SHEET.worksheet("tickets")
+
+    # Display ticket(s) for enquired room if existent
+    room_column = tickets_all.col_values(1)
+    try:
+        room_indices = []
+        for i in range(len(room_column)):
+            if room_column[i] in room:
+                room_indices.append(i)
+
+        # make list of tickets on room enquired
+        room_enq_dets = []
+        for i in room_indices:
+            room_enq_dets.append(tickets[i])
+
+        # make list of open tickets only
+        open_tickets = []
+        for i in range(len(room_enq_dets)):
+            if room_enq_dets[i][4] == "open":
+                open_tickets.append(room_enq_dets[i])
+
+        # show summary on open tickets for the room
+        open_num = len(open_tickets)
+        if open_num == 1:
+            print(f"There is currently {open_num} open ticket for this room.\n")
+        else:
+            if open_num == 0:
+                open_num = "no"
+            print(f"There are currently {open_num} open tickets for this room.\n")
+
+        # Show table containing rooms with tickets
+        if open_num != 'no':
+            tickets_headers = tickets[0]
+            # remove status column from view
+            [col.pop(4) for col in open_tickets]
+            tickets_headers.pop(4)
+            # show table
+            print(tabulate(open_tickets, tickets_headers))
+            print("")
+
+    # except:
+    #     pass
+    except ValueError as e:
+        print(f"Invalid data: {e}")
+
 def close_ticket():
     """
     Change status of a ticket from open to close.
@@ -237,23 +293,21 @@ def close_ticket():
         # get index of ticket entered in the tickets worksheet
         column = worksheet_to_update.col_values(6)
         ticket_id_index = column.index(ticket_id_entered)
-        print("-" * 79)
-        print(ticket_id_index)
 
         # update cell
         col = 5
         worksheet_to_update.update_cell(ticket_id_index + 1, col, "closed")
-        print("Updating ticket status...")
-    
+        print("\nUpdating ticket status...")
+
     except:
         result = False
         print("\nOperation failed.\nPlease check and try again.\n")
-    
+
     else:
         # check login credentials
-        if True: 
+        if True:
             result = True
-            print(f"\nTicket {ticket_id_entered} closed successfully.")
+            print(f"\nTicket {ticket_id_entered} closed successfully.\n")
 
         else:
             result = False
