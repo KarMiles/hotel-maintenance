@@ -56,12 +56,13 @@
 5. As a user I want to be notified about new issues (Leader of the Maintenance Team)
 6. As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
 7. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
+8. As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
 
 #### Site Owner
-8. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
-9. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
-10. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
-11. As a site owner I want only authorized staff to have access to the system.
+9. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
+10. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+11. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+12. As a site owner I want only authorized staff to have access to the system.
 
 ### Scope
 
@@ -144,7 +145,7 @@ Upon starting the program user is presented with the welcome screen showing the 
 
 **This functionality covers the following user stories:**
 
-11\. As a site owner I want only authorized staff to have access to the system.
+12\. As a site owner I want only authorized staff to have access to the system.
 
 ### Main Menu
 After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system:
@@ -165,9 +166,9 @@ After chosing Option 1 - Report new issue, user answers four questions. Each que
 
 2\. As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
 
-9\. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
+10\. As a site owner I want Front Desk staff to be able to enter information on current issues around mainaining the hospitality area. 
 
-10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+11\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
 ### Email communication
 After user enters all details for the ticket and confirming the wish to send the ticket, the data is uploaded to Google Sheets and email is sent to a Maintenance Team Leader. This allows for fast communication between teams and rapid response on the Maintenance Team side. For this functionality [Zapier](https://zapier.com/app/zaps) service in conjunction with Google Sheets is used. 
@@ -177,7 +178,7 @@ After user enters all details for the ticket and confirming the wish to send the
 
 **This functionality covers the following user stories:**
 
-10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+11\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
 ### Option 2 - Enquire about a room
 After chosing Option 2 - Enquire about a room, user can enter a room number. System verifies the room number and if there are any tickets presents details of tickets related to the room in question in the form of a table. 
@@ -195,14 +196,25 @@ After chosing Option 2 - Enquire about a room, user can enter a room number. Sys
 
 7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
 
-8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+9\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
-10\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
+11\. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
-### Option 3 - See all maintenance tickets
-When Option 3 is chosen the user is presented with the list of tickets related with all rooms and areas of the establishment in form of a table. The information is accompanied by a brief summary showing total number of tickets and their breakdown based on their urgency. 
+### Option 3 - Close ticket
+When this option is chosen the user enters specific ticket id. If this is unknown it can be obtained through Option 2 - Enquire about a room. When correct ticket id is entered confirmation is shown about details of the ticket being closed and about the fact of the ticket being closed in the system.
 
 <details><summary>Option 3 screenshot</summary>
+<img src="docs/screenshots/option3_screenshot.png"></details>
+
+**This functionality covers the following user stories:**
+
+8\. As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
+9\. As a site owner I want smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+
+### Option 4 - See all maintenance tickets
+When Option 4 is chosen the user is presented with the list of tickets related with all rooms and areas of the establishment in form of a table. The information is accompanied by a brief summary showing total number of tickets and their breakdown based on their urgency. 
+
+<details><summary>Option 4 screenshot</summary>
 <img src="docs/screenshots/option3_screenshot.png"></details>
 
 **This functionality covers the following user stories:**
@@ -211,5 +223,5 @@ When Option 3 is chosen the user is presented with the list of tickets related w
 
 7\. As a user I want clear information about nature of any reported issue to help me in deciding on delegating tasks to members of my team and outsorcing work to other supliers (Leader of the Maintenance Team).
 
-8\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
+9\. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair works.
 
