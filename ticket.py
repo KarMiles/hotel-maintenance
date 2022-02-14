@@ -7,7 +7,11 @@ import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
+
+# internal imports
+# import google_config
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",

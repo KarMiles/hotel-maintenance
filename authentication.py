@@ -4,6 +4,9 @@
 import gspread
 import pwinput
 from google.oauth2.service_account import Credentials
+
+# internal imports
+# import google_config
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 SCOPE = [
