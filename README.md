@@ -124,7 +124,7 @@ Purpose of this option is displaying all tickets that are present in the system,
 Together with the table containing the tickets a brief summary is presented with total number of tickets and breakdown according to kinds of issues.
 
 ##### Return to the Main Menu
-Every sequence ends with a question if you want to return to the Main Menu. This enables you to go back to choose again an option in the Main Menu or leave the system.
+Every sequence ends with a question if you want to return to the Main Menu. This enables you to go back to choose from options in the Main Menu or leave the system.
 
 ---
 
@@ -436,10 +436,15 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Feature                             | Action                               | Expected result                                  | Actual result |
 | ----------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------- |
 | Login validation on start of system | Enter correct username and password. | Only authorized staff have access to the system. | As expected.  |
+| 
+
+<details><summary>Screenshots</summary>
+    <img src="docs/screenshots/start_screenshot.png">
+</details>
 
 ## Bugs
 
-| Bug                                                                                                                                                                                              | Fix                                                                                                              |
+Bug                                                                                                                                                                                              | Fix                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | Error component out of range. Data not showing in table (tabulate).                                                                                                                              | Adjust indexing due to difference between Google Sheets (starting from 1) and Python indexing (starting from 0). |
 | Not all expected data showing as a result of a for loop.                                                                                                                                         | Move list initialization before loop.                                                                            |
