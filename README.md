@@ -3,7 +3,7 @@
 
 ![Mockup HMS](docs/mockup/mockup.png)
 
-[View live site](https://hms.herokuapp.com/)
+[View live site](https://hotel-maintenance.herokuapp.com/)
 
 1. [Project Goals](#project-goals)
     1. [User Goals](#user-goals)
