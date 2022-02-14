@@ -378,6 +378,11 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows a list of all tickets for all areas.          | User chooses Option 4 - See all maintenance tickets in Main Menu.                                          | System shows a table containing all tickets in the system and a brief summary with a breakdown according to ticket urgency.                        | As expected.  |
 | System shows a list of tickets related to a specific room. | User chooses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs the user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option4_screenshot.jpg">
+<img src="docs/screenshots/us_option2_screenshot.jpg">
+</details>
+
 12.	As a site owner I want only authorized staff to have access to the system.
 
 | Feature                             | Action                               | Expected result                                  | Actual result |
