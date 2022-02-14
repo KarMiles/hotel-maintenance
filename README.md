@@ -60,7 +60,7 @@
 
 #### Site Owner
 9. As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
-10. As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area. 
+10. As a site owner I want Front Desk staff to be able to enter and access information on current issues around maintaining the hospitality area. 
 11. As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 12. As a site owner I want only authorized staff to have access to the system.
 
@@ -359,11 +359,17 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 <img src="docs/screenshots/us_option1c_scr_urgency.jpg">
 </details>
 
-10.	As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area.
+10.	As a site owner I want Front Desk staff to be able to enter and access information on current issues around maintaining the hospitality area.
 
-| Feature                                                    | Action                                                                                                    | Expected result                                                                                                                                | Actual result |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| System shows a list of tickets related to a specific room. | User choses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
+| Feature                                                    | Action                                                                                                                                                                           | Expected result                                                                                                                                | Actual result |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| System gets information for a new ticket.                  | User choses Option 1 - Report new issue in Main Menu and answers questions about the new issue. Systems shows feedback on every step for satisfactory user – system interaction. | Data is entered and uploaded to Google Worksheet.                                                                                              | As expected.  |
+| System shows a list of tickets related to a specific room. | User choses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas.                                                                        | System informs user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
+
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option2_screenshot.jpg">
+<img src="docs/screenshots/us_menu_option1_scr.jpg">
+</details>
 
 11.	As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
 
