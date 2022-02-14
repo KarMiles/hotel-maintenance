@@ -94,7 +94,8 @@ In future releases further expansion of functionality would be considered:
 Flow chart for this application, placed below, has been produced with [Lucid](https://lucid.app/) service.
 
 <details><summary>Flowchart</summary>
-<img src="docs/flowcharts/flowchart.png"></details>
+    <img src="docs/flowcharts/flowchart.png">
+</details>
 
 ### Data models
 
@@ -109,7 +110,8 @@ For this project Object Oriented Programming approach was applied and the follow
 - Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email. An example of such email can be found below.
 
 <details><summary>Email notification</summary>
-<img src="docs/screenshots/email_screenshot.png"></details>
+    <img src="docs/screenshots/email_screenshot.png">
+</details>
 
 ## Technologies Used
 
@@ -133,7 +135,7 @@ The following tools and frameworks were used in this project:
 3rd party libraries were used in this project:
 1. [gspread](https://docs.gspread.org/en/latest/) - for data storage.
 2. [pwinput[(https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials.
-3. [tabulate](https://pypi.org/project/tabulate/) - for enhanced readability data presentation.
+3. [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation.
 4. [Counter](https://pypi.org/project/Counter/) - for index search.
 5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets.
 
@@ -143,7 +145,8 @@ The following tools and frameworks were used in this project:
 Upon starting the program user is presented with the welcome screen showing the system name "Hotel Maintenance System" and login input. This is repeated until user enters login credentials corresponding with data stored in Google Sheets. 
 
 <details><summary>Welcome and Login screenshot</summary>
-<img src="docs/screenshots/start_screenshot.png"></details>
+    <img src="docs/screenshots/start_screenshot.png">
+</details>
 
 **This functionality covers the following user stories:**
 
@@ -157,7 +160,8 @@ After correct login user is presented with The Main Menu  where they may choose 
 4 - See all maintenance tickets.
 
 <details><summary>Main Menu screenshot</summary>
-<img src="docs/screenshots/menu_screenshot.png"></details>
+    <img src="docs/screenshots/menu_screenshot.png">
+</details>
 
 ### Option 1- Report new issue
 After chosing Option 1 - Report new issue, user answers four questions. Each question is accompanied by a brief instruction on allowed format of the answer. Each answer is validated, question is repeated until user enters valid answer upon which next question is presented. This allows maintaining consistency of data in worksheet where data is stored. Screenshot below shows request for room number. Exemplary hotel has 6 floors which inforces the first digit to be between 1-6, followed by 0, then the number of the room on given floor which is between 1-8. This is the customary room format in the hospitality business.
@@ -167,9 +171,9 @@ After answering four questions about the issue user has a chance to resign or su
 Upon submitting the new ticket system shows confirmation about successful operation. Additionally a brief summary is shown for the affected room, showing a table with open tickets related to the room in question. 
 
 <details><summary>Option 1 screenshots</summary>
-<img src="docs/screenshots/option1_screenshot.png">
-
-<img src="docs/screenshots/option1a_screenshot.png"></details>
+    <img src="docs/screenshots/option1_screenshot.png">
+    <img src="docs/screenshots/option1a_screenshot.png">
+</details>
 
 **This functionality covers the following user stories:**
 
@@ -408,7 +412,19 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 ### GitHub
 
-...
+The program was built using GitHub repository. GitHub clone and GitHub branch methods could be used although were not needed for this project.
+
+Repository may be forked in the following steps:
+1. Go to GitHub repository,
+2. Click Fork button (top right).
+
+Steps for cloning repository:
+1. Go to GitHub repository,
+2. Click Code button (top right above files list),
+3. Select cloning method option: HTTPS, SSH or GitHub CLI and click Copy button (right side of the text box) to copy URL to clipboard,
+4. Open Git Bash (Git Bash can be downloaded from https://git-scm.com/downloads),
+5. In Git Bash change working directory to the desired destination for the clone,
+6. Type "git clone", paste URL for SSH method from the clipboard and press Enter.
 
 ## Credits
 
