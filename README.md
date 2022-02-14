@@ -176,11 +176,11 @@ The following tools and frameworks were used in this project:
 
 ### Libraries
 3rd party libraries were used in this project:
-1. [gspread](https://docs.gspread.org/en/latest/) - for data storage.
-2. [pwinput](https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials.
-3. [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation.
-4. [Counter](https://pypi.org/project/Counter/) - for index search.
-5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets.
+1. [gspread](https://docs.gspread.org/en/latest/) - for data storage. JUSTIFICATION: I chose this library for accessing, adding, manipulation and removing data in Google Sheets and to interact with Google API. No native Python library was found for this purpose. 
+2. [pwinput](https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials. JUSTIFICATION: I used this library for increased privacy when user enters password. Various libraries could be found for this purpose, I chose this one for its simplicity and effectiveness in achieving the goal.
+3. [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation. JUSTIFICATION: While other tools are available for improving data presentation, tabulate offers functionality for formatting information about tickets in tables and for distinct formatting headlines. This allowed for visually communicating level of headlines and place user occupies in the menu at any given moment.  
+4. [Counter](https://pypi.org/project/Counter/) - for data search, summarizing number of tickets given their urgency. JUSTIFICATION: Counter was used as it offers an efficient way to calculate amount of appearances a value makes in a spreadsheet, or a list of lists.
+5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets. JUSTIFICATION: itemgetter offers simple and efficient way of sorting data obtained from the Google spreadsheet, or a list of lists.   
 
 ## Features
 
