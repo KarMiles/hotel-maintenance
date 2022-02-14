@@ -389,4 +389,14 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | ----------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------- |
 | Login validation on start of system | Enter correct username and password. | Only authorized staff have access to the system. | As expected.  |
 
+## Bugs
+
+| Bug                                                                                                                                                                                              | Fix                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Error component out of range. Data not showing in table (tabulate).                                                                                                                              | Adjust indexing due to difference between Google Sheets (starting from 1) and Python indexing (starting from 0). |
+| Not all expected data showing as a result of a for loop.                                                                                                                                         | Move list initialization before loop.                                                                            |
+| Data not showing as part of the system despite of the same function working correctly when started independently. Definition of function called in the function in question lacked return value. | Add return value to definition of the function providing data to the function at hand.                           |
+| Functions not working after moving to other file.                                                                                                                                                | Add imports and credentials to the top of the new function.                                                      |
+| Data not showing correctly in table (tabulate). Values broken into separate letters on separate lines.                                                                                           | Put list comprehension for table data in square brackets \[\].                                                   |
+
 

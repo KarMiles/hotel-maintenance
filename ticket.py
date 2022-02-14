@@ -277,8 +277,6 @@ def display_ticket(room: int):
             print(tabulate(open_tickets, tickets_headers))
             print("")
 
-    # except:
-    #     pass
     except ValueError as e:
         print(f"Invalid data: {e}")
 
@@ -339,7 +337,6 @@ def show_ticket_by_id(ticket_id_entered: str):
     ticket_closed = []
     for i in range(len(tickets)):
         if tickets[i][5] == ticket_id_entered:
-            # ticket_closed.append(tickets[i])
             ticket_closed = tickets[i]
 
     # get header for ticket to be closed
