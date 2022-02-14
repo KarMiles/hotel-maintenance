@@ -342,12 +342,22 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related to a room. | As expected.  |
 
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/us_option2_scr.jpg">
+<img src="docs/screenshots/us_option3_scr.jpg">
+</details>
+
 9.	As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
 
 | Feature                                                                                                                                             | Action                                                                                                                | Expected result                                                                                                                                                                                             | Actual result |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | System sends email notification about new ticket to Maintenance Team member enabling instant information circulation.                               | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added.                                                                                                                  | As expected.  |
 | System includes a question about urgency of new issue. That information enables Maintenance Team to effectively prioritize repair and upgrade work. | User enters information about urgency of the reported issue when starting new ticket.                                 | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. Information is also included in instant email notification. | As expected.  |
+
+<details><summary>Screenshots</summary>
+<img src="docs/screenshots/email_screenshot.png">
+<img src="docs/screenshots/us_option1c_scr_urgency.jpg">
+</details>
 
 10.	As a site owner I want Front Desk staff to be able to enter information on current issues around maintaining the hospitality area.
 
