@@ -1,8 +1,10 @@
+# imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # external libraries imports
 import gspread
 import pwinput
 from google.oauth2.service_account import Credentials
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
