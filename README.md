@@ -1,5 +1,3 @@
-<!-- {::options parse_block_html="true" /} -->
-
 # HMS - Hotel Maintenance System
 (Developer: Karol Mileszko)
 
@@ -88,6 +86,8 @@ In future releases further expansion of functionality would be considered:
 <details>
 <summary>Click Here for User Manual</summary>
 
+---
+
 #### Overview
 The Hotel Maintenance System (HMS) is designed for efficient and timely management of issues arrising around a property. It's main focus is the use in hotels, motels, bed & breakfasts, youth hostels and other kinds of establishments in the hospitality business. It enables staff of different departments, most notably the Front Desk / Reception and Maintenance Team, to report, check status and close tickets with break-downs and upgrades around the hotel.
 
@@ -126,6 +126,8 @@ Together with the table containing the tickets a brief summary is presented with
 ##### Return to the Main Menu
 Every sequence ends with a question if you want to return to the Main Menu. This enables you to go back to choose again an option in the Main Menu or leave the system.
 
+---
+
 </details>
 
 ## Technical Design
@@ -151,7 +153,7 @@ For this project Object Oriented Programming approach was applied and the follow
 - Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email. An example of such email can be found below.
 
 <details><summary>Email notification</summary>
-    <img src="docs/screenshots/email_screenshot.png">
+    <img src="docs/screenshots/email_screenshot.jpg">
 </details>
 
 ## Technologies Used
@@ -175,7 +177,7 @@ The following tools and frameworks were used in this project:
 ### Libraries
 3rd party libraries were used in this project:
 1. [gspread](https://docs.gspread.org/en/latest/) - for data storage.
-2. [pwinput[(https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials.
+2. [pwinput](https://pypi.org/project/pwinput/1.0.1/) - for masking login credentials.
 3. [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation.
 4. [Counter](https://pypi.org/project/Counter/) - for index search.
 5. [itemgetter](https://docs.python.org/3/library/operator.html) - for sorting tickets in table containing all tickets.
@@ -228,7 +230,7 @@ Upon submitting the new ticket system shows confirmation about successful operat
 After user entered all details for the ticket and confirmed the wish to send the ticket, the data is uploaded to Google Sheets and email is sent to a Maintenance Team Leader. This allows for fast communication between teams and rapid response on the Maintenance Team side. For this functionality [Zapier](https://zapier.com/app/zaps) service in conjunction with Google Sheets is used. Email is sent after a new row is added in the tickets worksheet.
 
 <details><summary>Email example screenshot</summary>
-<img src="docs/screenshots/email_screenshot.png"></details>
+<img src="docs/screenshots/email_screenshot.jpg"></details>
 
 **This functionality covers the following user stories:**
 
@@ -350,7 +352,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System sends email notification about new ticket to Maintenance Team member. | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added. | As expected.  |
 
 <details><summary>Screenshots</summary>
-    <img src="docs/screenshots/email_screenshot.png">
+    <img src="docs/screenshots/email_screenshot.jpg">
 </details>
 
 6.	As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
@@ -401,7 +403,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System includes a question about urgency of new issue. That information enables Maintenance Team to effectively prioritize repair and upgrade work. | User enters information about urgency of the reported issue when starting new ticket.                                 | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. Information is also included in instant email notification. | As expected.  |
 
 <details><summary>Screenshots</summary>
-    <img src="docs/screenshots/email_screenshot.png">
+    <img src="docs/screenshots/email_screenshot.jpg">
     <img src="docs/screenshots/us_option1c_scr_urgency.jpg">
 </details>
 
