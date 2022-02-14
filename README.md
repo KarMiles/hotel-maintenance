@@ -93,7 +93,7 @@ The Hotel Maintenance System (HMS) is designed for efficient and timely manageme
 
 #### Using HMS
 It is necessary to follow instructions shown on the screen to be able to proceed with the program. E.g. to choose option 1 an actual digit 1 needs to be entered from the keyboard in the place indicated, not clicking the option or writing words describing the option.
-Whenever entry is limited to a number of options (e.g. 1, 2, 3, 4) or need to be keyed in in a specific format (e.g. room number) this input is validated and accepted only when requirements are met. 
+Whenever entry is limited to a number of options (e.g. 1, 2, 3, 4) or need to be keyed in in a specific format (e.g. room number) a clear instruction is provided and the input is validated and accepted only when requirements are met. 
 
 #### Login
 Upon starting HMS you need to enter correct login and password. These may be issued by the administrator of the program.
@@ -194,7 +194,7 @@ Upon starting the program user is presented with the welcome screen showing the 
 12\. As a site owner I want only authorized staff to have access to the system.
 
 ### Main Menu
-After correct login user is presented with The Main Menu  where they may choose the option for further interaction with the system:
+After correct login user is presented with The Main Menu  where they may select the option for further interaction with the system:
 1 - Report new issue.
 2 - Enquire about a room.
 3 - Close ticket.
@@ -359,7 +359,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | System includes a question about urgency of new issue.                                                                                  | User enters information about urgency of the reported issue when starting new ticket.                                            | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected.  |
 | Limit answers to 3 simple options and validate for optimal clarity of information: c - for critical, u - for urgent, or n - for normal. | User choses one of 3 options when describing urgency of issue.                                                                   | Data on urgency of issues is clear and consistent.                                                                                              | As expected.  |
-| Display information on ticket urgency in response to user queries.                                                                      | User chooses Option 2 - Enquire about a room or Option 4 - See all maintenance tickets to see ticket details, including urgency. | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
+| Display information on ticket urgency in response to user queries.                                                                      | User selects Option 2 - Enquire about a room or Option 4 - See all maintenance tickets to see ticket details, including urgency. | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
 | Display information on ticket urgency in email notification.                                                                            | User has access to email system to receive emails with information about new issues, including their urgency.                    | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
 
 <details><summary>Screenshots</summary>
@@ -374,7 +374,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | System includes question about nature of new issue.                                                                                           | User enters information about nature of the reported issue when starting new ticket.                                                   | Information about nature of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. | As expected.  |
 | Limit answers to 3 simple options and validate for optimal clarity of information: m - for mechanical, e - for electrical, h - for hydraulic. | User choses one of 3 options when describing nature of issue.                                                                          | Data on issue type is clear and consistent.                                                                                                    | As expected.  |
-| Display information on ticket type in response to user queries.                                                                               | User chooses Option 2 - Enquire about a room or Option 4 - See all maintenance tickets to see ticket details, including type of issue. | User gets clear and consistent information on issue type.                                                                                      | As expected.  |
+| Display information on ticket type in response to user queries.                                                                               | User selects Option 2 - Enquire about a room or Option 4 - See all maintenance tickets to see ticket details, including type of issue. | User gets clear and consistent information on issue type.                                                                                      | As expected.  |
 | Display information on ticket type in email notification.                                                                                     | User has access to email system to receive emails with information about new issues, including their nature.                           | User gets clear and consistent information on issue type.                                                                                      | As expected.  |
 
 <details><summary>Screenshots</summary>
@@ -386,7 +386,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 | Feature                                                      | Action                                                                                                                                                                                                                                             | Expected result                                                                                                                                                         | Actual result |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related to a room. | As expected.  |
+| Allow user to change status of a ticket from open to closed. | User selects Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related to a room. | As expected.  |
 
 <details><summary>Screenshots</summary>
     <img src="docs/screenshots/us_option2_scr.jpg">
@@ -421,7 +421,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 | Feature                                                    | Action                                                                                                     | Expected result                                                                                                                                    | Actual result |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| System shows a list of all tickets for all areas.          | User chooses Option 4 - See all maintenance tickets in Main Menu.                                          | System shows a table containing all tickets in the system and a brief summary with a breakdown according to ticket urgency.                        | As expected.  |
+| System shows a list of all tickets for all areas.          | User selects Option 4 - See all maintenance tickets in Main Menu.                                          | System shows a table containing all tickets in the system and a brief summary with a breakdown according to ticket urgency.                        | As expected.  |
 | System shows a list of tickets related to a specific room. | User chooses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs the user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
 
 <details><summary>Screenshots</summary>
@@ -457,7 +457,10 @@ This application is deployed from GitHub using Heroku in following steps:
 4. Choose "Settings".
 5. Under "Config Vars" add credentials, e.g. creds.json.
 6. Set buildpacks.
-7. 
+7. Go to "Deploy", at "Deployment method" click "Connect to GitHub".
+8. Enter repository name, click on it when it appears below.
+9. Select the branch for building the app.
+10. Clicking "Enable Automatic Deploys" will keep the app updated with GitHub repository. 
 
 ### GitHub
 

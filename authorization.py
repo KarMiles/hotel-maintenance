@@ -28,6 +28,7 @@ def login() -> bool:
 
     # get login credentials from user
     id = input("Enter your username:\n")
+    # get password, mask entered characters with asterisks
     pwd = pwinput.pwinput(prompt='Enter password:\n', mask='*')
 
     try:
