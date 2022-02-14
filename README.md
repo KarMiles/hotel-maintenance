@@ -91,7 +91,7 @@ In future releases further expansion of functionality would be considered:
 
 ### Flow Chart
 
-Flow chart for this application, placed below, has been produced with [Lucid](https://lucid.app/) service. 
+Flow chart for this application, placed below, has been produced with [Lucid](https://lucid.app/) service.
 
 <details><summary>Flowchart</summary>
 <img src="docs/flowcharts/flowchart.png"></details>
@@ -127,6 +127,7 @@ The following tools and frameworks were used in this project:
 4. [Lucid](https://lucid.app/) - for drawing flowchart representing flow of processes supported by the application. 
 5. [Google Sheets](https://www.google.co.uk/sheets/about/) - to store data on tickets and logins outside of the program.
 6. [Google Cloud Platform](https://cloud.google.com/cloud-console/) - was used to manage access and permissions to the google services, google auth, worksheets.
+7. [Table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/) - used to convert tables build in MS Word to Markdown format.
 
 ### Libraries
 3rd party libraries were used in this project:
@@ -239,15 +240,15 @@ When Option 4 is chosen the user is presented with the list of tickets related w
 The Python code for this project was validated in [PEP8 Validation Service](http://pep8online.com/) service. All files returned a pass with no errors and no warnings.
 
 <details><summary>run.py</summary>
-<img src="docs/validation/validation-runpy.png">
+    <img src="docs/validation/validation-runpy.png">
 </details>
 
 <details><summary>ticket.py</summary>
-<img src="docs/validation/validation-ticketpy.png">
+    <img src="docs/validation/validation-ticketpy.png">
 </details>
 
 <details><summary>authorization.py</summary>
-<img src="docs/validation/validation-authorizationpy.png">
+    <img src="docs/validation/validation-authorizationpy.png">
 </details>
 
 ### Testing user stories
@@ -259,8 +260,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System retrieves and displays open tickets related with the room entered by user. | User choses Option 2 - Enquire about a room in Main Menu and enters room number. | Information about number of tickets open for room in question and a table with details for tickets is shown on screen. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_menu_screenshot.jpg">
-<img src="docs/screenshots/us_option2_screenshot.jpg">
+    <img src="docs/screenshots/us_menu_screenshot.jpg">
+    <img src="docs/screenshots/us_option2_screenshot.jpg">
 </details>
 
 2.	As a user I want to report an issue with a specific room or other area of the establishment (Receptionist, Lower-level Manager).
@@ -271,8 +272,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Validate answers to questions about issue. | User reads brief instructions on format of data requested. Answers are validated for consistency of data.                                                                        | Data is consistent in format for optimal usability. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option1b_screenshot.jpg">
-<img src="docs/screenshots/us_option1c_screenshot.jpg">
+    <img src="docs/screenshots/us_option1b_screenshot.jpg">
+    <img src="docs/screenshots/us_option1c_screenshot.jpg">
 </details>
 
 3.	As a user I want to see a list of all reported issues (member of the Maintenance Team)
@@ -282,7 +283,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows list of all tickets. | User choses Option 4 in Main Menu. | System shows a table containing all tickets in the system and a brief summary. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option4_screenshot.jpg">
+    <img src="docs/screenshots/us_option4_screenshot.jpg">
 </details>
 
 4.	As a user i want to see details of any reported issue (member of the Maintenance Team)
@@ -293,8 +294,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows a list of tickets related to a specific room. | User choses Option 2 in Main Menu and enters room number. | System informs user if there are any tickets for the enquired room. If there are tickets, details are shown in a table. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option4_screenshot.jpg">
-<img src="docs/screenshots/us_option2_screenshot.jpg">
+    <img src="docs/screenshots/us_option4_screenshot.jpg">
+    <img src="docs/screenshots/us_option2_screenshot.jpg">
 </details>
 
 5.	As a user I want to be notified about new issues (Leader of the Maintenance Team)
@@ -304,7 +305,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System sends email notification about new ticket to Maintenance Team member. | User choses Option 1 - Report new issue in Main Menu, enters questions for the new ticket and submits the new ticket. | Email notification is sent to Maintenance Team Leader’s inbox after a new ticket is added. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/email_screenshot.png">
+    <img src="docs/screenshots/email_screenshot.png">
 </details>
 
 6.	As a user I want clear information about urgency of any reported issue to help me in prioritization of work given to members of my team (Leader of the Maintenance Team).
@@ -317,9 +318,9 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Display information on ticket urgency in email notification.                                                                            | User has access to email system to receive emails with information about new issues, including their urgency.                    | User gets clear and consistent information on issue urgency.                                                                                    | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option1b_scr_urgency.jpg">
-<img src="docs/screenshots/us_option1c_scr_urgency.jpg">
-<img src="docs/screenshots/us_email_screenshot.jpg">
+    <img src="docs/screenshots/us_option1b_scr_urgency.jpg">
+    <img src="docs/screenshots/us_option1c_scr_urgency.jpg">
+    <img src="docs/screenshots/us_email_screenshot.jpg">
 </details>
 
 7.	As a user I want clear information about nature / type of any reported issue to help me in deciding on delegating tasks to members of my team and outsourcing work to other suppliers (Leader of the Maintenance Team).
@@ -332,8 +333,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Display information on ticket type in email notification.                                                                                     | User has access to email system to receive emails with information about new issues, including their nature.                           | User gets clear and consistent information on issue type.                                                                                      | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_type1_screeshot.jpg">
-<img src="docs/screenshots/us_email_type_scr.jpg">
+    <img src="docs/screenshots/us_type1_screeshot.jpg">
+    <img src="docs/screenshots/us_email_type_scr.jpg">
 </details>
 
 8.	As a user I want to be able to close tickets containing resolved issues (member of the Maintenance Team, Receptionist).
@@ -343,8 +344,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Allow user to change status of a ticket from open to closed. | User chooses Option 3 - Close ticket in Main Menu, then enters ticket id. If the ticket number is unknown to user, it is possible to check it via Option 2 - Enquire about a room and find it in the table containing tickets for a specific room. | Status of the ticket is changed from open to closed in the worksheet in Google Sheets. The closed ticket no longer is shown on the list of tickets related to a room. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option2_scr.jpg">
-<img src="docs/screenshots/us_option3_scr.jpg">
+    <img src="docs/screenshots/us_option2_scr.jpg">
+    <img src="docs/screenshots/us_option3_scr.jpg">
 </details>
 
 9.	As a site owner I want a smooth flow of information between members of the Front Desk and Maintenance Team for fast response and effective execution of repair and upgrade works.
@@ -355,8 +356,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System includes a question about urgency of new issue. That information enables Maintenance Team to effectively prioritize repair and upgrade work. | User enters information about urgency of the reported issue when starting new ticket.                                 | Information about urgency of the issue is stored in Google Sheets and available when viewing all tickets or tickets related to a specific room. Information is also included in instant email notification. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/email_screenshot.png">
-<img src="docs/screenshots/us_option1c_scr_urgency.jpg">
+    <img src="docs/screenshots/email_screenshot.png">
+    <img src="docs/screenshots/us_option1c_scr_urgency.jpg">
 </details>
 
 10.	As a site owner I want Front Desk staff to be able to enter and access information on current issues around maintaining the hospitality area.
@@ -367,8 +368,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows a list of tickets related to a specific room. | User choses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas.                                                                        | System informs user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option2_screenshot.jpg">
-<img src="docs/screenshots/us_menu_option1_scr.jpg">
+    <img src="docs/screenshots/us_option2_screenshot.jpg">
+    <img src="docs/screenshots/us_menu_option1_scr.jpg">
 </details>
 
 11.	As a site owner I want the Maintenance Team to have fast and accurate information on current issues around the property.
@@ -379,8 +380,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | System shows a list of tickets related to a specific room. | User chooses Option 2 - Enquire about a room in Main Menu and enters room number or “000” for other areas. | System informs the user if there are any tickets for the enquired room or other areas. If there are tickets, details are shown in form of a table. | As expected.  |
 
 <details><summary>Screenshots</summary>
-<img src="docs/screenshots/us_option4_screenshot.jpg">
-<img src="docs/screenshots/us_option2_screenshot.jpg">
+    <img src="docs/screenshots/us_option4_screenshot.jpg">
+    <img src="docs/screenshots/us_option2_screenshot.jpg">
 </details>
 
 12.	As a site owner I want only authorized staff to have access to the system.
@@ -399,4 +400,27 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Functions not working after moving to other file.                                                                                                                                                | Add imports and credentials to the top of the new function.                                                      |
 | Data not showing correctly in table (tabulate). Values broken into separate letters on separate lines.                                                                                           | Put list comprehension for table data in square brackets \[\].                                                   |
 
+## Deployment
 
+### Heroku
+
+...
+
+### GitHub
+
+...
+
+## Credits
+
+### Code
+
+- [Code Institute](https://codeinstitute.net/) - Git templates and tutorials
+- Google - [gspread](https://docs.gspread.org/en/latest/) library and [Google Sheets API](https://developers.google.com/sheets/api)
+- [The Python Package Index (PyPI)](https://pypi.org/), repository of software for the Python programming language:
+    - [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation,
+    - [pwinput](https://pypi.org/project/pwinput/) - for password masking.
+- [W3 Schools](https://www.w3schools.com/) - Python tutorials and synthax reference.
+- [Python](https://www.python.org/) - synthax reference. 
+- [Stack Overflow](https://stackoverflow.com/) - inspiration for building code and fixing bugs.
+- [Kite](https://www.kite.com/) - inspiration for building code and fixing bugs.
+- [Geeks for Geeks](https://www.geeksforgeeks.org/) - inspiration for building code and fixing bugs.
