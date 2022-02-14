@@ -462,8 +462,8 @@ This application is deployed from GitHub using Heroku in following steps:
 3. Click on "Create app".
 4. Choose "Settings".
 5. Under "Config Vars" add credentials, e.g. creds.json.
-6. Set buildpacks.
-7. Go to "Deploy", at "Deployment method" click "Connect to GitHub".
+6. Set buildpacks by selecting "Add buildpacks"; I then chose "Python" and "Save changes", then "nodejs" and "Save changes".
+7. Go to "Deploy", at "Deployment method" click "Connect to GitHub" and confirm.
 8. Enter repository name, click on it when it appears below.
 9. Select the branch for building the app.
 10. Clicking "Enable Automatic Deploys" will keep the app updated with GitHub repository. 
