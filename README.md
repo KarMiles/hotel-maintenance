@@ -84,7 +84,8 @@ In future releases further expansion of functionality would be considered:
 ### User Manual
 
 <details>
-    <summary>Click Here for User Manual</summary>
+<summary>Click Here for User Manual</summary>
+#### Overview
 </details>
 
 ## Technical Design
@@ -408,7 +409,15 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 ### Heroku
 
-...
+This application is deployed from GitHub using Heroku in following steps:
+
+1. Create an account at [Heroku](https://id.heroku.com/).
+2. Create new app by clicking "New" and then "Create new app", add app name and region.
+3. Click on "Create app".
+4. Choose "Settings".
+5. Under "Config Vars" add credentials, e.g. creds.json.
+6. Set buildpacks.
+7. 
 
 ### GitHub
 
