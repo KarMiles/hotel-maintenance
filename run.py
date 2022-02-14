@@ -8,7 +8,7 @@ from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 
 # internal imports
-import authorization
+import authentication
 import ticket
 import messages
 
@@ -269,7 +269,7 @@ def main():
     """
     messages.welcome_message()
 
-    authorization.login()
+    authentication.login()
 
     make_choice()
 
