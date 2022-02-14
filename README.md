@@ -424,3 +424,8 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 - [Stack Overflow](https://stackoverflow.com/) - inspiration for building code and fixing bugs.
 - [Kite](https://www.kite.com/) - inspiration for building code and fixing bugs.
 - [Geeks for Geeks](https://www.geeksforgeeks.org/) - inspiration for building code and fixing bugs.
+
+### Acknowledgements
+
+- To my mentor Mo Shami for inspiration and guidance in realizing this project.
+- To the Code Institute Tutors for help in my learning process and providing direction for solving coding problems.
