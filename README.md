@@ -436,7 +436,6 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 | Feature                             | Action                               | Expected result                                  | Actual result |
 | ----------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------- |
 | Login validation on start of system | Enter correct username and password. | Only authorized staff have access to the system. | As expected.  |
-| 
 
 <details><summary>Screenshots</summary>
     <img src="docs/screenshots/start_screenshot.png">
