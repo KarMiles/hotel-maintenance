@@ -311,7 +311,7 @@ def close_ticket() -> bool:
         except ValueError as e:
             result = False
             print(f"\nUpdate failed. {e}.")
-            print("Please check ticket id and try again.")
+            print("\nPlease check ticket id and try again.")
 
         else:
             show_ticket_by_id(ticket_id_entered)
