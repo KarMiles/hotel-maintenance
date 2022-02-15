@@ -309,7 +309,7 @@ def close_ticket() -> bool:
 
         else:
             show_ticket_by_id(ticket_id_entered)
-            print(f"Ticket {ticket_id_entered} closed successfully.\n")
+            print(f"Ticket {ticket_id_entered} is now closed.\n")
             result = True
             break
 
