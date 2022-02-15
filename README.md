@@ -297,7 +297,7 @@ The Python code for this project was validated in [PEP8 Validation Service](http
     <img src="docs/validation/validation-authorizationpy.png">
 </details>
 
-<details><summary>authorization.py</summary>
+<details><summary>messages.py</summary>
     <img src="docs/validation/validation-messagespy.png">
 </details>
 
@@ -496,6 +496,7 @@ Steps for cloning repository:
 - [The Python Package Index (PyPI)](https://pypi.org/), repository of software for the Python programming language:
     - [tabulate](https://pypi.org/project/tabulate/) - for improved data presentation,
     - [pwinput](https://pypi.org/project/pwinput/) - for password masking.
+    - [Counter](https://pypi.org/project/Counter/) - for summarizing number of tickets given their urgency.
 - [W3 Schools](https://www.w3schools.com/) - Python tutorials and synthax reference.
 - [Python](https://www.python.org/) - synthax reference. 
 - [Stack Overflow](https://stackoverflow.com/) - inspiration for building code and fixing bugs.
