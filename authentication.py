@@ -38,7 +38,7 @@ def login() -> bool:
 
     except ValueError as e:
         result = False
-        print(f"\nInvalid data: {e}.\nLogin failed.")
+        print(f"\nInvalid username: {e}.\nLogin failed.")
         print("Please check and try again.\n")
         # print("Please check and try again.\n")
         login()
