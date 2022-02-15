@@ -105,18 +105,13 @@ def validate_room(room: int) -> bool:
     @param room(int): Room number entered by user.
     """
     try:
-        if ((
-            len(room) != 3 or
-            int(room) > 608 or
-            (int(room) == 0) or
-            int(room[0]) > 6 or
-            (room[0] == "0") or
-            (room[1] != "0") or
-            (room[2] == "0") or
+        if ((len(room) != 3 or int(room) > 608 or
+            int(room[0]) > 6 or (room[0] == "0") or
+            (room[1] != "0") or (room[2] == "0") or
             (int(room[2]) > 8)) and
                 (int(room) != 0)):
-                raise ValueError(
-                    "\nRoom number is 3 digits in given format.\nTry again!\n")
+            raise ValueError(
+                "\nRoom number is 3 digits in given format.\nTry again!\n")
 
     except ValueError:
         print(

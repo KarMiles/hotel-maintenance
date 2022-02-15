@@ -36,9 +36,11 @@ def login() -> bool:
         psw_column.pop(0)
         correct_pwd = psw_column[id_index]
 
-    except:
+    except ValueError as e:
         result = False
-        print("\nLogin failed.\nPlease check and try again.\n")
+        print(f"\nInvalid data: {e}.\nLogin failed.")
+        print("Please check and try again.\n")
+        # print("Please check and try again.\n")
         login()
 
     else:
