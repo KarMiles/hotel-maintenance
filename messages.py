@@ -4,6 +4,7 @@
 from tabulate import tabulate
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 class Encapsulate:
     """
     Creates encapsulation of a message for visual effect.
