@@ -288,7 +288,7 @@ def close_ticket() -> bool:
         print(
             "Correct ticket id format is: 6 digits, hyphen (-) and 4 digits,")
         print("for instance: 220212-1111.")
-        print("Ticket id can be found in room enquiry")
+        print("Ticket id can be found")
         print("by choosing Option 2 in the Main Menu.\n")
         ticket_id_entered = input("Enter ticket id:\n")
 
