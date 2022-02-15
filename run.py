@@ -5,27 +5,27 @@ from collections import Counter
 from operator import itemgetter
 
 # external libraries imports
-import gspread
-from google.oauth2.service_account import Credentials
+# import gspread
+# from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 
 # internal imports
-# import google_config
+import google_config
 import authentication
 import ticket
 import messages
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+# SCOPE = [
+#     "https://www.googleapis.com/auth/spreadsheets",
+#     "https://www.googleapis.com/auth/drive.file",
+#     "https://www.googleapis.com/auth/drive"
+#     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
+# CREDS = Credentials.from_service_account_file('creds.json')
+# SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+# GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+# SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
 def main_menu() -> int:
@@ -143,10 +143,10 @@ def display_summary():
     """
     Displays summary of maintenance tickets for all rooms in the hotel.
     """
-    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets = google_config.SHEET.worksheet("tickets").get_all_values()
     number_of_tickets = len(tickets) - 1
 
-    tickets_summary = SHEET.worksheet("tickets")
+    tickets_summary = google_config.SHEET.worksheet("tickets")
     urgency_column = tickets_summary.col_values(2)
 
     urgency = Counter(urgency_column)
@@ -166,7 +166,7 @@ def display_all_tickets():
     print("Displaying tickets:\n")
 
     # get data from worksheet
-    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets = google_config.SHEET.worksheet("tickets").get_all_values()
 
     # prepare headers
     tickets_headers = tickets[0]
@@ -200,7 +200,7 @@ def update_worksheet(ticket: list, worksheet: str):
     print(f"\nUpdating '{worksheet}' worksheet...")
 
     # update ticket worksheet with new ticket
-    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update = google_config.SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(ticket)
 
     # show information that worksheet is updated

@@ -4,25 +4,25 @@
 import datetime
 
 # external libraries imports
-import gspread
-from google.oauth2.service_account import Credentials
+# import gspread
+# from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 
 # internal imports
-# import google_config
+import google_config
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+# SCOPE = [
+#     "https://www.googleapis.com/auth/spreadsheets",
+#     "https://www.googleapis.com/auth/drive.file",
+#     "https://www.googleapis.com/auth/drive"
+#     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
+# CREDS = Credentials.from_service_account_file('creds.json')
+# SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+# GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+# SHEET = GSPREAD_CLIENT.open('hotel_maintenance')
 
 
 def validate_yes_no_question(answer: str) -> bool:
@@ -243,8 +243,8 @@ def display_ticket(room: int):
     print(f"\nRetrieving information about room {room}...")
 
     # receive information from Google Sheets
-    tickets = SHEET.worksheet("tickets").get_all_values()
-    tickets_all = SHEET.worksheet("tickets")
+    tickets = google_config.SHEET.worksheet("tickets").get_all_values()
+    tickets_all = google_config.SHEET.worksheet("tickets")
 
     # Display ticket(s) for enquired room if existent
     room_column = tickets_all.col_values(1)
@@ -294,7 +294,7 @@ def close_ticket() -> bool:
     change status of the ticket from open to close.
     """
     # receive information from Google Sheets
-    worksheet_to_update = SHEET.worksheet("tickets")
+    worksheet_to_update = google_config.SHEET.worksheet("tickets")
 
     # get login credentials from user
     while True:
@@ -338,7 +338,7 @@ def show_ticket_by_id(ticket_id_entered: str):
     print(f"\nRetrieving ticket {ticket_id_entered}...")
 
     # receive information from Google Sheets
-    tickets = SHEET.worksheet("tickets").get_all_values()
+    tickets = google_config.SHEET.worksheet("tickets").get_all_values()
 
     # get data for ticket to be closed
     ticket_closed = []
