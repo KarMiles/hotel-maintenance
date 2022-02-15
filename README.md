@@ -32,19 +32,20 @@ Table of Contents
 ## Project Goals 
 
 - Hotel Management System is created with the intention to become the real world application for hospitality businesses with special focus on hotels. 
-- HMS enables users to submit issues around the property, like damaged appliances or anything that might need repair or upgrade, helping the Maintenance Team in keeping track of work that has to be done to keep property in appropriate state. 
-- HMS also lets users check on current state of rooms or any other areas of the business. 
+- HMS enables users to submit issues around the property, like damaged appliances or anything that might need repair or upgrade, helping the Maintenance Team in keeping track of work that has to be done to keep property in appropriate shape. 
+- HMS lets the Front Desk and Maintenance Team employees check and update current state of rooms or any other areas of the business. 
+- HMS enables fast and efficient communication between teams in regards of the maintenance of the establishment.
 
 ### User Goals
 
-- Submit issues around the property (predominantly Receptionists).
-- Check on issues related to specific rooms or other areas in the hotel (Receptionists and members of the Maintenance Team). 
+- Submit issues around the property (mainly by Receptionists).
+- Check on issues related to specific rooms or other areas of the hotel (Receptionists and members of the Maintenance Team). 
 - See list of rooms with reported issues (predominantly members of the Maintenance Team). 
 
 ## User Experience
 
 ### Target Audience
-- Employees at a hotel front desk, especially Receptionists, 
+- Employees at a hotel Front Desk, especially Receptionists, 
 - Members of the Maintenance Team.
 
 ### User Stories
@@ -68,13 +69,13 @@ Table of Contents
 ### Scope
 
 In first release the scope is to deliver mechanisms to:
-- Report new issues. 
+- Report a new issues / open maintenance ticket. 
 - Enquire about specific rooms.
-- Change status of a ticket from open to closed.
+- Close tickets.
 - See all maintenance tickets with a brief summary.
 - Notify Leader of the Maintenance Team about new issues by email.
-- Store tickets in a Google Worksheet.
-- Grant access only to user with correct login credentials.
+- Store tickets in a Google worksheet.
+- Grant access only to users with correct login credentials.
 
 In future releases further expansion of functionality would be considered:
 - Various levels of user access.
@@ -97,18 +98,18 @@ It is necessary to follow instructions shown on the screen to be able to proceed
 Whenever entry is limited to a number of options (e.g. 1, 2, 3, 4) or need to be keyed in in a specific format (e.g. room number) a clear instruction is provided and the input is validated and accepted only when requirements are met. 
 
 #### Login
-Upon starting HMS you need to enter correct login and password. These may be issued by the administrator of the program.
+Upon starting HMS you need to enter correct login and password. These may be issued by the administrator.
 
 #### Main Menu
 After correctly logging in you are presented with the following options:
 
 ##### 1 - Report new issue.
-Selecting this options will let you submit a new maintenance ticket. This is done by answering four questions about details of the issue: room number (or "000" for other areas), issue urgency, brief description, and nature of the issue (mechanical, electrical etc.). After answering those questions you may submit the ticket or abandon the operation. When a new ticket is submitted, it is immediately available for viewing by other users and email with details of the ticket is sent to the inbox of a member of the Maintenance Team. 
+Selecting this options will let you submit a new maintenance ticket. This is done by answering four questions about details of the issue: room number (or "000" for other areas), issue urgency, brief description, and nature of the issue (mechanical, electrical etc.). After answering those questions you may submit the ticket or abandon the operation. When a new ticket is submitted, it is immediately available for viewing by other users and email with details of the ticket sent to the inbox of a member of the Maintenance Team. 
 
 After submitting the new ticket confirmation about successful operation is displayed together with the summary of tickets related to the room affected. 
 
 ##### 2 - Enquire about a room.
-Choosing this option lets you see all tickets currently related with a specific room. Only actual (open) tickets are presented here. If you need to see all tickets, including the closed ones, they may be accessed by choosing option 4 - See all maintenance tickets.
+Choosing this option lets you see all open tickets related with a specific room. Only actual (open) tickets are presented here. If you need to see all tickets, including the closed ones, they may be accessed by choosing option 4 - See all maintenance tickets.
 
 After entering the room number a table with all current tickets is presented. 
 
@@ -117,7 +118,7 @@ The purpose of this option is changing the status of a maintenance ticket from o
 
 To close a ticket its unique number (ticket id) is required. If you do not know the ticket id, you may find it via option 4 - See all maintenance tickets, where all tickets are presented, both open and closed.
 
-After successfully closing a ticket a confirmation is shown together with details of the ticket.
+After successfully closing a ticket confirmation is shown together with details of the ticket.
 
 ##### 4 - See all maintenance tickets.
 Purpose of this option is displaying all tickets that are present in the system, both open and closed. This is for the reference in case information is needed on history of any room or for other reasons.
@@ -125,7 +126,7 @@ Purpose of this option is displaying all tickets that are present in the system,
 Together with the table containing the tickets a brief summary is presented with total number of tickets and breakdown according to kinds of issues.
 
 ##### Return to the Main Menu
-Every sequence ends with a question if you want to return to the Main Menu. This enables you to go back to choose from options in the Main Menu or leave the system.
+Every sequence ends with a question if you want to return to the Main Menu. This enables you to go back to make another selection in the Main Menu or leave the system.
 
 ---
 
@@ -135,7 +136,7 @@ Every sequence ends with a question if you want to return to the Main Menu. This
 
 ### Flow Chart
 
-Flow chart for this application, placed below, has been produced with [Lucid](https://lucid.app/) service.
+Flow chart for this application, presented below, has been produced with [Lucid](https://lucid.app/) service.
 
 <details><summary>Flowchart</summary>
     <img src="docs/flowcharts/flowchart.png">
@@ -148,14 +149,11 @@ For this project Object Oriented Programming approach was applied and the follow
     - Try Except statements to validate data entered by user. This proved usefull for maintaining consistency of data within tickets and for checking user login credentials.
     - Some functions are designed as sequencies of other functions. This approach helped me optimally group and manipulate order of functions in responce to choices made by user while using the system.
     - Import modules were used for additional functionality: pwinput for masking password with asterisks, tabulate for printing ticket data on screen in a form of a table for better readability compared to printing bare lists or lists of lists, Counter for indexing functionality.
-- Classes - classes were utilized to enhance effectiveness of code and reduce repetition.  
-- List and dictionaries - lists were used for ticket data and user credentials; dictionaries were used mainly for simplification of choices made by user, e.g. "u for urgent". 
+- Classes - class was utilized to enhance effectiveness of code and reduce repetition.  
+- List and dictionaries - lists were used for ticket data and user credentials; dictionaries were used mainly for simplification of choices made by user, e.g. "u for urgent".
+- Code was devided into several .py files according to purpose of the code. Internal import functionality was used for this aim.
 - Google Sheets API - for secure storing data outside of the time the application is run.  
-- Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email. An example of such email can be found below.
-
-<details><summary>Email notification</summary>
-    <img src="docs/screenshots/email_screenshot.jpg">
-</details>
+- Zapier automation - for enhanced communication: on new entry in the Google worksheet containing ticket data (i.e. when a new maintenance ticket is entered by user) the Maintenance Team Leader is notified by email.
 
 ## Technologies Used
 
@@ -297,6 +295,10 @@ The Python code for this project was validated in [PEP8 Validation Service](http
 
 <details><summary>authorization.py</summary>
     <img src="docs/validation/validation-authorizationpy.png">
+</details>
+
+<details><summary>authorization.py</summary>
+    <img src="docs/validation/validation-messagespy.png">
 </details>
 
 ### Testing user stories
